@@ -13,6 +13,8 @@
   "max_practice_submissions": 10,
   "practice_enabled": true,
   "final_submissions_enabled": false,
+  "materials_release_utc": "2026-10-24T08:00:00Z",
+  "starter_ref": "hackathon-2026",
   "start_utc": "2026-10-24T09:00:00Z",
   "test_release_utc": "2026-10-24T11:30:00Z",
   "deadline_utc": "2026-10-24T15:30:00Z",
@@ -20,26 +22,12 @@
   "drive_url": "https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT",
   "starter_released": false,
   "jury_performance_points": "baseline-relative-v1",
-  "status": "prelaunch",
-  "captain_only": true,
-  "metric": "Country-then-species macro average precision",
-  "rubric": {
-    "model_performance": 50,
-    "insights": 30,
-    "presentation": 15,
-    "reproducibility_checklist": 5
-  },
-  "working_hours": "6.5",
-  "presentation_minutes": 5,
-  "questions_minutes": 2,
   "tie_break": "earliest-relevant-accepted-submission",
   "preparation_policy": "environment-checks-only",
   "data_ready": false,
   "presentation_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfYhHbWZO8YNB8SJW1-SwBw1ER1G0LWdPkgaAm9THZxPxL4YA/viewform",
   "presentation_form_open": true,
   "participant_guide_url": "participant-guide.pdf",
-  "materials_release_utc": "2026-10-24T08:00:00Z",
-  "starter_ref": "hackathon-2026",
   "scoring_policy": {
     "version": "baseline-relative-v1",
     "constant_ap": 0.16666666666666666,
@@ -83,5 +71,17 @@
     },
     "reference_sha256": "eb1d68aec94d76e42d50ec55d167b9a98953114636520c4edb0b9828ad5247d2",
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
-  }
+  },
+  "status": "prelaunch",
+  "captain_only": true,
+  "metric": "Country-then-species macro average precision",
+  "rubric": {
+    "model_performance": 50,
+    "insights": 30,
+    "presentation": 15,
+    "reproducibility_checklist": 5
+  },
+  "working_hours": "6.5",
+  "presentation_minutes": 5,
+  "questions_minutes": 2
 }

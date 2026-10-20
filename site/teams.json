@@ -1,3 +1,14 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "slug": "organizer-rehearsal",
+      "name": "Organizer rehearsal - exclude from competition",
+      "uploader": "Tweo",
+      "members": [
+        "Tweo",
+        "ikumpli"
+      ],
+      "active": true
+    }
+  ]
 }
