@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "timezone": "Europe/Berlin",
+  "timezone_label": "CEST / MESZ (UTC+02:00)",
+  "work_start_local": "11:00",
+  "test_unlock_local": "13:30",
+  "work_deadline_local": "17:30",
+  "work_hours": 6.5,
+  "presentation_teams": 15,
+  "presentation_minutes": 5,
+  "questions_minutes": 2,
+  "rows": [
+    [
+      "10:00",
+      "Registration and coffee; starter code, participant guide and competition pages released. Environment checks only until 11:00."
+    ],
+    [
+      "10:15",
+      "Welcome and AI Nation introduction (Juliana Carneiro da Cunha Baumgartl, about 5 minutes)."
+    ],
+    [
+      "10:25",
+      "Challenge brief by Hula Earth and Ames (maximum 10 minutes each), including the datasets."
+    ],
+    [
+      "10:45",
+      "Team formation, challenge/category confirmation and mentor introductions."
+    ],
+    [
+      "11:00",
+      "Hackathon modeling and analysis begin. Teams raise a hand for mentor help."
+    ],
+    [
+      "13:00",
+      "Lunch in the room; no fixed work break."
+    ],
+    [
+      "13:30",
+      "Test-key release on the Space; decrypt preloaded inputs and begin final inference/submissions."
+    ],
+    [
+      "14:00",
+      "Mentor round: every team gets a check-in, including data loading, inference and submission questions."
+    ],
+    [
+      "16:30",
+      "Feature-freeze checkpoint and second mentor round; focus on final inference, figures, slides and delivery."
+    ],
+    [
+      "17:30",
+      "Deadline for predictions, nomination, method/code reference and presentation PDF."
+    ],
+    [
+      "17:45-19:45",
+      "Presentations: 15 teams, 5 minutes + 2 minutes Q&A."
+    ],
+    [
+      "19:45-20:00",
+      "Jury deliberation and final reconciliation."
+    ],
+    [
+      "20:00-20:15",
+      "Awards ceremony."
+    ],
+    [
+      "20:15-20:45",
+      "Dinner and networking."
+    ]
+  ],
+  "materials_release_local": "10:00"
+}

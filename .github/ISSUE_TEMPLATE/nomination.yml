@@ -1,0 +1,32 @@
+name: Choose or confirm final entry
+description: Choose an accepted prediction and record your final references before 17:30
+title: "[Nomination] "
+body:
+  - type: markdown
+    attributes:
+      value: "Your latest accepted prediction is the default, not necessarily your highest public AP. Use this form to choose an older accepted file or confirm the default and provide method references. Enter its Prediction issue number; do not upload the prediction again. The latest valid choice before 17:30 wins. Do not edit this issue."
+  - type: input
+    id: team-slug
+    attributes:
+      label: Team slug
+    validations:
+      required: true
+  - type: input
+    id: submission-issue
+    attributes:
+      label: Submission issue number
+      description: The accepted Prediction issue belonging to your team, e.g. 42.
+    validations:
+      required: true
+  - type: textarea
+    id: method-reference
+    attributes:
+      label: Method report and code/checkpoint reference
+      description: Link the completed method report and exact reproducible source/checkpoint reference. Do not include keys or hidden labels.
+    validations:
+      required: true
+  - type: textarea
+    id: presentation-reference
+    attributes:
+      label: Presentation reference
+      description: Submit the final PDF through the announced private presentation form before the deadline. Optionally identify that submission here by team slug and submission time; keep the slides in the form upload.

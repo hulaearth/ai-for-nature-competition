@@ -1,0 +1,37 @@
+name: Register a competition team
+description: Register 2–3 participants for the AI for Nature — Hula Earth challenge
+title: "[Team registration] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: "Use public GitHub usernames only; do not post email addresses or other private information. An organiser must approve your team before submissions can be scored."
+  - type: input
+    id: team-name
+    attributes:
+      label: Team name
+      placeholder: Habitat Heroes
+    validations:
+      required: true
+  - type: input
+    id: captain
+    attributes:
+      label: GitHub username of team captain
+      placeholder: octocat
+    validations:
+      required: true
+  - type: textarea
+    id: teammates
+    attributes:
+      label: GitHub usernames of all members (including captain)
+      description: One username per line; 2–3 members recommended.
+      placeholder: "octocat\nbirdwatcher"
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Participation
+      options:
+        - label: I understand team names/usernames and encrypted submissions are public, have read the competition rules, and will limit advance preparation to downloads and environment checks; challenge analysis and modeling start at kickoff.
+          required: true

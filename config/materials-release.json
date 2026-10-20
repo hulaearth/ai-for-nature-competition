@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "competition_id": "ai-for-nature-2026",
+  "dataset_release": "bird-habitat-2024",
+  "space_id": "Hula-Tech/ai-for-nature-hula-earth",
+  "repositories": [
+    "hulaearth/ai-for-nature-competition",
+    "hulaearth/ai-for-nature-codebase"
+  ],
+  "not_before_utc": "2026-10-24T08:00:00Z",
+  "expires_utc": "2026-10-24T15:30:00Z",
+  "timezone": "Europe/Berlin",
+  "starter_ref": "hackathon-2026",
+  "starter_commit": "3fd40f3da019b427f10bee718f8952c8bb9fbc4f",
+  "guide_sha256": "8d1d5f51ba3e68d7007d6a528ac64d00c814803235d96169785b93987711d3cb"
+}

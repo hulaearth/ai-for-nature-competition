@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Submission instructions
+    url: https://github.com/hulaearth/ai-for-nature-competition/blob/main/SUBMISSIONS.md
+    about: Read the guide before submitting a prediction.

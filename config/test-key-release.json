@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "competition_id": "ai-for-nature-2026",
+  "dataset_release": "bird-habitat-2024",
+  "space_id": "Hula-Tech/ai-for-nature-hula-earth",
+  "not_before_utc": "2026-10-24T11:30:00Z",
+  "expires_utc": "2026-10-24T15:30:00Z",
+  "timezone": "Europe/Berlin",
+  "identity_sha256": "f1441573b4624c74530752f2afe350e6a181a5b145f668055ed662ec668f94f2"
+}

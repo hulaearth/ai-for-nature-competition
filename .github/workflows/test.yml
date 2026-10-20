@@ -1,0 +1,19 @@
+name: Public site and envelope tests
+on:
+  push:
+    paths: ['site/**', 'scripts/**', 'tests/**', 'package.json', '.github/**', 'config/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  public-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - run: node --test tests/*.test.js
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - run: python3 scripts/build_site.py
+      - run: python3 scripts/check_site.py

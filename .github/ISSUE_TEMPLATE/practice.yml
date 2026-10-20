@@ -1,0 +1,28 @@
+name: Practice format check
+description: Upload an encrypted prediction file using the approved team uploader
+title: "[Practice] "
+body:
+  - type: markdown
+    attributes:
+      value: "Encrypt the CSV on the competition Submit page first. Attach only the downloaded .encrypted.json file. Never attach a raw CSV. Create a new issue for corrections; do not edit this issue."
+  - type: input
+    id: team-slug
+    attributes:
+      label: Team slug
+      placeholder: habitat-heroes
+    validations:
+      required: true
+  - type: textarea
+    id: encrypted-file
+    attributes:
+      label: Encrypted prediction file
+      description: Drag the .encrypted.json here and wait for its GitHub attachment link to appear before creating the issue.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Submission declaration
+      options:
+        - label: I am the approved uploader and these predictions follow the published permitted-data and validation rules.
+          required: true
