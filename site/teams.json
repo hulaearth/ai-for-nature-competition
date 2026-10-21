@@ -1,16 +1,3 @@
 {
-  "teams": [
-    {
-      "slug": "integrated-form-rehearsal",
-      "name": "Organizer platform check",
-      "uploader": "Tweo",
-      "members": [
-        "Tweo",
-        "ikumpli"
-      ],
-      "active": true,
-      "hf_id": "6ad5d7cbf506f545beadf9ce",
-      "hf_username": "Hula-Tech"
-    }
-  ]
+  "teams": []
 }
