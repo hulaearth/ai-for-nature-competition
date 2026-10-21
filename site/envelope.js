@@ -1,7 +1,7 @@
 const SLUG = /^[a-z0-9][a-z0-9-]{1,39}$/;
 const ROW_ID = /^[0-9a-f]{32}$/;
 const NUMBER = /^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/;
-export const MAX_CSV_BYTES = 5_000_000;
+export const MAX_CSV_BYTES = 8_000_000;
 
 export function parseCSV(text) {
   text = text.replace(/^\uFEFF/, "");
@@ -31,7 +31,7 @@ export function parseCSV(text) {
 }
 
 export function validateCSV(bytes, count, expectedIds = null) {
-  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > MAX_CSV_BYTES) throw new Error("CSV must be between 1 byte and 5 MB.");
+  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > MAX_CSV_BYTES) throw new Error("CSV must be between 1 byte and 8 MB.");
   const rows = parseCSV(new TextDecoder("utf-8", {fatal: true}).decode(bytes));
   const header=rows.shift();
   if (header?.length!==2 || header[0]!=="row_id" || header[1]!=="score") throw new Error("Use exactly the header row_id,score.");

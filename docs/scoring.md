@@ -11,7 +11,7 @@ Let `s` be the nominated model's final private AP, `a = 1/6` the constant-score 
 
 Matching the reference earns **15/50**. Improvements of +0.02, +0.05, +0.10 and +0.15 AP earn **19.7, 26.7, 38.3 and 50**. Examples are rounded; calculations and ties use full precision. Scores at or below constant-score AP earn zero. No team's result changes the reference or thresholds.
 
-The reference is the supplied default all-support linear CPU starter, fitted only on German training rows with seed 20261016 and the pinned Python 3.14.4 environment. Its German development AP is **0.3792824597594471**; that is not `b`. The fixed reference predictions and foreign AP are organizer-private until final results. The live AP leaderboard is feedback, separate from the overall award.
+The reference is the supplied default 289-feature linear CPU starter, fitted only on German training rows with seed 20261016 and the pinned Python 3.14.4 environment. Its German development AP is **0.38586286412186144**; that is not `b`. The fixed reference predictions and foreign AP are organizer-private until final results. The live AP leaderboard is feedback, separate from the overall award.
 
 Insights have three 0-10 criteria: useful question; supported analysis and interpretation; effective visualizations. Presentation has three 0-5 criteria: clear explanation; understanding and answers; focused use of the five-minute slot. A technical organizer awards one reproducibility point for each of: code/configuration; reproduction instructions/dependencies; correct common German validation evidence; features/preprocessing/helpers declaration; accurate limitations. Provide evidence in `make_method_report.py`'s report; it is not an automatic self-award.
 

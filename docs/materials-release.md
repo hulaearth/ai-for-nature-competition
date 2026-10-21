@@ -2,7 +2,7 @@
 
 On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** the guarded job opens `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`, and publishes its release receipt.
 
-The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `HulaEarth/ai-for-nature-hula-earth` early for the colleague rehearsal. Their pages and participant PDF are already public. The plan records this exception; verification preserves it without releasing the starter or test key early.
+The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `HulaEarth/ai-for-nature-hula-earth` early for the colleague rehearsal. The registration and technical pages stay public. The updated participant PDF is held in the private starter and published on the Space only at 10:00; verification never uploads the PDF or opens the starter early.
 
 The advance Drive folder stays data-only. Its restricted holding copy of the guide
 does not need public access. Modeling, data analysis and AI-agent modeling start
@@ -24,7 +24,7 @@ The existing `HF_TOKEN` / `HF_SPACE_TOKEN` is reused. Do not put credentials in
 HF Static Space secrets, issues, files, shell arguments or chat.
 
 Run **Release participant materials at 10 German time**, mode **verify**. It
-checks the exact frozen guide on HF, the starter tag and current main-branch
+checks the exact frozen guide in the private starter at the pinned commit, the starter tag and current main-branch
 plan, and performs same-value visibility updates to verify permission while
 preserving the approved current visibility. It records `materials-release-setup.json` on HF.
 Require `armed=true`, the expected release time and current source commit.

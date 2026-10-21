@@ -68,7 +68,7 @@ class MaterialsReleaseTests(unittest.TestCase):
                        {'early_public_repositories':[release.REPOSITORIES[1]]},
                        {'early_public_repositories':['hulaearth/ai-for-nature-evaluation']},
                        {'early_public_space':'yes'},
-                       {'guide_sha256':'0'*64}]:
+                       {'guide_sha256':'malformed'}]:
             real_read = Path.read_text
             def read(path, *args, **kwargs):
                 return json.dumps({**self.plan, **change}) if path == original else real_read(path, *args, **kwargs)
@@ -80,7 +80,10 @@ class MaterialsReleaseTests(unittest.TestCase):
         import base64
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
-            files = {'participant-guide.pdf': release.ROOT / 'site/participant-guide.pdf'}
+            files = {}
+            guide_bytes=b'%PDF-1.7 synthetic event-day guide'
+            import hashlib
+            plan={**self.plan,'guide_sha256':hashlib.sha256(guide_bytes).hexdigest()}
             visibility = {repo: True for repo in release.REPOSITORIES}
             if early_public:
                 visibility[release.REPOSITORIES[0]] = False
@@ -99,10 +102,15 @@ class MaterialsReleaseTests(unittest.TestCase):
                     files[name] = directory / name
                     files[name].write_bytes(kwargs['path_or_fileobj'].read())
                     operations.append(('hf-file', name))
+                def create_commit(self, **kwargs):
+                    for op in kwargs['operations']:
+                        self.upload_file(path_in_repo=op.path_in_repo,path_or_fileobj=op.path_or_fileobj)
             hub = Hub()
             def api(token, method, path, payload=None):
+                if '/contents/docs/participant-guide.pdf' in path:
+                    return {'content':base64.b64encode(guide_bytes).decode()}
                 if '/contents/' in path:
-                    return {'content':base64.b64encode(json.dumps(self.plan).encode()).decode()}
+                    return {'content':base64.b64encode(json.dumps(plan).encode()).decode()}
                 if '/git/ref/' in path:
                     return {'object':{'type':'commit','sha':self.plan['starter_commit']}}
                 repo = path.removeprefix('/repos/')
@@ -113,11 +121,11 @@ class MaterialsReleaseTests(unittest.TestCase):
                 return {'full_name':repo,'private':visibility[repo],'default_branch':'main'}
             clock = Mock(wraps=datetime)
             clock.now.return_value = release.utc(when)
-            module = SimpleNamespace(HfApi=lambda **kwargs:hub,
+            module = SimpleNamespace(HfApi=lambda **kwargs:hub,CommitOperationAdd=lambda **kwargs:SimpleNamespace(**kwargs),
                 hf_hub_download=lambda repo, name, **kwargs:files[name])
             with patch.dict('sys.modules', {'huggingface_hub':module}), patch.dict('os.environ',
                     {'MATERIALS_RELEASE_TOKEN':token,'HF_TOKEN':'synthetic','GITHUB_ACTIONS':'false'}), \
-                    patch.object(release,'datetime',clock), patch.object(release,'github',side_effect=api):
+                    patch.object(release,'datetime',clock), patch.object(release,'github',side_effect=api), patch.object(release,'load_plan',return_value=plan):
                 release.run(mode)
                 if mode == 'publish':
                     release.run(mode)  # same receipt, safe completion after a repeated dispatch
@@ -128,6 +136,7 @@ class MaterialsReleaseTests(unittest.TestCase):
         self.assertTrue(all(repos.values()))
         self.assertTrue(private)
         self.assertNotIn(release.RECEIPT, files)
+        self.assertNotIn('participant-guide.pdf',files)
         self.assertTrue(json.loads(files['materials-release-setup.json'])['armed'])
 
     def test_full_release_and_idempotent_retry_use_only_two_participant_repos(self):
@@ -153,6 +162,7 @@ class MaterialsReleaseTests(unittest.TestCase):
         self.assertTrue(repos[release.REPOSITORIES[1]])
         self.assertTrue(private)
         self.assertNotIn(release.RECEIPT, files)
+        self.assertNotIn('participant-guide.pdf',files)
         self.assertTrue(json.loads(files['materials-release-setup.json'])['armed'])
 
 

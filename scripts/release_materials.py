@@ -53,8 +53,8 @@ def load_plan():
         raise ReleaseError('Invalid one-off release window.')
     if plan['starter_ref'] != event['starter_ref']:
         raise ReleaseError('Starter version differs from the published contract.')
-    if hashlib.sha256((ROOT / 'site/participant-guide.pdf').read_bytes()).hexdigest() != plan['guide_sha256']:
-        raise ReleaseError('Participant guide changed after the materials freeze.')
+    if len(plan['guide_sha256']) != 64:
+        raise ReleaseError('A frozen participant-guide fingerprint is required.')
     return plan
 
 
@@ -134,12 +134,15 @@ def run(mode):
     hf_token = os.environ.get('HF_TOKEN', '')
     if not hf_token:
         raise ReleaseError('Existing HF_TOKEN or HF_SPACE_TOKEN is required.')
-    from huggingface_hub import HfApi, hf_hub_download
+    from huggingface_hub import HfApi, hf_hub_download, CommitOperationAdd
     api = HfApi(token=hf_token)
     info = api.repo_info(SPACE, repo_type='space')
-    guide = Path(hf_hub_download(SPACE, 'participant-guide.pdf', repo_type='space', revision=info.sha, token=hf_token))
-    if hashlib.sha256(guide.read_bytes()).hexdigest() != plan['guide_sha256']:
-        raise ReleaseError('Deploy and verify the frozen participant guide before release.')
+    if not token:
+        raise ReleaseError('MATERIALS_RELEASE_TOKEN is required to verify the embargoed participant guide.')
+    document = github(token, 'GET', '/repos/' + REPOSITORIES[1] + '/contents/docs/participant-guide.pdf?ref=' + plan['starter_commit'])
+    guide = base64.b64decode(document['content'])
+    if not guide.startswith(b'%PDF-') or hashlib.sha256(guide).hexdigest() != plan['guide_sha256']:
+        raise ReleaseError('The private starter does not contain the frozen participant guide.')
     if mode == 'verify':
         if now < utc(plan['not_before_utc']) and not info.private and not plan.get('early_public_space', False):
             raise ReleaseError('Space is already public before the embargo ends.')
@@ -188,8 +191,13 @@ def run(mode):
             raise ReleaseError('An incompatible materials release receipt already exists.')
     else:
         data = (json.dumps(receipt(plan, datetime.now(timezone.utc)), indent=2) + '\n').encode()
-        api.upload_file(repo_id=SPACE, repo_type='space', path_in_repo=RECEIPT,
-                        path_or_fileobj=io.BytesIO(data), commit_message='Release the frozen participant materials')
+        api.create_commit(repo_id=SPACE, repo_type='space', operations=[
+            CommitOperationAdd(path_in_repo='participant-guide.pdf',path_or_fileobj=io.BytesIO(guide)),
+            CommitOperationAdd(path_in_repo=RECEIPT,path_or_fileobj=io.BytesIO(data))],
+            commit_message='Release the frozen participant guide and starter receipt at the guarded time')
+    remote = Path(hf_hub_download(SPACE,'participant-guide.pdf',repo_type='space',token=hf_token))
+    if hashlib.sha256(remote.read_bytes()).hexdigest()!=plan['guide_sha256']:
+        raise ReleaseError('Published participant guide failed readback.')
     guard(plan, datetime.now(timezone.utc))
     api.update_repo_settings(SPACE, repo_type='space', visibility='public')
     if api.repo_info(SPACE, repo_type='space').private:

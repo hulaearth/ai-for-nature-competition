@@ -65,7 +65,7 @@ for page in SITE.glob('*.html'):
     assert all(term not in page.read_text() for term in ['grid_id','BioT','Bavaria','macro_auroc','UTC-daily']),page
     assert '1a7b2U9YQRhpJG5TsPhPa1hHkVUpeOlPS' not in page.read_text(),page
     assert '1ULqUyStGWCF2osa6hzUXWuA9v9lR3kuhzu2kRWW1Z9M/edit' not in page.read_text(),page
-c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==35510
+c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==63590
 assert c['max_final_submissions']==5 and c['dataset_release']=='bird-habitat-2024'
 assert c['jury_performance_points']=='baseline-relative-v1'
 assert c['space_id']=='HulaEarth/ai-for-nature-hula-earth'
@@ -74,18 +74,20 @@ assert plan['not_before_utc']==c['test_release_utc']
 materials=json.loads((ROOT/'config/materials-release.json').read_text())
 assert materials['not_before_utc']==c['materials_release_utc']=='2026-10-24T08:00:00Z'
 assert materials['starter_ref']==c['starter_ref']=='hackathon-2026'
-assert materials['guide_sha256']==hashlib.sha256((SITE/'participant-guide.pdf').read_bytes()).hexdigest()
+assert len(materials['guide_sha256'])==64
+assert not (SITE/'participant-guide.pdf').exists(), 'Guide must stay in private starter until release'
 assert 'identity' not in plan and 'key' not in plan
 assert c['preparation_policy']=='environment-checks-only'
 assert c['drive_url']=='https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT'
-assert (SITE/'participant-guide.pdf').read_bytes().startswith(b'%PDF-')
+assert 'data-guide' in (SITE/'guide.html').read_text()
 assert len(list(SITE.glob('*.html')))==6
-assert c['dataset_manifest_sha256']=='9c3fb027936be1817c3ccfa1d81f69e2371b83c9892030661143880e92b564d7'
+assert len(c['dataset_manifest_sha256'])==64
+assert c['dataset_manifest_sha256']==json.loads((ROOT/'config/challenge.json').read_text())['dataset_manifest_sha256']
 with (SITE/'practice_submission.csv').open() as f:
     rows=list(csv.DictReader(f));assert len(rows)==120 and set(rows[0])=={'row_id','score'}
 for p in SITE.iterdir():
     if p.is_file():assert b'-----BEGIN PRIVATE KEY' not in p.read_bytes(),p
-print('Six pages, guide PDF, local links, IDs, practice schema and frozen contract passed')
+print('Six styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
 
 policy=json.loads((ROOT/'config/scoring.json').read_text())
 assert c['rubric']==policy.pop('rubric')=={'model_performance':50,'insights':30,'presentation':15,'reproducibility_checklist':5}

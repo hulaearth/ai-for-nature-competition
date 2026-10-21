@@ -12,9 +12,9 @@
   "minimum_model_points": 0,
   "maximum_model_points": 50,
   "baseline": {
-    "name": "Supplied all-support linear starter; Germany training only",
+    "name": "Supplied 289-feature linear starter; Germany training only",
     "starter_ref": "hackathon-2026",
-    "starter_commit": "3fd40f3da019b427f10bee718f8952c8bb9fbc4f",
+    "starter_commit": "ba4f2b427c618b2d3511b1e1ad62e29b8739619c",
     "feature_set": "all",
     "seed": 20261016,
     "fit": "Germany training only; no development refit",
@@ -38,13 +38,15 @@
       "matches_tested_python": true
     },
     "source_sha256": {
-      "starter_model.py": "951ab453ea90a1346cd6124d374520bf8d1a21af28692fc8d7c594043931f485",
-      "validation_models.py": "2fa40dbd3b0a13e13adb1c0b507e76f5a34b360c88e44698ea12098a0c08004e",
-      "submission.py": "d842ad7ce3e210e5eef41627413a22f468582bb8a5756b1f43ef9506c27bca7a",
+      "starter_model.py": "9d350453d147af3cd2ea6a959d65493d2a762bf905b2e168fd88d2dc4fd20b35",
+      "environment_inputs.py": "2c8800b97fb18ae778f2ac4616f6e8a7f9519ecc85ff4b3ec30c3d3894ac3a47",
+      "validation_tools.py": "3af16222f580067c7570d61c0b288b1d34282d4d3a727771d65eb671cf013f29",
+      "validation_models.py": "c6a450558800dcd7c03c6ee6141d8ae2ccf8f47925570e317933893fbc2af95c",
+      "submission.py": "ee2e0e00559370f96d1bd615b98f2194d2523d857cead595a442ed57e8775195",
       "requirements.txt": "0dbc51ef6bf1a60439ece979d6180b4c6498507544fcd486b40197dce26d6029"
     },
-    "model_sha256": "c7af02576e5038e0fd84f9644c1a5e96fe1c607ea78a700c616428edd8574af5"
+    "model_sha256": "74f3ee7a61038bff8d0a8da295d16ba83562fad32edaae743117fc2ddf3a7780"
   },
-  "reference_sha256": "eb1d68aec94d76e42d50ec55d167b9a98953114636520c4edb0b9828ad5247d2",
+  "reference_sha256": "9ca3574175bf08774a5c64c15825ce62cc7ae43f4d8a37e7068b713f53e98ea4",
   "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
 }

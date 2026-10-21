@@ -15,6 +15,10 @@ function date(value) {return value?new Date(value).toLocaleString(undefined,{tim
 function isFinalOpen(c) {const t=Date.now();return c.final_submissions_enabled&&c.test_release_utc&&c.deadline_utc&&t>=Date.parse(c.test_release_utc)&&t<Date.parse(c.deadline_utc);}
 
 function renderConfig(c) {
+  document.querySelectorAll("[data-guide]").forEach(e=>{
+    if(c.starter_released && Date.now()>=Date.parse(c.materials_release_utc)){e.href="https://huggingface.co/spaces/"+c.space_id+"/resolve/main/participant-guide.pdf?download=true";e.textContent="Download participant guide PDF ↓";e.removeAttribute("aria-disabled");}
+    else{e.href="#";e.textContent="Participant guide released at 10:00";e.setAttribute("aria-disabled","true");}
+  });
   document.querySelectorAll("[data-materials]").forEach(e=>e.textContent=date(c.materials_release_utc));
   document.querySelectorAll("[data-start]").forEach(e=>e.textContent=date(c.start_utc));
   document.querySelectorAll("[data-release]").forEach(e=>e.textContent=date(c.test_release_utc));
@@ -41,6 +45,24 @@ function renderConfig(c) {
   document.querySelectorAll("[data-starter]").forEach(e=>{
     if(c.starter_released){e.href="https://github.com/hulaearth/ai-for-nature-codebase/tree/"+c.starter_ref;e.textContent="Open the starter code ↗";e.removeAttribute("aria-disabled");}
   });
+  if(c.starter_released)document.querySelectorAll('[data-starter-status]').forEach(e=>e.textContent='Starter and participant guide released. Modeling begins at 11:00 German time.');
+}
+
+async function materialsRelease(config) {
+  let complete=false,busy=false;
+  async function check(){
+    if(complete||busy)return;busy=true;
+    try{
+      const response=await fetch('./materials-release.json',{cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(4000)});
+      if(!response.ok)return;
+      const released=await response.json();
+      if(released.competition_id===config.competition_id&&released.dataset_release===config.dataset_release&&released.not_before_utc===config.materials_release_utc&&released.starter_ref===config.starter_ref&&released.starter_commit===config.scoring_policy?.baseline?.starter_commit&&Date.parse(released.published_at_utc)>=Date.parse(config.materials_release_utc)){
+        config.starter_released=true;complete=true;renderConfig(config);
+      }
+    }catch{}finally{busy=false;}
+  }
+  await check();
+  const timer=setInterval(()=>{if(complete){clearInterval(timer);return;}if(Date.now()>=Date.parse(config.materials_release_utc)-60000)check();},5000);
 }
 
 async function board() {
@@ -75,15 +97,15 @@ async function uploader(config) {
     try{
       const file=$("#csv").files[0],channel=$("#channel").value,teamSlug=select.value;if(!file)throw new Error("Select your prediction CSV.");
       if(channel==="final"&&!isFinalOpen(config))throw new Error("Final-test submissions are closed.");
-      if(file.size>5_000_000)throw new Error("CSV exceeds 5 MB.");
+      if(file.size>config.max_csv_bytes)throw new Error("CSV exceeds 8 MB.");
       const bytes=new Uint8Array(await file.arrayBuffer());let expected=null;
       if(channel==="practice"){
         let practice=BUNDLED_DATA["practice_submission.csv"];
         if(!practice){const response=await fetch("./practice_submission.csv");if(!response.ok)throw new Error("Practice sample unavailable.");practice=await response.text();}
         expected=new Set(parseCSV(practice).slice(1).map(r=>r[0]));
       }
-      const sample=$("#sample").files[0];if(sample){if(sample.size>5_000_000)throw new Error("Sample exceeds 5 MB.");const sampleBytes=new Uint8Array(await sample.arrayBuffer());expected=validateCSV(sampleBytes,channel==="final"?35510:120);}
-      validateCSV(bytes,channel==="final"?35510:120,expected);
+      const sample=$("#sample").files[0];if(sample){if(sample.size>config.max_csv_bytes)throw new Error("Sample exceeds 8 MB.");const sampleBytes=new Uint8Array(await sample.arrayBuffer());expected=validateCSV(sampleBytes,channel==="final"?config.expected_rows:120);}
+      validateCSV(bytes,channel==="final"?config.expected_rows:120,expected);
       const envelope=await encryptCSV(bytes,teamSlug,channel,key,config);
       currentEnvelopeText=JSON.stringify(envelope);
       const blob=new Blob([currentEnvelopeText],{type:"application/json"});
@@ -129,9 +151,6 @@ if(practiceLink&&BUNDLED_DATA["practice_submission.csv"]){practiceLink.href=URL.
 try{const config=await data("config.json");
   // This endpoint is created server-side at release and survives later scoring syncs.
   // Repository/Space visibility enforces the embargo; the browser clock does not.
-  try{const released=await data("materials-release.json");
-    if(released.competition_id===config.competition_id&&released.dataset_release===config.dataset_release&&released.not_before_utc===config.materials_release_utc&&released.starter_ref===config.starter_ref&&Date.parse(released.published_at_utc)>=Date.parse(config.materials_release_utc))config.starter_released=true;
-  }catch{}
-  renderConfig(config);testKeyRelease(config);await uploader(config);}catch(error){document.querySelectorAll("[data-status]").forEach(e=>e.textContent="Schedule unavailable");}
+  renderConfig(config);materialsRelease(config);testKeyRelease(config);await uploader(config);}catch(error){document.querySelectorAll("[data-status]").forEach(e=>e.textContent="Schedule unavailable");}
 $("#refresh")?.addEventListener("click",board);await board();
-document.querySelectorAll('a[aria-disabled="true"]').forEach(a=>a.addEventListener("click",e=>e.preventDefault()));
+document.querySelectorAll('a[aria-disabled="true"]').forEach(a=>a.addEventListener("click",e=>{if(a.getAttribute('aria-disabled')==='true')e.preventDefault();}));

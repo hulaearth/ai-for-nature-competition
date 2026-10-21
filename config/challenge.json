@@ -2,12 +2,12 @@
   "schema_version": 1,
   "competition_id": "ai-for-nature-2026",
   "dataset_release": "bird-habitat-2024",
-  "dataset_manifest_sha256": "9c3fb027936be1817c3ccfa1d81f69e2371b83c9892030661143880e92b564d7",
+  "dataset_manifest_sha256": "559d2e2c0c85146154ab8e5ba346c6e219a58cded6718e95b7546962dd83a3fd",
   "competition_repository": "hulaearth/ai-for-nature-competition",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "expected_rows": 35510,
-  "max_csv_bytes": 5000000,
-  "max_envelope_bytes": 7000000,
+  "expected_rows": 63590,
+  "max_csv_bytes": 8000000,
+  "max_envelope_bytes": 12000000,
   "submission_key_id": "00be06ac800863a16cc01d42c8da629cf0b15f97f17387ec94e32194445e7ce7",
   "max_final_submissions": 5,
   "max_practice_submissions": 10,
@@ -36,9 +36,9 @@
     "minimum_model_points": 0,
     "maximum_model_points": 50,
     "baseline": {
-      "name": "Supplied all-support linear starter; Germany training only",
+      "name": "Supplied 289-feature linear starter; Germany training only",
       "starter_ref": "hackathon-2026",
-      "starter_commit": "3fd40f3da019b427f10bee718f8952c8bb9fbc4f",
+      "starter_commit": "ba4f2b427c618b2d3511b1e1ad62e29b8739619c",
       "feature_set": "all",
       "seed": 20261016,
       "fit": "Germany training only; no development refit",
@@ -62,19 +62,21 @@
         "matches_tested_python": true
       },
       "source_sha256": {
-        "starter_model.py": "951ab453ea90a1346cd6124d374520bf8d1a21af28692fc8d7c594043931f485",
-        "validation_models.py": "2fa40dbd3b0a13e13adb1c0b507e76f5a34b360c88e44698ea12098a0c08004e",
-        "submission.py": "d842ad7ce3e210e5eef41627413a22f468582bb8a5756b1f43ef9506c27bca7a",
+        "starter_model.py": "9d350453d147af3cd2ea6a959d65493d2a762bf905b2e168fd88d2dc4fd20b35",
+        "environment_inputs.py": "2c8800b97fb18ae778f2ac4616f6e8a7f9519ecc85ff4b3ec30c3d3894ac3a47",
+        "validation_tools.py": "3af16222f580067c7570d61c0b288b1d34282d4d3a727771d65eb671cf013f29",
+        "validation_models.py": "c6a450558800dcd7c03c6ee6141d8ae2ccf8f47925570e317933893fbc2af95c",
+        "submission.py": "ee2e0e00559370f96d1bd615b98f2194d2523d857cead595a442ed57e8775195",
         "requirements.txt": "0dbc51ef6bf1a60439ece979d6180b4c6498507544fcd486b40197dce26d6029"
       },
-      "model_sha256": "c7af02576e5038e0fd84f9644c1a5e96fe1c607ea78a700c616428edd8574af5"
+      "model_sha256": "74f3ee7a61038bff8d0a8da295d16ba83562fad32edaae743117fc2ddf3a7780"
     },
-    "reference_sha256": "eb1d68aec94d76e42d50ec55d167b9a98953114636520c4edb0b9828ad5247d2",
+    "reference_sha256": "9ca3574175bf08774a5c64c15825ce62cc7ae43f4d8a37e7068b713f53e98ea4",
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
   },
   "status": "prelaunch",
   "captain_only": true,
-  "metric": "Country-then-species macro average precision",
+  "metric": "Species macro average precision (countries pooled)",
   "rubric": {
     "model_performance": 50,
     "insights": 30,
