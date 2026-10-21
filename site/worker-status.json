@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "competition_id": "ai-for-nature-2026",
-  "updated_at": "2026-10-21T16:02:06.523528+00:00",
-  "last_successful_poll": "2026-10-21T16:02:06.523514+00:00",
-  "status": "running",
+  "updated_at": "2026-10-21T16:03:20.825146+00:00",
+  "last_successful_poll": "2026-10-21T16:03:02.325097+00:00",
+  "status": "retrying",
   "stops_at": null
 }
