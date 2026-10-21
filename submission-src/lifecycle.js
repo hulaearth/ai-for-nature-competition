@@ -18,13 +18,24 @@ export function receiptReader(config,{fetcher=fetch,ms=12000}={}){
  return ()=>{
   if(inflight)return inflight;
   inflight=bounded(async signal=>{
-   const url=`https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/site/receipts.json?t=${Date.now()}`;
-   const response=await fetcher(url,{signal,cache:'no-store',credentials:'omit'});
-   if(!response.ok)throw new Error('Status service unavailable.');
-   const d=await response.json();
-   if(d.competition!==config.competition_id||d.space_id!==config.space_id||d.schema!==2||!Array.isArray(d.entries)||!Array.isArray(d.requests)||!Array.isArray(d.teams))throw new Error('Receipt isolation check failed.');
-   const time=d.updated_at===null?0:Date.parse(d.updated_at);
-   if(!Number.isFinite(time))throw new Error('Invalid receipt timestamp.');
+   const sources=[
+    `https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/site/receipts.json?t=${Date.now()}`,
+    `https://huggingface.co/spaces/${config.space_id}/resolve/main/receipts.json?t=${Date.now()}`
+   ];
+   // Raw GitHub caches branch files for five minutes. Read both independently;
+   // a slow or unavailable mirror must not hide a newer working receipt feed.
+   const results=await Promise.allSettled(sources.map(url=>bounded(async inner=>{
+    const response=await fetcher(url,{signal:inner,cache:'no-store',credentials:'omit'});
+    if(!response.ok)throw new Error('Status service unavailable.');
+    const d=await response.json();
+    if(d.competition!==config.competition_id||d.space_id!==config.space_id||d.schema!==2||!Array.isArray(d.entries)||!Array.isArray(d.requests)||!Array.isArray(d.teams))throw new Error('Receipt isolation check failed.');
+    const time=d.updated_at===null?0:Date.parse(d.updated_at);
+    if(!Number.isFinite(time))throw new Error('Invalid receipt timestamp.');
+    return {data:d,time};
+   },{signal,ms:Math.min(ms,3000)})));
+   const valid=results.filter(r=>r.status==='fulfilled').map(r=>r.value).sort((a,b)=>b.time-a.time||(b.data.generation??0)-(a.data.generation??0));
+   if(!valid.length)throw new Error('Status service unavailable or timed out.');
+   const {data:d,time}=valid[0];
    if(latest&&time<latest.time)return {data:latest.data,stale:true};
    latest={data:d,time};return {data:d,stale:false};
   },{ms}).finally(()=>{inflight=null;});return inflight;
