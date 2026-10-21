@@ -34,7 +34,7 @@ function renderConfig(c) {
     e.disabled=!c.drive_url?.startsWith("https://drive.google.com/");
     e.onclick=async()=>{try{await navigator.clipboard.writeText(c.drive_url);$("[data-drive-copy-status]").textContent="Link copied. Paste it into a new browser tab.";}catch{$("[data-drive-copy-status]").textContent="Select and copy the address above, then open it in a new browser tab.";}};
   });
-  document.querySelectorAll("[data-data-readiness]").forEach(e=>e.textContent=c.data_ready?"Challenge data is ready. Anyone with the folder link can download it; verify SHA256SUMS before use.":"Challenge data is available for download. Organizers are completing final delivery checks; read the component notes below and verify SHA256SUMS before use.");
+  document.querySelectorAll("[data-data-readiness]").forEach(e=>e.textContent=c.data_ready?"Challenge data is ready. Anyone with the folder link can download it; verify SHA256SUMS before use.":"Challenge data is uploaded. Delivery checks remain incomplete; read the component notes below and verify SHA256SUMS before use.");
   const presentationClosed=c.deadline_utc&&Date.now()>=Date.parse(c.deadline_utc);
   const presentationOpen=!presentationClosed&&c.presentation_form_open&&c.presentation_form_url?.startsWith("https://docs.google.com/forms/");
   document.querySelectorAll("[data-presentation]").forEach(e=>{
