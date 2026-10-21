@@ -14,7 +14,7 @@ body:
   - type: input
     id: submission-issue
     attributes:
-      label: Submission issue number
+      label: Submission reference
       description: The accepted Prediction issue belonging to your team, e.g. 42.
     validations:
       required: true
