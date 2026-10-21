@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Verify without release, or publish with the server time guard
+        description: Verify, open the explicitly approved public platform, or publish the starter at its guarded time
         type: choice
-        options: [verify, publish]
+        options: [verify, publish, open-platform]
         default: verify
   schedule:
     # 24 October 2026: 10:00 Europe/Berlin = 08:00 UTC.
@@ -36,10 +36,10 @@ jobs:
           python-version: '3.14.4'
       - id: window
         run: python scripts/release_materials.py --mode window
-      - if: steps.window.outputs.ready == 'true' || github.event_name == 'workflow_run' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'verify')
+      - if: steps.window.outputs.ready == 'true' || github.event_name == 'workflow_run' || github.event_name == 'workflow_dispatch'
         run: python -m pip install huggingface-hub==2.2.0
       - name: Verify or release only the participant materials
-        if: steps.window.outputs.ready == 'true' || github.event_name == 'workflow_run' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'verify')
+        if: steps.window.outputs.ready == 'true' || github.event_name == 'workflow_run' || github.event_name == 'workflow_dispatch'
         env:
           HF_TOKEN: ${{ secrets.HF_SPACE_TOKEN || secrets.HF_TOKEN }}
           MATERIALS_RELEASE_TOKEN: ${{ secrets.MATERIALS_RELEASE_TOKEN }}

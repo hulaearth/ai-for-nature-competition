@@ -65,6 +65,9 @@ class MaterialsReleaseTests(unittest.TestCase):
     def test_other_repository_and_changed_guide_fail_before_network(self):
         original = release.ROOT / 'config/materials-release.json'
         for change in [{'repositories':[*release.REPOSITORIES, 'hulaearth/ai-for-nature-evaluation']},
+                       {'early_public_repositories':[release.REPOSITORIES[1]]},
+                       {'early_public_repositories':['hulaearth/ai-for-nature-evaluation']},
+                       {'early_public_space':'yes'},
                        {'guide_sha256':'0'*64}]:
             real_read = Path.read_text
             def read(path, *args, **kwargs):
@@ -73,12 +76,14 @@ class MaterialsReleaseTests(unittest.TestCase):
                 with self.assertRaises(release.ReleaseError):
                     release.load_plan()
 
-    def exercise_fake_hosts(self, mode, when, token='synthetic'):
+    def exercise_fake_hosts(self, mode, when, token='synthetic', early_public=False):
         import base64
         with tempfile.TemporaryDirectory() as folder:
             directory = Path(folder)
             files = {'participant-guide.pdf': release.ROOT / 'site/participant-guide.pdf'}
             visibility = {repo: True for repo in release.REPOSITORIES}
+            if early_public:
+                visibility[release.REPOSITORIES[0]] = False
             operations = []
             class Hub:
                 private = True
@@ -95,6 +100,8 @@ class MaterialsReleaseTests(unittest.TestCase):
                     files[name].write_bytes(kwargs['path_or_fileobj'].read())
                     operations.append(('hf-file', name))
             hub = Hub()
+            if early_public:
+                hub.private = False
             def api(token, method, path, payload=None):
                 if '/contents/' in path:
                     return {'content':base64.b64encode(json.dumps(self.plan).encode()).decode()}
@@ -132,6 +139,22 @@ class MaterialsReleaseTests(unittest.TestCase):
         self.assertEqual(sum(x == ('hf-file',release.RECEIPT) for x in operations), 1)
         self.assertEqual(json.loads(files[release.RECEIPT])['starter_commit'],self.plan['starter_commit'])
         self.assertFalse(any('evaluation' in str(x) for x in operations))
+
+    def test_approved_platform_can_open_early_without_starter_or_release_receipt(self):
+        repos, private, operations, files = self.exercise_fake_hosts('open-platform','2026-10-21T10:00:00Z')
+        self.assertFalse(repos[release.REPOSITORIES[0]])
+        self.assertTrue(repos[release.REPOSITORIES[1]])
+        self.assertFalse(private)
+        self.assertNotIn(release.RECEIPT, files)
+        self.assertFalse(any('evaluation' in str(x) for x in operations))
+
+    def test_verify_preserves_explicitly_approved_early_public_platform(self):
+        repos, private, operations, files = self.exercise_fake_hosts('verify','2026-10-21T10:00:00Z',early_public=True)
+        self.assertFalse(repos[release.REPOSITORIES[0]])
+        self.assertTrue(repos[release.REPOSITORIES[1]])
+        self.assertFalse(private)
+        self.assertNotIn(release.RECEIPT, files)
+        self.assertTrue(json.loads(files['materials-release-setup.json'])['armed'])
 
 
 if __name__ == '__main__':

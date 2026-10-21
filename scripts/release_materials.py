@@ -40,6 +40,10 @@ def load_plan():
     event = json.loads((ROOT / 'config/challenge.json').read_text())
     if tuple(plan['repositories']) != REPOSITORIES or plan['space_id'] != SPACE:
         raise ReleaseError('Only the two participant repositories and named Space may be released.')
+    if plan.get('early_public_repositories', []) not in ([], [REPOSITORIES[0]]):
+        raise ReleaseError('Early public access is limited to the competition inbox, never the starter or evaluator.')
+    if not isinstance(plan.get('early_public_space', False), bool):
+        raise ReleaseError('Early Space publication requires an explicit boolean decision.')
     for key in ('competition_id', 'dataset_release', 'space_id'):
         if plan[key] != event[key]:
             raise ReleaseError('Materials and event plans differ.')
@@ -78,7 +82,8 @@ def check_github(plan, token, verify_write=False):
         info = github(token, 'GET', '/repos/' + repo)
         if info.get('full_name', '').lower() != repo or info.get('default_branch') != 'main':
             raise ReleaseError('Unexpected repository or default branch.')
-        if datetime.now(timezone.utc) < utc(plan['not_before_utc']) and info['private'] is not True:
+        if (datetime.now(timezone.utc) < utc(plan['not_before_utc']) and info['private'] is not True
+                and repo not in plan.get('early_public_repositories', [])):
             raise ReleaseError('A participant repository is already public before the embargo ends.')
         if verify_write:
             # Same-value PATCH proves Administration permission without widening access.
@@ -136,7 +141,7 @@ def run(mode):
     if hashlib.sha256(guide.read_bytes()).hexdigest() != plan['guide_sha256']:
         raise ReleaseError('Deploy and verify the frozen participant guide before release.')
     if mode == 'verify':
-        if now < utc(plan['not_before_utc']) and not info.private:
+        if now < utc(plan['not_before_utc']) and not info.private and not plan.get('early_public_space', False):
             raise ReleaseError('Space is already public before the embargo ends.')
         api.update_repo_settings(SPACE, repo_type='space', visibility='private' if info.private else 'public')
         if token:
@@ -151,6 +156,21 @@ def run(mode):
         if not token:
             raise ReleaseError('MATERIALS_RELEASE_TOKEN is missing; the timed materials release is not armed.')
         print('Materials release permissions and frozen assets verified; visibility was preserved.')
+        return
+    if mode == 'open-platform':
+        if (plan.get('early_public_repositories') != [REPOSITORIES[0]]
+                or plan.get('early_public_space') is not True or not token):
+            raise ReleaseError('Opening the platform requires the explicit approved allowlist and release credential.')
+        if now >= utc(plan['expires_utc']):
+            raise ReleaseError('The platform publication plan has expired.')
+        check_github(plan, token)
+        github(token, 'PATCH', '/repos/' + REPOSITORIES[0], {'private': False})
+        if github(token, 'GET', '/repos/' + REPOSITORIES[0])['private']:
+            raise ReleaseError('Competition inbox publication did not pass readback.')
+        api.update_repo_settings(SPACE, repo_type='space', visibility='public')
+        if api.repo_info(SPACE, repo_type='space').private:
+            raise ReleaseError('Space publication did not pass readback.')
+        print('Approved competition inbox and Space are public. Starter schedule and test-key schedule are unchanged.')
         return
     if not token:
         raise ReleaseError('MATERIALS_RELEASE_TOKEN is required; nothing was released.')
@@ -183,7 +203,7 @@ def run(mode):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', choices=['window', 'verify', 'publish'], default='verify')
+    parser.add_argument('--mode', choices=['window', 'verify', 'publish', 'open-platform'], default='verify')
     try:
         run(parser.parse_args().mode)
     except ReleaseError as error:
