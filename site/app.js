@@ -66,6 +66,7 @@ async function uploader(config) {
   form.addEventListener("change",()=>{controls();$("#after-encrypt").hidden=true;status.textContent="";currentEnvelopeText="";$("#encrypted-copy-status").textContent="";$("#encrypted-manual").hidden=true;});controls();
   $("#copy-encrypted").addEventListener("click",async()=>{
     if(!currentEnvelopeText)return;
+    $("#encrypted-manual").hidden=false;$("#encrypted-text").textContent=currentEnvelopeText;$("#encrypted-text").value=currentEnvelopeText;
     try{await navigator.clipboard.writeText(currentEnvelopeText);$("#encrypted-copy-status").textContent="Encrypted JSON copied. Save it in a file ending .encrypted.json, then attach that file on GitHub.";}
     catch{$("#encrypted-manual").hidden=false;$("#encrypted-text").value=currentEnvelopeText;$("#encrypted-copy-status").textContent="Select the encrypted text below and save it in a .encrypted.json file, then attach it on GitHub.";}
   });
