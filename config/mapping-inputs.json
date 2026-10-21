@@ -1,0 +1,22 @@
+{
+  "purpose": "Optional Germany-wide inference and visualization inputs",
+  "drive_folder_url": "https://drive.google.com/drive/folders/1MXcAoRPddo4ZrOCaFrhFeTClM_yi3fe1",
+  "hf_url": "https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/mapping",
+  "code_path": "https://github.com/hulaearth/ai-for-nature-codebase/blob/main/docs/MAPPING.md",
+  "packages": [
+    {
+      "name": "germany-1km.zip",
+      "spacing_m": 1000,
+      "locations": 361683,
+      "bytes": 866884936,
+      "sha256": "6dd4af1c5945e03e41a69fc180b40a8b63e0bff57cc1824446344ce8b533a221"
+    },
+    {
+      "name": "germany-5km.zip",
+      "spacing_m": 5000,
+      "locations": 14980,
+      "bytes": 58305612,
+      "sha256": "80346f459bffb4585883cf821edeb544064d3099779fd4f231deecfc872dec92"
+    }
+  ]
+}
