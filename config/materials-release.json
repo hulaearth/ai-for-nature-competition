@@ -15,5 +15,6 @@
   "timezone": "Europe/Berlin",
   "starter_ref": "hackathon-2026",
   "starter_commit": "3fd40f3da019b427f10bee718f8952c8bb9fbc4f",
-  "guide_sha256": "8d1d5f51ba3e68d7007d6a528ac64d00c814803235d96169785b93987711d3cb"
+  "guide_sha256": "8d1d5f51ba3e68d7007d6a528ac64d00c814803235d96169785b93987711d3cb",
+  "early_public_space": true
 }
