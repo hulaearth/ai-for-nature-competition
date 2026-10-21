@@ -95,6 +95,8 @@ assert c['scoring_policy']==policy
 assert policy['baseline']['starter_ref']=='hackathon-2026' and policy['stretch_ap']==.15
 for page in SITE.glob('*.html'):
     text=page.read_text()
+    assert '76.1 MB' in text and '188.40 GB' in text
+    assert '39.8 MB' not in text and 'passed delivery checks' not in text
     assert '50 × private AP' not in text and 'Method and reproducibility</td>' not in text
     assert '19.7' in text and '26.7' in text and '38.3' in text
 
