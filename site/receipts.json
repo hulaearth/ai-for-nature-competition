@@ -1,11 +1,33 @@
 {
   "schema": 2,
-  "generation": 2,
+  "generation": 3,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-21T14:48:00.197216+00:00",
-  "entries": [],
-  "requests": [],
+  "updated_at": "2026-10-21T15:04:28.328595+00:00",
+  "entries": [
+    {
+      "team_slug": "platform-rehearsal-hf",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-21T14:54:13.841000+00:00",
+      "attempt": 1,
+      "entry_id": "HF-1"
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "91f6c7a9-8ac2-4d88-a146-ba1210701943",
+      "pr_number": 1,
+      "entry_id": "HF-1",
+      "team_slug": "platform-rehearsal-hf",
+      "kind": "prediction",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-21T14:54:13.841000+00:00"
+    }
+  ],
   "selected": {},
   "teams": [
     {
