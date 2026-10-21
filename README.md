@@ -32,7 +32,7 @@ All times are German local time: Europe/Berlin, CEST / MESZ (UTC+02:00). Before 
 
 | Time | Program |
 | --- | --- |
-| 10:00 | Registration and coffee; starter code, participant guide and competition pages released. Environment checks only until 11:00. |
+| 10:00 | Registration and coffee; starter code opens. Pages and participant guide are already available. Environment checks only until 11:00. |
 | 10:15 | Welcome and AI Nation introduction (Juliana Carneiro da Cunha Baumgartl, about 5 minutes). |
 | 10:25 | Challenge brief by Hula Earth and Ames (maximum 10 minutes each), including the datasets. |
 | 10:45 | Team formation, challenge/category confirmation and mentor introductions. |
@@ -59,7 +59,7 @@ flowchart LR
 
 The evaluator scores data only; it never runs team code. Hidden labels and the submission-decryption key stay private. The separate test-input key is published at 13:30. Live public AP is provisional; nominated private AP determines model points after closure. Presentations are collected in private organizer storage.
 
-Training data are readable in advance; the guide, starter and platform open at **10:00** on event day. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
+Training data, pages and the participant guide are available in advance. Starter code opens at **10:00** on event day; analysis and modeling begin at **11:00**. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
 
 ## Maintain this site
 
@@ -77,4 +77,4 @@ Sources live in `config/`, `scripts/build_site.py`, `site/app.js` and `site/styl
 
 [Materials-release setup](docs/materials-release.md) · Test-key setup is described in the private runbook.
 
-Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team approval, final sealing and judging remain human responsibilities. Keep this repository, starter and Space private until the 10:00 release.
+Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team approval, final sealing and judging remain human responsibilities. This repository and the Space are public by organizer approval. Keep the starter private until its 10:00 release and the evaluator private throughout.

@@ -1,10 +1,8 @@
 # Participant materials: 10:00 German time
 
-On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** release:
+On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** the guarded job opens `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`, and publishes its release receipt.
 
-- `hulaearth/ai-for-nature-competition`, including its existing guide history;
-- `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`;
-- `Hula-Tech/ai-for-nature-hula-earth`, including the participant PDF.
+The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `Hula-Tech/ai-for-nature-hula-earth` early for the colleague rehearsal. Their pages and participant PDF are already public. The plan records this exception; verification preserves it without releasing the starter or test key early.
 
 The advance Drive folder stays data-only. Its restricted holding copy of the guide
 does not need public access. Modeling, data analysis and AI-agent modeling start
@@ -28,7 +26,7 @@ HF Static Space secrets, issues, files, shell arguments or chat.
 Run **Release participant materials at 10 German time**, mode **verify**. It
 checks the exact frozen guide on HF, the starter tag and current main-branch
 plan, and performs same-value visibility updates to verify permission while
-preserving private access. It records `materials-release-setup.json` on HF.
+preserving the approved current visibility. It records `materials-release-setup.json` on HF.
 Require `armed=true`, the expected release time and current source commit.
 A missing token records `armed=false`; merely committing the job does not arm it.
 
@@ -50,8 +48,8 @@ make the scorer public as a workaround.
 
 The public `materials-release.json` receipt enables the starter button even
 after later scorer syncs. Ordinary page deployments retain this endpoint and
-the separate test-key release files. Repository and Space visibility enforce
-the embargo; hiding a link or changing a browser clock does not.
+the separate test-key release files. Starter repository visibility enforces
+its embargo; hiding a link or changing a browser clock does not.
 
 After release, test the guide download and pinned starter using an ordinary
 participant account. Revoke the materials token after the event. Team approval,
