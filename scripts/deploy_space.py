@@ -36,7 +36,9 @@ short_description: Bird habitat modeling challenge and prediction leaderboard
 
 Static competition pages. Participants train on their own compute. Predictions are encrypted in the browser and evaluated by trusted GitHub Actions in a private repository. No evaluation labels or submission-decryption keys are hosted here. The test-input unlock identity is published only at its announced release time.
 
-Germany bird habitat challenge using 2024 observations, AlphaEarth, WorldCover, terrain and historical OpenStreetMap data: ten target species, 6-7 working hours, a shared German development split, and anonymous nearby Central European final inputs.
+Germany bird habitat challenge using 2024 observations, AlphaEarth, WorldCover, terrain and historical OpenStreetMap data: ten target species, 6.5 working hours, a shared German development split, and anonymous nearby Central European final inputs.
+
+The main **Submit** tab contains CSV upload, acceptance status and final-choice controls. Sign in as the approved captain, submit the CSV directly, and check **Accepted**. The page encrypts and delivers it automatically. Use the final-entry checkbox or **Use for final** beside an accepted entry. Upload slides through the separate Google Form below predictions; no separate GitHub nomination is required. GitHub attachment forms are a conductor-directed backup.
 
 The three tasks are habitat suitability modeling, ecological data insights and visualizations, and an optional cross-species extension. The jury uses 50 model-performance points under a fixed baseline-relative conversion, 30 insight/visualization points, 15 presentation/question points and a 5-point reproducibility checklist. Matching the unchanged shipped starter earns 15 model points; +0.15 AP earns 50. See the Rules view for the full formula, caps and evidence criteria.
 

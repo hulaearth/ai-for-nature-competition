@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Submit predictions on Hugging Face
+    url: https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#submit
+    about: Sign in as your approved captain and upload the CSV directly; GitHub forms are backup-only.
   - name: Submission instructions
     url: https://github.com/hulaearth/ai-for-nature-competition/blob/main/SUBMISSIONS.md
     about: Read the guide before submitting a prediction.

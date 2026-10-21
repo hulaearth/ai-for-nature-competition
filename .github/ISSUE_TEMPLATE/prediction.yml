@@ -1,10 +1,10 @@
-name: Final-test prediction
-description: Upload an encrypted prediction file using the approved team uploader
+name: "Backup: Final-test prediction"
+description: Use only if a conductor directs you to the GitHub backup route
 title: "[Prediction] "
 body:
   - type: markdown
     attributes:
-      value: "Encrypt the CSV on the competition Submit page first. Attach only the downloaded .encrypted.json file. Never attach a raw CSV. Create a new issue for corrections; do not edit this issue."
+      value: "BACKUP ONLY. Normally upload the CSV directly in the main Space Submit tab: https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#submit . Use this issue only if a conductor asks you to. Encrypt with legacy-submit.html#submit first and attach only the downloaded .encrypted.json file. Never attach a raw CSV. Create a new issue for corrections; do not edit this issue."
   - type: input
     id: team-slug
     attributes:

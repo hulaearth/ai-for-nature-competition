@@ -19,10 +19,10 @@ The award combines **50 model / 30 insights / 15 presentation / 5 reproducibilit
 2. Download the **compact modeling tables** and follow the [starter quick start](https://github.com/hulaearth/ai-for-nature-codebase). Use the shared German validation set. Spatial cross-validation is optional.
 3. Try the **120-row practice delivery** before the final rush.
 4. Preload the encrypted final inputs; unlock at **13:30**. The compact tables and optional patches have exact byte sizes in Drive’s RELEASE.json manifest.
-5. Sign in as the approved Hugging Face captain on the Space and submit your CSV directly before **17:30**. The page checks, encrypts and uploads it. Keep the receipt and wait for Accepted.
+5. Open the Space’s **Submit** tab, sign in as the approved Hugging Face captain and submit your CSV directly before **17:30**. The page checks, encrypts and uploads it. Keep the receipt and wait for Accepted.
 6. Check your final choice. Leave “Make this my final entry if accepted” checked, or use “Use for final” beside an accepted entry. Add your method/code reference and upload slides through the separate presentation form.
 
-[Submission instructions and examples](SUBMISSIONS.md) · [Practical guide](site/guide.html) · [Data explanation](site/data.html)
+[Submission instructions and examples](SUBMISSIONS.md) · [Practical guide](https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#guide) · [Data explanation](https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#data)
 
 Each team has five accepted final predictions and ten practice checks. Invalid files do not spend accepted attempts. The original unedited Hugging Face server receipt binds the request and ciphertext fingerprint; its timestamp controls eligibility, even when scoring is delayed. Exact score ties favor the earlier selected prediction receipt.
 
@@ -57,7 +57,7 @@ flowchart LR
   D --> E[Receipt and public AP leaderboard]
 ```
 
-The evaluator scores data only; it never runs team code. Hidden labels and the submission-decryption key stay private. The separate test-input key is published at 13:30. Live public AP is provisional; nominated private AP determines model points after closure. Presentations are collected in private organizer storage.
+The evaluator scores data only; it never runs team code. Hidden labels and the submission-decryption key stay private. The separate test-input key is published at 13:30. Live public AP is provisional; the chosen entry’s private AP determines model points after closure. Presentations are collected in private organizer storage.
 
 Training data and technical pages are available in advance. The participant guide and starter code open at **10:00** on event day; analysis and modeling begin at **11:00**. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
 

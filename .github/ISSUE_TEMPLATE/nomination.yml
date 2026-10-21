@@ -1,10 +1,10 @@
-name: Choose or confirm final entry
-description: Choose an accepted prediction and record your final references before 17:30
+name: "Backup: Choose or confirm final entry"
+description: Use only if a conductor directs you to the GitHub backup route
 title: "[Nomination] "
 body:
   - type: markdown
     attributes:
-      value: "Your latest accepted prediction is the default, not necessarily your highest public AP. Use this form to choose an older accepted file or confirm the default and provide method references. Enter its Prediction issue number; do not upload the prediction again. The latest valid choice before 17:30 wins. Do not edit this issue."
+      value: "BACKUP ONLY. Normally use Use for final beside an accepted entry in the main Space Submit tab. If a conductor asks you to use this backup, enter the accepted entry reference (HF-42, GH-42 or GitHub issue 42) without re-uploading the CSV. The latest valid choice before 17:30 wins. Do not edit this issue. Presentation upload remains a separate Google Form; keep its confirmation."
   - type: input
     id: team-slug
     attributes:
@@ -15,7 +15,7 @@ body:
     id: submission-issue
     attributes:
       label: Submission reference
-      description: The accepted Prediction issue belonging to your team, e.g. 42.
+      description: An accepted entry belonging to your team, e.g. HF-42, GH-42 or 42.
     validations:
       required: true
   - type: textarea
