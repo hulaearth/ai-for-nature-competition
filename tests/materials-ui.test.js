@@ -6,7 +6,7 @@ test('open pages enable guide and starter automatically; enabled links remain cl
   const releaseTime='2026-10-24T08:00:00Z';
   const config={competition_id:'synthetic-ui',dataset_release:'synthetic-data',
     materials_release_utc:releaseTime,starter_ref:'synthetic-ref',starter_released:false,
-    space_id:'synthetic-space',scoring_policy:{baseline:{starter_commit:'a'.repeat(40)}}};
+    space_id:'synthetic-space',starter_commit:'b'.repeat(40),scoring_policy:{baseline:{starter_commit:'a'.repeat(40)}}};
   function link(){return {attrs:{'aria-disabled':'true'},href:'#',listeners:[],
     setAttribute(name,value){this.attrs[name]=value;},removeAttribute(name){delete this.attrs[name];},
     getAttribute(name){return this.attrs[name]??null;},addEventListener(name,callback){if(name==='click')this.listeners.push(callback);}};}
@@ -25,7 +25,7 @@ test('open pages enable guide and starter automatically; enabled links remain cl
     if(url==='./materials-release.json')return {ok:published,json:async()=>({
       competition_id:config.competition_id,dataset_release:config.dataset_release,
       not_before_utc:releaseTime,published_at_utc:releaseTime,starter_ref:config.starter_ref,
-      starter_commit:config.scoring_policy.baseline.starter_commit})};
+      starter_commit:config.starter_commit})};
     throw new Error('Unexpected network request in isolated UI test');
   };
   class Clock extends Date{static now(){return Date.parse(releaseTime)+1000;}}

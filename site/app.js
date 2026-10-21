@@ -56,7 +56,7 @@ async function materialsRelease(config) {
       const response=await fetch('./materials-release.json',{cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(4000)});
       if(!response.ok)return;
       const released=await response.json();
-      if(released.competition_id===config.competition_id&&released.dataset_release===config.dataset_release&&released.not_before_utc===config.materials_release_utc&&released.starter_ref===config.starter_ref&&released.starter_commit===config.scoring_policy?.baseline?.starter_commit&&Date.parse(released.published_at_utc)>=Date.parse(config.materials_release_utc)){
+      if(released.competition_id===config.competition_id&&released.dataset_release===config.dataset_release&&released.not_before_utc===config.materials_release_utc&&released.starter_ref===config.starter_ref&&released.starter_commit===(config.starter_commit||config.scoring_policy?.baseline?.starter_commit)&&Date.parse(released.published_at_utc)>=Date.parse(config.materials_release_utc)){
         config.starter_released=true;complete=true;renderConfig(config);
       }
     }catch{}finally{busy=false;}
@@ -73,7 +73,7 @@ async function board() {
     if(!d.teams.length){root.append(make("div","No scored predictions yet. Practice checks do not appear in the leaderboard.","empty"));return;}
     const table=make("table");table.setAttribute("aria-label","Competition standings");
     const head=make("thead"),hr=make("tr");for(const x of ["Rank","Team",d.private_results_released?"Private macro AP":"Public macro AP",...(d.private_results_released?["Model points / 50"]:[]),"Accepted / 5","Prediction"]){const h=make("th",x);h.scope="col";hr.append(h);}head.append(hr);table.append(head);
-    const body=make("tbody");for(const t of d.teams){const r=make("tr");r.append(make("td",t.rank),make("td",t.name),make("td",Number(t.score).toFixed(6)),...(d.private_results_released?[make("td",Number.isFinite(t.model_points_50)?Number(t.model_points_50).toFixed(2):"Pending")]:[]),make("td",t.accepted_submissions));const cell=make("td"),a=make("a","#"+t.submission_issue);a.href=REPO+"/issues/"+Number(t.submission_issue);cell.append(a);r.append(cell);body.append(r);}table.append(body);root.append(table);
+    const body=make("tbody");for(const t of d.teams){const r=make("tr");r.append(make("td",t.rank),make("td",t.name),make("td",Number(t.score).toFixed(6)),...(d.private_results_released?[make("td",Number.isFinite(t.model_points_50)?Number(t.model_points_50).toFixed(2):"Pending")]:[]),make("td",t.accepted_submissions));const cell=make("td"),a=make("a","#"+t.submission_issue);a.href=typeof t.submission_issue==="string"&&/^HF-[1-9][0-9]*$/.test(t.submission_issue)?"https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth/discussions/"+t.submission_issue.slice(3):REPO+"/issues/"+Number(t.submission_issue);cell.append(a);r.append(cell);body.append(r);}table.append(body);root.append(table);
     $("#board-updated").textContent="Last published: "+date(d.updated_at)+". Exact AP ties favor the earlier relevant accepted prediction. AP is compared at full precision and displayed to six decimals."+(d.award_scoring?" Frozen reference private AP: "+Number(d.award_scoring.reference_private_ap).toFixed(6)+". Model points use baseline-relative-v1; the overall jury award is separate.":"");
   } catch(error){root.replaceChildren(make("div","Standings could not be refreshed. Try again shortly.","notice"));}
 }

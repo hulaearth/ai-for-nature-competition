@@ -85,5 +85,9 @@
   },
   "working_hours": "6.5",
   "presentation_minutes": 5,
-  "questions_minutes": 2
+  "questions_minutes": 2,
+  "hf_submissions_enabled": true,
+  "submission_receipt_policy": "hf-server-manifest-commitment-v1",
+  "max_request_bytes": 8000,
+  "starter_commit": "404d64505793e7a53d300c65b40ccae30da457f5"
 }

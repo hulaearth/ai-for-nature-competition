@@ -19,12 +19,12 @@ The award combines **50 model / 30 insights / 15 presentation / 5 reproducibilit
 2. Download the **compact modeling tables** and follow the [starter quick start](https://github.com/hulaearth/ai-for-nature-codebase). Use the shared German validation set. Spatial cross-validation is optional.
 3. Try the **120-row practice delivery** before the final rush.
 4. Preload the encrypted final inputs; unlock at **13:30**. The compact tables and optional patches have exact byte sizes in Drive’s RELEASE.json manifest.
-5. Check/encrypt your CSV on the Space. Attach the downloaded JSON to a new GitHub Prediction issue and create the issue before **17:30**. Downloading the JSON alone does not submit it.
-6. Check the accepted receipt. Your latest accepted prediction is the default; use the final-choice form to select an older accepted prediction and provide method/code references. Upload slides through the separate presentation form.
+5. Sign in as the approved Hugging Face captain on the Space and submit your CSV directly before **17:30**. The page checks, encrypts and uploads it. Keep the receipt and wait for Accepted.
+6. Check your final choice. Leave “Make this my final entry if accepted” checked, or use “Use for final” beside an accepted entry. Add your method/code reference and upload slides through the separate presentation form.
 
 [Submission instructions and examples](SUBMISSIONS.md) · [Practical guide](site/guide.html) · [Data explanation](site/data.html)
 
-Each team has five accepted final predictions and ten practice checks. Invalid files do not spend accepted attempts. Original issue creation time decides deadline eligibility, even when scoring is delayed. Exact score ties favor the earlier selected prediction receipt.
+Each team has five accepted final predictions and ten practice checks. Invalid files do not spend accepted attempts. The original unedited Hugging Face server receipt binds the request and ciphertext fingerprint; its timestamp controls eligibility, even when scoring is delayed. Exact score ties favor the earlier selected prediction receipt.
 
 ## Saturday 24 October 2026
 
@@ -41,7 +41,7 @@ All times are German local time: Europe/Berlin, CEST / MESZ (UTC+02:00). Before 
 | 13:30 | Test-key release on the Space; decrypt preloaded inputs and begin final inference/submissions. |
 | 14:00 | Mentor round: every team gets a check-in, including data loading, inference and submission questions. |
 | 16:30 | Feature-freeze checkpoint and second mentor round; focus on final inference, figures, slides and delivery. |
-| 17:30 | Deadline for predictions, nomination, method/code reference and presentation PDF. |
+| 17:30 | Deadline for predictions, final choice, method/code reference and presentation PDF. |
 | 17:45-19:45 | Presentations: 15 teams, 5 minutes + 2 minutes Q&A. |
 | 19:45-20:00 | Jury deliberation and final reconciliation. |
 | 20:00-20:15 | Awards ceremony. |
@@ -52,7 +52,7 @@ All times are German local time: Europe/Berlin, CEST / MESZ (UTC+02:00). Before 
 ```mermaid
 flowchart LR
   A[Team trains its own model] --> B[CSV checked and encrypted in the Space]
-  B --> C[Encrypted attachment in a GitHub issue]
+  B --> C[Encrypted data-only Hugging Face request]
   C --> D[Private Actions evaluator]
   D --> E[Receipt and public AP leaderboard]
 ```
@@ -66,6 +66,8 @@ Training data and technical pages are available in advance. The participant guid
 The Static Hugging Face Space needs no running CPU service. Build and check locally:
 
 ```bash
+npm ci --ignore-scripts --no-audit --no-fund
+npm run build:submission
 python3 scripts/build_site.py
 python3 scripts/check_site.py
 python3 -m unittest discover -s tests -v

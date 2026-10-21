@@ -8,21 +8,38 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ['site/**', 'config/**', 'scripts/build_site.py', 'scripts/deploy_space.py', '.github/workflows/deploy-space.yml']
+    paths: ['site/**', '!site/worker-status.json', 'config/**', 'scripts/build_site.py', 'scripts/deploy_space.py', '.github/workflows/deploy-space.yml']
 permissions:
   contents: read
 concurrency:
   group: hf-static-space
   cancel-in-progress: false
 jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build:submission
+      - run: node --test tests/*.test.js
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - run: python3 scripts/build_site.py && python3 scripts/check_site.py
   deploy:
+    needs: checks
     if: github.ref == 'refs/heads/main' && vars.HF_DEPLOY_ENABLED != 'false'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
-          ref: main
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:

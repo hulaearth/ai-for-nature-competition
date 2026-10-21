@@ -38,6 +38,12 @@ class Document(HTMLParser):
 
 checked_scripts=set()
 for page in SITE.glob('*.html'):
+    if page.name == 'upload.html':
+        source=page.read_text();d=Document();d.feed(source)
+        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
+        assert len(d.ids)==len(set(d.ids))
+        continue
     d=Document();d.feed(page.read_text());assert d.headings==6,page
     assert {v['data-view'] for v in d.views}=={'challenge','data','rules','guide','submit','leaderboard'},page
     assert [v['data-view'] for v in d.views if 'hidden' not in v]==[d.initial],page
@@ -80,20 +86,26 @@ assert 'identity' not in plan and 'key' not in plan
 assert c['preparation_policy']=='environment-checks-only'
 assert c['drive_url']=='https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT'
 assert 'data-guide' in (SITE/'guide.html').read_text()
-assert len(list(SITE.glob('*.html')))==6
+assert len(list(SITE.glob('*.html')))==8
 assert len(c['dataset_manifest_sha256'])==64
 assert c['dataset_manifest_sha256']==json.loads((ROOT/'config/challenge.json').read_text())['dataset_manifest_sha256']
 with (SITE/'practice_submission.csv').open() as f:
     rows=list(csv.DictReader(f));assert len(rows)==120 and set(rows[0])=={'row_id','score'}
 for p in SITE.iterdir():
     if p.is_file():assert b'-----BEGIN PRIVATE KEY' not in p.read_bytes(),p
-print('Six styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
+print('Eight styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
 
 policy=json.loads((ROOT/'config/scoring.json').read_text())
 assert c['rubric']==policy.pop('rubric')=={'model_performance':50,'insights':30,'presentation':15,'reproducibility_checklist':5}
 assert c['scoring_policy']==policy
 assert policy['baseline']['starter_ref']=='hackathon-2026' and policy['stretch_ap']==.15
 for page in SITE.glob('*.html'):
+    if page.name == 'upload.html':
+        source=page.read_text();d=Document();d.feed(source)
+        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
+        assert len(d.ids)==len(set(d.ids))
+        continue
     text=page.read_text()
     assert '76.1 MB' in text and '188.40 GB' in text
     assert '39.8 MB' not in text and 'passed delivery checks' not in text
@@ -101,7 +113,13 @@ for page in SITE.glob('*.html'):
     assert '19.7' in text and '26.7' in text and '38.3' in text
 
 for page in SITE.glob('*.html'):
+    if page.name == 'upload.html':
+        source=page.read_text();d=Document();d.feed(source)
+        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
+        assert len(d.ids)==len(set(d.ids))
+        continue
     text=page.read_text()
     assert '$50' not in text and 'Google GPU' not in text
     assert 'optional advanced award' not in text
-    assert 'Choose / confirm final entry' in text
+    assert 'Use for final' in text and ('Open prediction upload' in text or page.name=='legacy-submit.html')

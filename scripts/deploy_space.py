@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SPACE='HulaEarth/ai-for-nature-hula-earth'
 FILES=['index.html','data.html','rules.html','submit.html','leaderboard.html','style.css','app.js',
        'envelope.js','config.json','teams.json','leaderboard.json','submission-key.json','practice_submission.csv',
-       'guide.html','test-key-plan.json']
+       'guide.html','test-key-plan.json','upload.html','upload.css','submission.js','receipts.json','legacy-submit.html']
 README='''---
 title: AI for Nature Hula Earth
 emoji: 🐦
@@ -24,6 +24,10 @@ colorTo: gray
 sdk: static
 app_file: index.html
 pinned: true
+hf_oauth: true
+hf_oauth_expiration_minutes: 60
+hf_oauth_scopes:
+  - write-discussions
 license: mit
 short_description: Bird habitat modeling challenge and prediction leaderboard
 ---
