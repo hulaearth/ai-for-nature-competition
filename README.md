@@ -78,3 +78,5 @@ Sources live in `config/`, `scripts/build_site.py`, `site/app.js` and `site/styl
 [Materials-release setup](docs/materials-release.md) · Test-key setup is described in the private runbook.
 
 Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team approval, final sealing and judging remain human responsibilities. This repository and the Space are public by organizer approval. Keep the starter private until its 10:00 release and the evaluator private throughout.
+
+Optional German GeoTIFFs are also available from the [Hugging Face raster mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters). These are byte-identical to the frozen raster files; keep their license notices and verify SHA256SUMS.
