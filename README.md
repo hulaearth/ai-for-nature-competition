@@ -2,7 +2,7 @@
 
 Build habitat rankings for ten birds from German observations and AlphaEarth embeddings. Compare models on one common German validation set, then predict anonymous locations in nearby Central Europe. Teams of 2–3 work for 6.5 hours.
 
-[Competition hub & rules](https://huggingface.co/spaces/Hula-Tech/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant PDF](site/participant-guide.pdf) · [Register](https://github.com/hulaearth/ai-for-nature-competition/issues/new?template=register-team.yml)
+[Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant PDF](site/participant-guide.pdf) · [Register](https://github.com/hulaearth/ai-for-nature-competition/issues/new?template=register-team.yml)
 
 ## What teams deliver
 

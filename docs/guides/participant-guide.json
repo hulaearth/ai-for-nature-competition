@@ -67,7 +67,7 @@
         },
         {
           "type": "small",
-          "text": "<a href=\"https://huggingface.co/spaces/Hula-Tech/ai-for-nature-hula-earth\" color=\"#17634b\"><u>Competition hub and rules</u></a>  |  <a href=\"https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT\" color=\"#17634b\"><u>Challenge data</u></a>  |  <a href=\"https://github.com/hulaearth/ai-for-nature-codebase/tree/hackathon-2026\" color=\"#17634b\"><u>Starter code</u></a>"
+          "text": "<a href=\"https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth\" color=\"#17634b\"><u>Competition hub and rules</u></a>  |  <a href=\"https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT\" color=\"#17634b\"><u>Challenge data</u></a>  |  <a href=\"https://github.com/hulaearth/ai-for-nature-codebase/tree/hackathon-2026\" color=\"#17634b\"><u>Starter code</u></a>"
         }
       ]
     },
@@ -407,7 +407,7 @@
         },
         {
           "type": "small",
-          "text": "Final check: an accepted prediction, your final choice checked, the matching method/code reference and a submitted presentation PDF. The presentation period does not extend the submission deadline. Use the <a href=\"https://huggingface.co/spaces/Hula-Tech/ai-for-nature-hula-earth\" color=\"#17634b\"><u>Space</u></a> for links and event announcements."
+          "text": "Final check: an accepted prediction, your final choice checked, the matching method/code reference and a submitted presentation PDF. The presentation period does not extend the submission deadline. Use the <a href=\"https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth\" color=\"#17634b\"><u>Space</u></a> for links and event announcements."
         }
       ]
     }

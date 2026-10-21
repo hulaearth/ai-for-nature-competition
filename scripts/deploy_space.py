@@ -10,7 +10,7 @@ import sys
 from huggingface_hub import HfApi, hf_hub_download, CommitOperationDelete
 
 ROOT=Path(__file__).resolve().parents[1]
-SPACE='Hula-Tech/ai-for-nature-hula-earth'
+SPACE='HulaEarth/ai-for-nature-hula-earth'
 FILES=['index.html','data.html','rules.html','submit.html','leaderboard.html','style.css','app.js',
        'envelope.js','config.json','teams.json','leaderboard.json','submission-key.json','practice_submission.csv',
        'guide.html','participant-guide.pdf','test-key-plan.json']
@@ -36,7 +36,7 @@ The three tasks are habitat suitability modeling, ecological data insights and v
 
 - [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) (access and upload readiness are announced on the Data page)
 - [Public source and team registration](https://github.com/hulaearth/ai-for-nature-competition)
-- [Participant guide](https://huggingface.co/spaces/Hula-Tech/ai-for-nature-hula-earth/resolve/main/participant-guide.pdf)
+- [Participant guide](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth/resolve/main/participant-guide.pdf)
 
 Before kickoff, only downloads, technical documentation and environment checks are allowed. Training is unencrypted; the final feature package is encrypted and unlocked at 13:30 German time on Saturday 24 October 2026. Work runs 11:00-17:30 and presentations 17:45-19:45. Pages and the participant guide are available now. Starter code opens at 10:00 on event day; modeling begins at 11:00. Final submissions still require the evaluator launch checks. Dataset attribution and upstream licenses are supplied with the data; the MIT license here applies to the site code.
 '''

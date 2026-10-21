@@ -4,7 +4,7 @@
   "dataset_release": "bird-habitat-2024",
   "dataset_manifest_sha256": "9c3fb027936be1817c3ccfa1d81f69e2371b83c9892030661143880e92b564d7",
   "competition_repository": "hulaearth/ai-for-nature-competition",
-  "space_id": "Hula-Tech/ai-for-nature-hula-earth",
+  "space_id": "HulaEarth/ai-for-nature-hula-earth",
   "expected_rows": 35510,
   "max_csv_bytes": 5000000,
   "max_envelope_bytes": 7000000,

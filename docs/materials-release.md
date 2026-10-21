@@ -2,7 +2,7 @@
 
 On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** the guarded job opens `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`, and publishes its release receipt.
 
-The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `Hula-Tech/ai-for-nature-hula-earth` early for the colleague rehearsal. Their pages and participant PDF are already public. The plan records this exception; verification preserves it without releasing the starter or test key early.
+The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `HulaEarth/ai-for-nature-hula-earth` early for the colleague rehearsal. Their pages and participant PDF are already public. The plan records this exception; verification preserves it without releasing the starter or test key early.
 
 The advance Drive folder stays data-only. Its restricted holding copy of the guide
 does not need public access. Modeling, data analysis and AI-agent modeling start

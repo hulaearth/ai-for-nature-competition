@@ -19,7 +19,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORIES = ('hulaearth/ai-for-nature-competition', 'hulaearth/ai-for-nature-codebase')
-SPACE = 'Hula-Tech/ai-for-nature-hula-earth'
+SPACE = 'HulaEarth/ai-for-nature-hula-earth'
 PLAN_FILE = 'config/materials-release.json'
 RECEIPT = 'materials-release.json'
 

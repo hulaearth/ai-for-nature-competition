@@ -68,7 +68,7 @@ for page in SITE.glob('*.html'):
 c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==35510
 assert c['max_final_submissions']==5 and c['dataset_release']=='bird-habitat-2024'
 assert c['jury_performance_points']=='baseline-relative-v1'
-assert c['space_id']=='Hula-Tech/ai-for-nature-hula-earth'
+assert c['space_id']=='HulaEarth/ai-for-nature-hula-earth'
 plan=json.loads((ROOT/'config/test-key-release.json').read_text())
 assert plan['not_before_utc']==c['test_release_utc']
 materials=json.loads((ROOT/'config/materials-release.json').read_text())
