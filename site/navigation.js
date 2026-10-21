@@ -4,7 +4,8 @@
   const links = [...document.querySelectorAll('nav[aria-label="Main navigation"] a')];
   const initial = document.body.dataset.initialPage;
   function showPage() {
-    const requested = location.hash.slice(1);
+    const params = new URLSearchParams(location.search);
+    const requested = ['code','error','signin'].some(key=>params.has(key)) ? 'submit' : location.hash.slice(1);
     if (requested === 'main') return; // Keep the keyboard skip link on the current view.
     const active = views.find(view => view.dataset.view === requested)
       || views.find(view => view.dataset.view === initial);

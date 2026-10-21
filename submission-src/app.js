@@ -2,7 +2,9 @@ import {oauthLoginUrl,oauthHandleRedirect,uploadFiles} from '@huggingface/hub';
 import {validateCSV,encryptCSV} from './envelope.js';
 import {requireCompetition,prepareRequest,acceptanceMessage} from './protocol.js';
 import {bounded,receiptReader,pendingRecord,loadPending,savePending,transfer} from './lifecycle.js';
-const $=s=>document.querySelector(s),enc=new TextEncoder(),RAW='https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/site/';
+const integrated=document.body?.dataset?.integratedUpload==='true';
+const scope=s=>integrated?s.replace(/#([a-z][a-z0-9-]*)/gi,'#upload-$1'):s;
+const $=s=>document.querySelector(scope(s)),enc=new TextEncoder(),RAW='https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/site/';
 let auth=null,config,key,teams=[],practiceIds,busy=false,pending=[],reader,refreshing=null,feed=null,view='',activeUpload=null,lastConfigRead=0,lastHealthRead=0;
 const show=(message,error=false)=>{const el=$('#status');el.textContent=message;el.className=error?'status error':'status';};
 async function data(name){return bounded(async signal=>{
@@ -19,7 +21,7 @@ function controls(){
  $('#sample-label').hidden=!final;$('#sample').required=final;$('#final-label').hidden=!final;
  $('#identity').textContent=auth?`Signed in as ${auth.userInfo.preferred_username??auth.userInfo.name}.`:'Sign in with the Hugging Face account registered as your team’s captain.';
  $('#window-note').textContent=final?(finalOpen()?'Final predictions are open. Five accepted final entries per team; choose one for final evaluation.':'Final predictions are closed. They require the announced test release and organizer launch checks.'):'Practice checks the 120-row CSV, encryption and delivery. It uses no final scoring attempt and produces no model score.';
- document.querySelectorAll('#entries button').forEach(b=>b.disabled=busy||!current||!finalOpen());
+ document.querySelectorAll(scope('#entries button')).forEach(b=>b.disabled=busy||!current||!finalOpen());
 }
 function syncTeams(){
  const previous=$('#team').value;$('#team').replaceChildren();for(const t of teams.filter(t=>t.active&&t.hf_id===auth?.userInfo?.sub)){const o=document.createElement('option');o.value=t.slug;o.textContent=t.name;$('#team').append(o);}
@@ -67,9 +69,9 @@ $('#form').addEventListener('submit',async event=>{event.preventDefault();if(bus
  }catch(e){show(safeError(e),true);}finally{busy=false;controls();}});
 $('#cancel').addEventListener('click',()=>activeUpload?.abort());$('#logout').addEventListener('click',()=>{auth=null;pending=[];sessionStorage.removeItem('aifn-pkce');syncTeams();render();show('Signed out. No access token is stored on this device.');});$('#refresh').addEventListener('click',()=>{if(reader)void refresh();});$('#channel').addEventListener('change',controls);$('#team').addEventListener('change',controls);
 (async()=>{try{
- [config,key]=await Promise.all([data('config.json'),data('submission-key.json')]);requireCompetition(config);reader=receiptReader(config);lastConfigRead=Date.now();practiceIds=await bounded(async signal=>{const r=await fetch('./practice_submission.csv',{signal,credentials:'omit'});if(!r.ok)throw new Error('Practice sample unavailable.');return validateCSV(enc.encode(await r.text()),120);});$('#signin').href=location.origin+location.pathname+'?signin=1';
- let cancelled=false;if(new URLSearchParams(location.search).has('error')){cancelled=true;sessionStorage.removeItem('aifn-pkce');history.replaceState({},'',location.pathname);}
- else if(new URLSearchParams(location.search).has('code')){const p=JSON.parse(sessionStorage.getItem('aifn-pkce')??'null');if(!p?.nonce||!p?.codeVerifier)throw new Error('Sign-in session missing. Start again in this tab.');auth=await oauthHandleRedirect({nonce:p.nonce,codeVerifier:p.codeVerifier,redirectedUrl:location.href});sessionStorage.removeItem('aifn-pkce');history.replaceState({},'',location.pathname);pending=loadPending(sessionStorage,auth.userInfo.sub);setTimeout(()=>{auth=null;pending=[];syncTeams();render();show('Sign-in expired. Sign in again to upload.');},Math.max(0,auth.accessTokenExpiresAt.getTime()-Date.now()));}
+ [config,key]=await Promise.all([data('config.json'),data('submission-key.json')]);requireCompetition(config);reader=receiptReader(config);lastConfigRead=Date.now();practiceIds=await bounded(async signal=>{const r=await fetch('./practice_submission.csv',{signal,credentials:'omit'});if(!r.ok)throw new Error('Practice sample unavailable.');return validateCSV(enc.encode(await r.text()),120);});$('#signin').href=location.origin+location.pathname+'?signin=1'+(integrated?'#submit':'');if(typeof window!=='undefined'&&window.top===window.self)$('#signin').removeAttribute('target');
+ let cancelled=false;if(new URLSearchParams(location.search).has('error')){cancelled=true;sessionStorage.removeItem('aifn-pkce');history.replaceState({},'',location.pathname+(integrated?'#submit':''));}
+ else if(new URLSearchParams(location.search).has('code')){const p=JSON.parse(sessionStorage.getItem('aifn-pkce')??'null');if(!p?.nonce||!p?.codeVerifier)throw new Error('Sign-in session missing. Start again in this tab.');auth=await oauthHandleRedirect({nonce:p.nonce,codeVerifier:p.codeVerifier,redirectedUrl:location.href});sessionStorage.removeItem('aifn-pkce');history.replaceState({},'',location.pathname+(integrated?'#submit':''));pending=loadPending(sessionStorage,auth.userInfo.sub);setTimeout(()=>{auth=null;pending=[];syncTeams();render();show('Sign-in expired. Sign in again to upload.');},Math.max(0,auth.accessTokenExpiresAt.getTime()-Date.now()));}
  else if(new URLSearchParams(location.search).has('signin')){await login();return;}
- syncTeams();show(cancelled?'Sign-in was cancelled or declined. You can sign in again when ready.':auth?'Choose your prediction CSV, then submit.':'Ready. Sign in to submit a Practice file.');void refresh();setInterval(()=>void refresh(),15000);
+ syncTeams();show(cancelled?'Sign-in was cancelled or declined. You can sign in again when ready.':auth?'Choose your prediction CSV, then submit.':'Ready. Sign in to submit a Practice file.');void refresh();setInterval(()=>{if(!integrated||location.hash==='#submit')void refresh();},15000);if(integrated&&typeof window!=='undefined')window.addEventListener('hashchange',()=>{if(location.hash==='#submit')void refresh();});
  }catch(e){show(safeError(e),true);$('#submit').disabled=true;}})();

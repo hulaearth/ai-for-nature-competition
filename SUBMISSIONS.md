@@ -1,6 +1,6 @@
 # Submit predictions through Hugging Face
 
-Open the [competition Space](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) and choose **Submit → Open prediction upload**.
+Open the [competition Space](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) and choose **Submit → Submit tab**.
 
 1. Register your team once, including the captain’s Hugging Face username. An organizer approves and links the account.
 2. Sign in as that captain. Use **Practice** and the supplied 120-row CSV to check delivery early. Practice produces no model score or final scoring attempt.
@@ -14,6 +14,6 @@ The original unedited HF server comment binds SHA256 of the exact request manife
 
 Sessions last one hour. Tokens remain in memory. Pending receipt metadata survives a reload and sign-in, without saving CSVs or tokens. Refresh checks existing results and never resubmits a file. If a transfer is stopped or interrupted, its status is unconfirmed because it may still have reached the provider; check before trying again.
 
-Upload the presentation PDF through the separate Google Form linked below prediction submission. Add a public method/code or checkpoint reference on the upload page and complete the reproducibility report. Do not publish passwords, keys, hidden labels or a raw final CSV.
+Upload the presentation PDF through the separate Google Form linked below prediction submission. Add a public method/code or checkpoint reference on the Submit tab and complete the reproducibility report. Do not publish passwords, keys, hidden labels or a raw final CSV.
 
 If a conductor asks you to use backup delivery, open **legacy-submit.html#submit** on the same Space. Its GitHub attachment and nomination forms share the same team quota and final selection. Receipts are labelled `HF-N` and `GH-N` so numbers cannot collide.

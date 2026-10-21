@@ -52,8 +52,13 @@ for page in SITE.glob('*.html'):
     css_hash=base64.b64encode(hashlib.sha256(css.encode()).digest()).decode()
     assert "'sha256-"+css_hash+"'" in d.csp,('Embedded styles must be allowed by their exact hash',page)
     assert "'unsafe-inline'" not in d.csp,page
-    assert len(d.scripts)==2 and all(s['src'] is None for s in d.scripts),page
-    script=next(s['text'] for s in d.scripts if s['type']!='application/json')
+    integrated=page.name!='legacy-submit.html'
+    assert len(d.scripts)==(3 if integrated else 2),page
+    assert [s['src']for s in d.scripts if s['src']]==(['submission.js']if integrated else []),page
+    if integrated:
+        assert 'upload-form' in d.ids and 'upload-refresh' in d.ids and 'refresh' in d.ids,page
+        assert 'https://huggingface.co' in d.csp,page
+    script=next(s['text'] for s in d.scripts if s['type']!='application/json' and not s['src'])
     script_hash=base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
     assert "'sha256-"+script_hash+"'" in d.csp,('Inline logic must be allowed by its exact hash',page)
     if script_hash not in checked_scripts:
@@ -122,4 +127,4 @@ for page in SITE.glob('*.html'):
     text=page.read_text()
     assert '$50' not in text and 'Google GPU' not in text
     assert 'optional advanced award' not in text
-    assert 'Use for final' in text and ('Open prediction upload' in text or page.name=='legacy-submit.html')
+    assert 'Use for final' in text and ('upload-form' in text or page.name=='legacy-submit.html')
