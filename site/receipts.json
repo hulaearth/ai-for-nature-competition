@@ -1,11 +1,19 @@
 {
   "schema": 2,
+  "generation": 1,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": null,
+  "updated_at": "2026-10-21T14:45:12.819233+00:00",
   "entries": [],
   "requests": [],
   "selected": {},
-  "teams": [],
+  "teams": [
+    {
+      "slug": "platform-rehearsal-hf",
+      "name": "Organizer platform check",
+      "active": true,
+      "practice_only": true
+    }
+  ],
   "private_results_released": false
 }

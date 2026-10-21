@@ -15,6 +15,7 @@
   "final_submissions_enabled": false,
   "materials_release_utc": "2026-10-24T08:00:00Z",
   "starter_ref": "hackathon-2026",
+  "starter_commit": "404d64505793e7a53d300c65b40ccae30da457f5",
   "start_utc": "2026-10-24T09:00:00Z",
   "test_release_utc": "2026-10-24T11:30:00Z",
   "deadline_utc": "2026-10-24T15:30:00Z",
@@ -23,6 +24,9 @@
   "starter_released": false,
   "jury_performance_points": "baseline-relative-v1",
   "tie_break": "earliest-relevant-accepted-submission",
+  "hf_submissions_enabled": true,
+  "submission_receipt_policy": "hf-server-manifest-commitment-v1",
+  "max_request_bytes": 8000,
   "preparation_policy": "environment-checks-only",
   "data_ready": false,
   "presentation_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSfYhHbWZO8YNB8SJW1-SwBw1ER1G0LWdPkgaAm9THZxPxL4YA/viewform",
@@ -85,9 +89,5 @@
   },
   "working_hours": "6.5",
   "presentation_minutes": 5,
-  "questions_minutes": 2,
-  "hf_submissions_enabled": true,
-  "submission_receipt_policy": "hf-server-manifest-commitment-v1",
-  "max_request_bytes": 8000,
-  "starter_commit": "404d64505793e7a53d300c65b40ccae30da457f5"
+  "questions_minutes": 2
 }

@@ -4,7 +4,7 @@
   "metric": "Species macro average precision (countries pooled)",
   "higher_is_better": true,
   "dataset_release": "bird-habitat-2024",
-  "updated_at": "2026-10-21T11:34:46.485000+00:00",
+  "updated_at": "2026-10-21T14:45:12.819165+00:00",
   "tie_break": "Earlier relevant accepted prediction receipt; issue number breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
   "private_results_released": false,
   "teams": []
