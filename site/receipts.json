@@ -1,9 +1,9 @@
 {
   "schema": 2,
-  "generation": 4,
+  "generation": 5,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-21T15:13:49.772569+00:00",
+  "updated_at": "2026-10-21T15:53:26.566651+00:00",
   "entries": [],
   "requests": [
     {
@@ -19,6 +19,13 @@
     }
   ],
   "selected": {},
-  "teams": [],
+  "teams": [
+    {
+      "slug": "integrated-form-rehearsal",
+      "name": "Organizer platform check",
+      "active": true,
+      "practice_only": true
+    }
+  ],
   "private_results_released": false
 }
