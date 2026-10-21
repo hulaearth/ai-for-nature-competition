@@ -58,12 +58,17 @@ async function board() {
 
 async function uploader(config) {
   const form=$("#prediction-form");if(!form)return;
-  const status=$("#submission-status");let key,teams,currentBlobUrl=null;
+  const status=$("#submission-status");let key,teams,currentBlobUrl=null,currentEnvelopeText="";
   try{[key,teams]=await Promise.all([data("submission-key.json"),data("teams.json")]);}catch(error){status.textContent=error.message;return;}
   const select=$("#team");for(const t of teams.teams.filter(t=>t.active)){const o=make("option",`${t.name} · ${t.slug}`);o.value=t.slug;select.append(o);}
   if(!teams.teams.some(t=>t.active))status.textContent="Register first. Your approved team will appear here after an organizer adds it.";
   function controls(){const final=$("#channel").value==="final";$("#encrypt").disabled=!select.value||(final&&!isFinalOpen(config));$("#window-note").textContent=final?(isFinalOpen(config)?"Final-test predictions are open. Use the decrypted competition sample submission.":"Final-test encryption opens at the announced test release time."):"Practice uses the 120-row sample below. It checks format and delivery, not model performance.";}
-  form.addEventListener("change",()=>{controls();$("#after-encrypt").hidden=true;status.textContent="";});controls();
+  form.addEventListener("change",()=>{controls();$("#after-encrypt").hidden=true;status.textContent="";currentEnvelopeText="";$("#encrypted-copy-status").textContent="";$("#encrypted-manual").hidden=true;});controls();
+  $("#copy-encrypted").addEventListener("click",async()=>{
+    if(!currentEnvelopeText)return;
+    try{await navigator.clipboard.writeText(currentEnvelopeText);$("#encrypted-copy-status").textContent="Encrypted JSON copied. Save it in a file ending .encrypted.json, then attach that file on GitHub.";}
+    catch{$("#encrypted-manual").hidden=false;$("#encrypted-text").value=currentEnvelopeText;$("#encrypted-copy-status").textContent="Select the encrypted text below and save it in a .encrypted.json file, then attach it on GitHub.";}
+  });
   form.addEventListener("submit",async event=>{
     event.preventDefault();$("#encrypt").disabled=true;$("#after-encrypt").hidden=true;status.textContent="Checking and encrypting locally…";
     try{
@@ -79,7 +84,8 @@ async function uploader(config) {
       const sample=$("#sample").files[0];if(sample){if(sample.size>5_000_000)throw new Error("Sample exceeds 5 MB.");const sampleBytes=new Uint8Array(await sample.arrayBuffer());expected=validateCSV(sampleBytes,channel==="final"?35510:120);}
       validateCSV(bytes,channel==="final"?35510:120,expected);
       const envelope=await encryptCSV(bytes,teamSlug,channel,key,config);
-      const blob=new Blob([JSON.stringify(envelope)],{type:"application/json"});
+      currentEnvelopeText=JSON.stringify(envelope);
+      const blob=new Blob([currentEnvelopeText],{type:"application/json"});
       if(currentBlobUrl)URL.revokeObjectURL(currentBlobUrl);
       currentBlobUrl=URL.createObjectURL(blob);
       const download=$("#download-encrypted");download.href=currentBlobUrl;download.download=`aifn-${teamSlug}-${envelope.submission_id}.encrypted.json`;
