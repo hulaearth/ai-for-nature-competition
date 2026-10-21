@@ -1,14 +1,3 @@
 {
-  "teams": [
-    {
-      "slug": "platform-check",
-      "name": "Organizer platform check",
-      "uploader": "Tweo",
-      "members": [
-        "Tweo",
-        "ikumpli"
-      ],
-      "active": true
-    }
-  ]
+  "teams": []
 }
