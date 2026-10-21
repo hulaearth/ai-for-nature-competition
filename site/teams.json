@@ -1,3 +1,14 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "slug": "integrated-form-rehearsal",
+      "name": "Organizer platform check",
+      "uploader": "Tweo",
+      "members": [
+        "Tweo",
+        "ikumpli"
+      ],
+      "active": true
+    }
+  ]
 }
