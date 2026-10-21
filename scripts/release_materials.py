@@ -157,9 +157,8 @@ def run(mode):
             raise ReleaseError('MATERIALS_RELEASE_TOKEN is missing; the timed materials release is not armed.')
         print('Materials release permissions and frozen assets verified; visibility was preserved.')
         return
-    if mode == 'open-platform':
-        if (plan.get('early_public_repositories') != [REPOSITORIES[0]]
-                or plan.get('early_public_space') is not True or not token):
+    if mode == 'open-inbox':
+        if plan.get('early_public_repositories') != [REPOSITORIES[0]] or not token:
             raise ReleaseError('Opening the platform requires the explicit approved allowlist and release credential.')
         if now >= utc(plan['expires_utc']):
             raise ReleaseError('The platform publication plan has expired.')
@@ -167,10 +166,7 @@ def run(mode):
         github(token, 'PATCH', '/repos/' + REPOSITORIES[0], {'private': False})
         if github(token, 'GET', '/repos/' + REPOSITORIES[0])['private']:
             raise ReleaseError('Competition inbox publication did not pass readback.')
-        api.update_repo_settings(SPACE, repo_type='space', visibility='public')
-        if api.repo_info(SPACE, repo_type='space').private:
-            raise ReleaseError('Space publication did not pass readback.')
-        print('Approved competition inbox and Space are public. Starter schedule and test-key schedule are unchanged.')
+        print('Approved competition inbox is public. Space visibility, starter schedule and test-key schedule are unchanged.')
         return
     if not token:
         raise ReleaseError('MATERIALS_RELEASE_TOKEN is required; nothing was released.')
@@ -203,7 +199,7 @@ def run(mode):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', choices=['window', 'verify', 'publish', 'open-platform'], default='verify')
+    parser.add_argument('--mode', choices=['window', 'verify', 'publish', 'open-inbox'], default='verify')
     try:
         run(parser.parse_args().mode)
     except ReleaseError as error:

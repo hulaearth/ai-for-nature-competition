@@ -7,8 +7,9 @@
     "hulaearth/ai-for-nature-competition",
     "hulaearth/ai-for-nature-codebase"
   ],
-  "early_public_repositories": ["hulaearth/ai-for-nature-competition"],
-  "early_public_space": true,
+  "early_public_repositories": [
+    "hulaearth/ai-for-nature-competition"
+  ],
   "not_before_utc": "2026-10-24T08:00:00Z",
   "expires_utc": "2026-10-24T15:30:00Z",
   "timezone": "Europe/Berlin",

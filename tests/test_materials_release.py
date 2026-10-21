@@ -100,8 +100,6 @@ class MaterialsReleaseTests(unittest.TestCase):
                     files[name].write_bytes(kwargs['path_or_fileobj'].read())
                     operations.append(('hf-file', name))
             hub = Hub()
-            if early_public:
-                hub.private = False
             def api(token, method, path, payload=None):
                 if '/contents/' in path:
                     return {'content':base64.b64encode(json.dumps(self.plan).encode()).decode()}
@@ -140,19 +138,20 @@ class MaterialsReleaseTests(unittest.TestCase):
         self.assertEqual(json.loads(files[release.RECEIPT])['starter_commit'],self.plan['starter_commit'])
         self.assertFalse(any('evaluation' in str(x) for x in operations))
 
-    def test_approved_platform_can_open_early_without_starter_or_release_receipt(self):
-        repos, private, operations, files = self.exercise_fake_hosts('open-platform','2026-10-21T10:00:00Z')
+    def test_approved_inbox_can_open_early_without_space_starter_or_release_receipt(self):
+        repos, private, operations, files = self.exercise_fake_hosts('open-inbox','2026-10-21T10:00:00Z')
         self.assertFalse(repos[release.REPOSITORIES[0]])
         self.assertTrue(repos[release.REPOSITORIES[1]])
-        self.assertFalse(private)
+        self.assertTrue(private)
         self.assertNotIn(release.RECEIPT, files)
         self.assertFalse(any('evaluation' in str(x) for x in operations))
+        self.assertFalse(any(x[0] == 'hf-visibility' for x in operations))
 
     def test_verify_preserves_explicitly_approved_early_public_platform(self):
         repos, private, operations, files = self.exercise_fake_hosts('verify','2026-10-21T10:00:00Z',early_public=True)
         self.assertFalse(repos[release.REPOSITORIES[0]])
         self.assertTrue(repos[release.REPOSITORIES[1]])
-        self.assertFalse(private)
+        self.assertTrue(private)
         self.assertNotIn(release.RECEIPT, files)
         self.assertTrue(json.loads(files['materials-release-setup.json'])['armed'])
 

@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Verify, open the explicitly approved public platform, or publish the starter at its guarded time
+        description: Verify, open the explicitly approved GitHub inbox, or publish the starter at its guarded time
         type: choice
-        options: [verify, publish, open-platform]
+        options: [verify, publish, open-inbox]
         default: verify
   schedule:
     # 24 October 2026: 10:00 Europe/Berlin = 08:00 UTC.
