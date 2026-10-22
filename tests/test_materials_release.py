@@ -138,6 +138,11 @@ class MaterialsReleaseTests(unittest.TestCase):
         self.assertNotIn(release.RECEIPT, files)
         self.assertNotIn('participant-guide.pdf',files)
         self.assertTrue(json.loads(files['materials-release-setup.json'])['armed'])
+        setup = json.loads(files['materials-release-setup.json'])
+        for field in ['starter_ref','starter_commit']:
+            self.assertEqual(setup[field],self.plan[field])
+        import hashlib
+        self.assertEqual(setup['guide_sha256'],hashlib.sha256(b'%PDF-1.7 synthetic event-day guide').hexdigest())
 
     def test_full_release_and_idempotent_retry_use_only_two_participant_repos(self):
         repos, private, operations, files = self.exercise_fake_hosts('publish','2026-10-24T08:00:00Z')

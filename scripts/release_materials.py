@@ -151,6 +151,8 @@ def run(mode):
             check_github(plan, token, verify_write=True)
         setup = {'schema_version': 1, 'competition_id': plan['competition_id'],
                  'not_before_utc': plan['not_before_utc'], 'guide_verified': True,
+                 'starter_ref': plan['starter_ref'], 'starter_commit': plan['starter_commit'],
+                 'guide_sha256': plan['guide_sha256'],
                  'github_permissions_verified': bool(token), 'armed': bool(token),
                  'verified_at_utc': now.isoformat(), 'source_commit': os.environ.get('GITHUB_SHA')}
         api.upload_file(repo_id=SPACE, repo_type='space', path_in_repo='materials-release-setup.json',
