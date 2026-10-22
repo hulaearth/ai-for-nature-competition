@@ -1,10 +1,21 @@
 {
   "schema": 2,
-  "generation": 12,
+  "generation": 15,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-22T09:55:18.798853+00:00",
-  "entries": [],
+  "updated_at": "2026-10-22T11:56:04.797711+00:00",
+  "entries": [
+    {
+      "team_slug": "team-fb9da411334b33a3",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:40:58.389000+00:00",
+      "attempt": 1,
+      "hf_author_id": "6ad5d7cbf506f545beadf9ce",
+      "entry_id": "HF-4"
+    }
+  ],
   "requests": [
     {
       "request_id": "91f6c7a9-8ac2-4d88-a146-ba1210701943",
@@ -27,11 +38,67 @@
       "status": "accepted",
       "reason": null,
       "received_at": "2026-10-21T15:58:50.253000+00:00"
+    },
+    {
+      "request_id": "4dc558e4-4ed8-4ca7-9c7a-ab9e4bb795a0",
+      "pr_number": 3,
+      "entry_id": "HF-3",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "registration",
+      "channel": "registration",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:32:43.731000+00:00",
+      "action": "registration",
+      "affected_team": "team-fb9da411334b33a3"
+    },
+    {
+      "request_id": "81d6fda7-d714-4136-a607-331f16ed22b2",
+      "pr_number": 4,
+      "entry_id": "HF-4",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "prediction",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:40:58.389000+00:00"
+    },
+    {
+      "request_id": "0454db00-35fb-42cc-ae45-2b40a1a7aa86",
+      "pr_number": 5,
+      "entry_id": "HF-5",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "membership",
+      "channel": "membership",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:54:11.028000+00:00",
+      "action": "invite",
+      "affected_team": "team-fb9da411334b33a3"
     }
   ],
   "selected": {},
-  "teams": [],
+  "teams": [
+    {
+      "slug": "team-fb9da411334b33a3",
+      "name": "Organizer readiness rehearsal",
+      "hf_id": "6ad5d7cbf506f545beadf9ce",
+      "active": true,
+      "hf_username": "Hula-Tech",
+      "member_accounts": [],
+      "member_limit": 2
+    }
+  ],
   "registration_open": true,
-  "invitations": [],
+  "invitations": [
+    {
+      "id": "0454db00-35fb-42cc-ae45-2b40a1a7aa86",
+      "team_slug": "team-fb9da411334b33a3",
+      "invitee_hf_id": "66fd491553a22cc59893a16c",
+      "hf_username": "ikumpli",
+      "status": "pending",
+      "expires_at": "2026-10-23T11:54:11.028000+00:00"
+    }
+  ],
   "private_results_released": false
 }
