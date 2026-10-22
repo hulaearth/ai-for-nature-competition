@@ -1,10 +1,21 @@
 {
   "schema": 2,
-  "generation": 13,
+  "generation": 14,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-22T11:35:04.670515+00:00",
-  "entries": [],
+  "updated_at": "2026-10-22T11:41:18.438449+00:00",
+  "entries": [
+    {
+      "team_slug": "team-fb9da411334b33a3",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:40:58.389000+00:00",
+      "attempt": 1,
+      "hf_author_id": "6ad5d7cbf506f545beadf9ce",
+      "entry_id": "HF-4"
+    }
+  ],
   "requests": [
     {
       "request_id": "91f6c7a9-8ac2-4d88-a146-ba1210701943",
@@ -40,6 +51,17 @@
       "received_at": "2026-10-22T11:32:43.731000+00:00",
       "action": "registration",
       "affected_team": "team-fb9da411334b33a3"
+    },
+    {
+      "request_id": "81d6fda7-d714-4136-a607-331f16ed22b2",
+      "pr_number": 4,
+      "entry_id": "HF-4",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "prediction",
+      "channel": "practice",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:40:58.389000+00:00"
     }
   ],
   "selected": {},
