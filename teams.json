@@ -1,3 +1,13 @@
 {
-  "teams": []
+  "teams": [
+    {
+      "slug": "team-fb9da411334b33a3",
+      "name": "Organizer readiness rehearsal",
+      "hf_id": "6ad5d7cbf506f545beadf9ce",
+      "active": true,
+      "hf_username": "Hula-Tech",
+      "member_accounts": [],
+      "member_limit": 2
+    }
+  ]
 }

@@ -1,9 +1,9 @@
 {
   "schema": 2,
-  "generation": 12,
+  "generation": 13,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-22T09:55:18.798853+00:00",
+  "updated_at": "2026-10-22T11:35:04.670515+00:00",
   "entries": [],
   "requests": [
     {
@@ -27,10 +27,33 @@
       "status": "accepted",
       "reason": null,
       "received_at": "2026-10-21T15:58:50.253000+00:00"
+    },
+    {
+      "request_id": "4dc558e4-4ed8-4ca7-9c7a-ab9e4bb795a0",
+      "pr_number": 3,
+      "entry_id": "HF-3",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "registration",
+      "channel": "registration",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:32:43.731000+00:00",
+      "action": "registration",
+      "affected_team": "team-fb9da411334b33a3"
     }
   ],
   "selected": {},
-  "teams": [],
+  "teams": [
+    {
+      "slug": "team-fb9da411334b33a3",
+      "name": "Organizer readiness rehearsal",
+      "hf_id": "6ad5d7cbf506f545beadf9ce",
+      "active": true,
+      "hf_username": "Hula-Tech",
+      "member_accounts": [],
+      "member_limit": 2
+    }
+  ],
   "registration_open": true,
   "invitations": [],
   "private_results_released": false
