@@ -76,7 +76,7 @@ for page in SITE.glob('*.html'):
     assert all(term not in page.read_text() for term in ['grid_id','BioT','Bavaria','macro_auroc','UTC-daily']),page
     assert '1a7b2U9YQRhpJG5TsPhPa1hHkVUpeOlPS' not in page.read_text(),page
     assert '1ULqUyStGWCF2osa6hzUXWuA9v9lR3kuhzu2kRWW1Z9M/edit' not in page.read_text(),page
-c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==63590
+c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==159150
 assert c['max_final_submissions']==5 and c['dataset_release']=='bird-habitat-2024'
 assert c['jury_performance_points']=='baseline-relative-v1'
 assert c['space_id']=='HulaEarth/ai-for-nature-hula-earth'

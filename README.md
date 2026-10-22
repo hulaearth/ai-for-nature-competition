@@ -6,7 +6,7 @@ Build habitat rankings for ten birds from German observations, AlphaEarth embedd
 
 ## What teams deliver
 
-- A valid prediction for all **63,590** bird-location requests.
+- A valid prediction for all **159,150** bird-location requests.
 - Clear, supported data insights and visualizations.
 - A method/code reference and a presentation PDF by **17:30**.
 - A **5-minute presentation + 2 minutes of questions**.
