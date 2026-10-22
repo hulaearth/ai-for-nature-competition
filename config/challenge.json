@@ -83,7 +83,9 @@
   "registration_epoch": "",
   "max_teams": 30,
   "organizer_hf_ids": [
-    "6ad5d7cbf506f545beadf9ce"
+    "6ad5d7cbf506f545beadf9ce",
+    "66fd491553a22cc59893a16c",
+    "6ad8b5b02d2e533f83f90ad7"
   ],
   "status": "prelaunch",
   "captain_only": false,
