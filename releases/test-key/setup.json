@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "competition_id": "ai-for-nature-2026",
+  "dataset_release": "bird-habitat-2024",
+  "not_before_utc": "2026-10-24T11:30:00Z",
+  "identity_sha256": "f1441573b4624c74530752f2afe350e6a181a5b145f668055ed662ec668f94f2",
+  "secret_fingerprint_verified": true,
+  "key_published": false,
+  "verified_at_utc": "2026-10-22T15:09:26.372881+00:00",
+  "source_commit": "5fc6a7f61fc1c2e7f83bbea76672eb5aaa5df81f",
+  "workflow_run_id": "39802090159"
+}
