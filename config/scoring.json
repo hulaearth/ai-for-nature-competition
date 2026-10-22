@@ -1,10 +1,4 @@
 {
-  "rubric": {
-    "model_performance": 50,
-    "insights": 30,
-    "presentation": 15,
-    "reproducibility_checklist": 5
-  },
   "version": "baseline-relative-v1",
   "constant_ap": 0.16666666666666666,
   "baseline_points": 15,
@@ -47,6 +41,12 @@
     },
     "model_sha256": "74f3ee7a61038bff8d0a8da295d16ba83562fad32edaae743117fc2ddf3a7780"
   },
-  "reference_sha256": "9ca3574175bf08774a5c64c15825ce62cc7ae43f4d8a37e7068b713f53e98ea4",
-  "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
+  "reference_sha256": "d2c37e456efbd7fa35b6cee0d8c8167f74b89c7ed10a6fdc8b395c200baece16",
+  "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison.",
+  "rubric": {
+    "model_performance": 50,
+    "insights": 30,
+    "presentation": 15,
+    "reproducibility_checklist": 5
+  }
 }

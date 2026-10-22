@@ -77,6 +77,11 @@ for page in SITE.glob('*.html'):
     assert '1a7b2U9YQRhpJG5TsPhPa1hHkVUpeOlPS' not in page.read_text(),page
     assert '1ULqUyStGWCF2osa6hzUXWuA9v9lR3kuhzu2kRWW1Z9M/edit' not in page.read_text(),page
 c=json.loads((SITE/'config.json').read_text());assert c['expected_rows']==159150
+contract=json.loads((ROOT/'config/challenge.json').read_text())
+for field in ['competition_id','dataset_release','dataset_manifest_sha256',
+              'expected_rows','max_csv_bytes','max_envelope_bytes','submission_key_id',
+              'max_final_submissions','max_practice_submissions','space_id','scoring_policy']:
+    assert c[field]==contract[field], 'Generated public contract differs: '+field
 assert c['max_final_submissions']==5 and c['dataset_release']=='bird-habitat-2024'
 assert c['jury_performance_points']=='baseline-relative-v1'
 assert c['space_id']=='HulaEarth/ai-for-nature-hula-earth'
