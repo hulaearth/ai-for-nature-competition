@@ -15,7 +15,7 @@
   "final_submissions_enabled": false,
   "materials_release_utc": "2026-10-24T08:00:00Z",
   "starter_ref": "hackathon-2026",
-  "starter_commit": "66d7e97492e2db39eea003736a91c109012f249b",
+  "starter_commit": "8d5c52fa9725f9958e94736b926a34b21cba139b",
   "start_utc": "2026-10-24T09:00:00Z",
   "test_release_utc": "2026-10-24T11:30:00Z",
   "deadline_utc": "2026-10-24T15:30:00Z",
@@ -79,7 +79,7 @@
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
   },
   "status": "prelaunch",
-  "captain_only": true,
+  "captain_only": false,
   "metric": "Species macro average precision (countries pooled)",
   "rubric": {
     "model_performance": 50,
@@ -89,5 +89,12 @@
   },
   "working_hours": "6.5",
   "presentation_minutes": 5,
-  "questions_minutes": 2
+  "questions_minutes": 2,
+  "registration_enabled": true,
+  "registration_rules_version": "competition-members-2026-10-22",
+  "registration_epoch": "",
+  "max_teams": 30,
+  "organizer_hf_ids": [
+    "6ad5d7cbf506f545beadf9ce"
+  ]
 }

@@ -2,7 +2,7 @@
 
 Build habitat rankings for ten birds from German observations, AlphaEarth embeddings, WorldCover, terrain and historical OpenStreetMap. Compare models on one common German validation set, then predict anonymous locations in nearby Central Europe. Teams of 2–3 work for 6.5 hours.
 
-[Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant guide at 10:00](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Register](https://github.com/hulaearth/ai-for-nature-competition/issues/new?template=register-team.yml)
+[Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant guide at 10:00](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Register](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register)
 
 ## What teams deliver
 
@@ -15,14 +15,16 @@ The award combines **50 model / 30 insights / 15 presentation / 5 reproducibilit
 
 ## Follow this route
 
-1. Register your team and captain; wait for organizer approval.
+1. Open **Register**, sign in with Hugging Face and create your team. Teammates sign in and accept invitations on that page; no invitation email is sent.
 2. Download the **compact modeling tables** and follow the [starter quick start](https://github.com/hulaearth/ai-for-nature-codebase). Use the shared German validation set. Spatial cross-validation is optional.
 3. Try the **120-row practice delivery** before the final rush.
 4. Preload the encrypted final inputs; unlock at **13:30**. The compact tables and optional patches have exact byte sizes in Drive’s RELEASE.json manifest.
-5. Open the Space’s **Submit** tab, sign in as the approved Hugging Face captain and submit your CSV directly before **17:30**. The page checks, encrypts and uploads it. Keep the receipt and wait for Accepted.
+5. Open the Space’s **Submit** tab, sign in with your own confirmed team account and submit your CSV directly before **17:30**. The page checks, encrypts and uploads it. Keep the receipt and wait for Accepted.
 6. Check your final choice. Leave “Make this my final entry if accepted” checked, or use “Use for final” beside an accepted entry. Add your method/code reference and upload slides through the separate presentation form.
 
 [Submission instructions and examples](SUBMISSIONS.md) · [Practical guide](https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#guide) · [Data explanation](https://hulaearth-ai-for-nature-hula-earth.static.hf.space/index.html#data)
+
+**Only the team captain can choose the final model.** Every confirmed teammate can upload, sharing the team’s allowance. The captain uses **Use for final** beside an accepted entry and checks its highlighted **Final choice** before 17:30. Choosing an existing entry uses no additional prediction attempt. Without an explicit choice, the latest captain upload is the fallback; if only teammates uploaded, the captain must select one.
 
 Each team has five accepted final predictions and ten practice checks. Invalid files do not spend accepted attempts. The original unedited Hugging Face server receipt binds the request and ciphertext fingerprint; its timestamp controls eligibility, even when scoring is delayed. Exact score ties favor the earlier selected prediction receipt.
 
@@ -79,7 +81,7 @@ Sources live in `config/`, `scripts/build_site.py`, `site/app.js` and `site/styl
 
 [Materials-release setup](docs/materials-release.md) · Test-key setup is described in the private runbook.
 
-Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team approval, final sealing and judging remain human responsibilities. This repository and the Space are public by organizer approval. Keep the starter private until its 10:00 release and the evaluator private throughout.
+Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team corrections, final sealing and judging remain human responsibilities. This repository and the Space are public by organizer approval. Keep the starter private until its 10:00 release and the evaluator private throughout.
 
 Optional German GeoTIFFs are also available from the [Hugging Face raster mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters). These are byte-identical to the frozen raster files; keep their license notices and verify SHA256SUMS.
 

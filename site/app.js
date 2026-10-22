@@ -6,7 +6,8 @@ const make = (tag, text, cls) => {const e=document.createElement(tag); if(text!=
 const BUNDLED_DATA = JSON.parse($("#site-data")?.textContent || "{}");
 
 async function data(name) {
-  // Bundled copies keep the Space useful while GitHub is private or temporarily unavailable.
+  // Read live Space exports first; immutable page fallbacks can lag behind feedback.
+  try {const r=await fetch("https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth/resolve/main/"+name+"?t="+Date.now(),{cache:"no-store",credentials:"omit",signal:AbortSignal.timeout(4000)});if(r.ok)return await r.json();} catch {}
   try {const r=await fetch(RAW+name+"?v="+Math.floor(Date.now()/30000),{cache:"no-store",credentials:"omit",signal:AbortSignal.timeout(4000)});if(r.ok)return await r.json();} catch {}
   if(Object.hasOwn(BUNDLED_DATA,name))return BUNDLED_DATA[name];
   const r=await fetch("./"+name,{cache:"no-store",credentials:"same-origin",signal:AbortSignal.timeout(4000)});if(!r.ok)throw new Error("Competition information is temporarily unavailable.");return r.json();
@@ -72,7 +73,7 @@ async function board() {
     $("#board-type").textContent=d.private_results_released?"Final private results":"Provisional public results";
     if(!d.teams.length){root.append(make("div","No scored predictions yet. Practice checks do not appear in the leaderboard.","empty"));return;}
     const table=make("table");table.setAttribute("aria-label","Competition standings");
-    const head=make("thead"),hr=make("tr");for(const x of ["Rank","Team",d.private_results_released?"Private macro AP":"Public macro AP",...(d.private_results_released?["Model points / 50"]:[]),"Accepted / 5","Prediction"]){const h=make("th",x);h.scope="col";hr.append(h);}head.append(hr);table.append(head);
+    const head=make("thead"),hr=make("tr");for(const x of ["Rank","Team",d.private_results_released?"Private macro AP":"Public macro AP",...(d.private_results_released?["Model points / 50"]:[]),"Accepted","Prediction"]){const h=make("th",x);h.scope="col";hr.append(h);}head.append(hr);table.append(head);
     const body=make("tbody");for(const t of d.teams){const r=make("tr");r.append(make("td",t.rank),make("td",t.name),make("td",Number(t.score).toFixed(6)),...(d.private_results_released?[make("td",Number.isFinite(t.model_points_50)?Number(t.model_points_50).toFixed(2):"Pending")]:[]),make("td",t.accepted_submissions));const cell=make("td"),a=make("a","#"+t.submission_issue);a.href=typeof t.submission_issue==="string"&&/^HF-[1-9][0-9]*$/.test(t.submission_issue)?"https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth/discussions/"+t.submission_issue.slice(3):REPO+"/issues/"+Number(t.submission_issue);cell.append(a);r.append(cell);body.append(r);}table.append(body);root.append(table);
     $("#board-updated").textContent="Last published: "+date(d.updated_at)+". Exact AP ties favor the earlier relevant accepted prediction. AP is compared at full precision and displayed to six decimals."+(d.award_scoring?" Frozen reference private AP: "+Number(d.award_scoring.reference_private_ap).toFixed(6)+". Model points use baseline-relative-v1; the overall jury award is separate.":"");
   } catch(error){root.replaceChildren(make("div","Standings could not be refreshed. Try again shortly.","notice"));}
@@ -154,3 +155,5 @@ try{const config=await data("config.json");
   renderConfig(config);materialsRelease(config);testKeyRelease(config);await uploader(config);}catch(error){document.querySelectorAll("[data-status]").forEach(e=>e.textContent="Schedule unavailable");}
 $("#refresh")?.addEventListener("click",board);await board();
 document.querySelectorAll('a[aria-disabled="true"]').forEach(a=>a.addEventListener("click",e=>{if(a.getAttribute('aria-disabled')==='true')e.preventDefault();}));
+
+setInterval(()=>{if(!document.querySelector("#view-leaderboard")?.hidden)void board();},30000);

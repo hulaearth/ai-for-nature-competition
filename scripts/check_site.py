@@ -44,8 +44,8 @@ for page in SITE.glob('*.html'):
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue
-    d=Document();d.feed(page.read_text());assert d.headings==6,page
-    assert {v['data-view'] for v in d.views}=={'challenge','data','rules','guide','submit','leaderboard'},page
+    d=Document();d.feed(page.read_text());assert d.headings==7,page
+    assert {v['data-view'] for v in d.views}=={'challenge','data','rules','guide','submit','leaderboard','register'},page
     assert [v['data-view'] for v in d.views if 'hidden' not in v]==[d.initial],page
     css=(SITE/'style.css').read_text()
     assert d.styles==[css],('Page must carry the complete shared design',page)
@@ -91,14 +91,14 @@ assert 'identity' not in plan and 'key' not in plan
 assert c['preparation_policy']=='environment-checks-only'
 assert c['drive_url']=='https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT'
 assert 'data-guide' in (SITE/'guide.html').read_text()
-assert len(list(SITE.glob('*.html')))==8
+assert len(list(SITE.glob('*.html')))==9
 assert len(c['dataset_manifest_sha256'])==64
 assert c['dataset_manifest_sha256']==json.loads((ROOT/'config/challenge.json').read_text())['dataset_manifest_sha256']
 with (SITE/'practice_submission.csv').open() as f:
     rows=list(csv.DictReader(f));assert len(rows)==120 and set(rows[0])=={'row_id','score'}
 for p in SITE.iterdir():
     if p.is_file():assert b'-----BEGIN PRIVATE KEY' not in p.read_bytes(),p
-print('Eight styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
+print('Nine styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
 
 policy=json.loads((ROOT/'config/scoring.json').read_text())
 assert c['rubric']==policy.pop('rubric')=={'model_performance':50,'insights':30,'presentation':15,'reproducibility_checklist':5}

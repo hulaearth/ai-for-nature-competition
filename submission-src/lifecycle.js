@@ -50,7 +50,7 @@ export function savePending(storage,userId,records){
  try{storage.setItem(`aifn-pending:${userId}`,JSON.stringify(records.slice(-20).map(r=>({id:r.id,userId,team:r.team,kind:r.kind,channel:r.channel,createdAt:r.createdAt,receiptNumber:r.receiptNumber,stage:r.stage}))));}catch{/* Storage may be blocked; the in-memory receipt still works. */}
 }
 export function loadPending(storage,userId){
- try{return JSON.parse(storage.getItem(`aifn-pending:${userId}`)??'[]').filter(r=>r.userId===userId&&/^[a-f0-9-]{36}$/.test(r.id)&&['prediction','selection'].includes(r.kind)&&typeof r.team==='string'&&Number.isFinite(r.createdAt)&&Date.now()-r.createdAt<7*86400000&&(r.receiptNumber===null||Number.isSafeInteger(r.receiptNumber))).slice(-20);}catch{return [];}
+ try{return JSON.parse(storage.getItem(`aifn-pending:${userId}`)??'[]').filter(r=>r.userId===userId&&/^[a-f0-9-]{36}$/.test(r.id)&&['prediction','selection','registration','membership','team_admin'].includes(r.kind)&&typeof r.team==='string'&&Number.isFinite(r.createdAt)&&Date.now()-r.createdAt<7*86400000&&(r.receiptNumber===null||Number.isSafeInteger(r.receiptNumber))).slice(-20);}catch{return [];}
 }
 export async function transfer(upload,params,{signal,ms=120000,onSettled=()=>{}}={}){
  try{return safeReceipt(await bounded(abortSignal=>upload({...params,abortSignal}),{signal,ms}));}

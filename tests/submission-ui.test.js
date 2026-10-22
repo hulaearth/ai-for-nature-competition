@@ -1,22 +1,26 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
-import {validateCSV,encryptCSV} from '../submission-src/envelope.js';import {requireCompetition,prepareRequest,acceptanceMessage} from '../submission-src/protocol.js';import {bounded,receiptReader,pendingRecord,loadPending,savePending,transfer} from '../submission-src/lifecycle.js';
+import {validateCSV,encryptCSV,encryptPayload} from '../submission-src/envelope.js';import {requireCompetition,prepareRequest,acceptanceMessage} from '../submission-src/protocol.js';import {bounded,receiptReader,pendingRecord,loadPending,savePending,transfer} from '../submission-src/lifecycle.js';
+import {teamSlug,registrationPayload,ownedTeams,isCaptain,isOrganizer,requestLabel,rejectionMessage} from '../submission-src/registration.js';
 const cfg=JSON.parse(await readFile('site/config.json','utf8')),key=JSON.parse(await readFile('site/submission-key.json','utf8')),practice=await readFile('site/practice_submission.csv');
 class Node{
  constructor(tag='div'){this.tag=tag;this.children=[];this.options=[];this.value='';this.checked=true;this.files=[];this.listeners={};this.textContent='';this.disabled=false;this.hidden=false;}
  append(n){this.children.push(n);if(n.tag==='option'){this.options.push(n);if(!this.value)this.value=n.value;}}
  replaceChildren(){this.children=[];this.options=[];if(this.tag==='select')this.value='';}
  addEventListener(event,fn){this.listeners[event]=fn;}
+ after(){}
+ setAttribute(){}
+ removeAttribute(){}
 }
-async function harness({integrated=false,sessionError=false,savedPending=null,search='?code=synthetic',upload=async()=>({pullRequestUrl:'https://huggingface.co/spaces/'+cfg.space_id+'/discussions/3'})}={}){
+async function harness({subject='a'.repeat(24),registered=true,integrated=false,sessionError=false,savedPending=null,search='?code=synthetic',upload=async()=>({pullRequestUrl:'https://huggingface.co/spaces/'+cfg.space_id+'/discussions/3'})}={}){
  const nodes=new Map();const document={body:{dataset:{integratedUpload:integrated?'true':''}},querySelector:s=>{if(!nodes.has(s))nodes.set(s,new Node(['#team','#channel','#upload-team','#upload-channel'].includes(s)?'select':'div'));return nodes.get(s);},querySelectorAll:()=>[],createElement:tag=>new Node(tag)};
  document.querySelector(integrated?'#upload-channel':'#channel').value='practice';const now=Date.parse('2026-10-24T12:00:00Z');class Clock extends Date{static now(){return now;}}
- const config={...cfg,practice_enabled:true,hf_submissions_enabled:true};const teams=[{slug:'team-a',name:'Team A',hf_id:'a'.repeat(24),active:true}];let feed={schema:2,competition:cfg.competition_id,space_id:cfg.space_id,updated_at:'2026-10-24T12:00:00Z',entries:[],requests:[],teams,selected:{}},offline=false,loginCalls=0;
+ const config={...cfg,practice_enabled:true,hf_submissions_enabled:true};const teams=registered?[{slug:'team-a',name:'Team A',hf_id:'a'.repeat(24),member_accounts:[{hf_id:'b'.repeat(24),hf_username:'synthetic-member'}],active:true}]:[];let feed={schema:2,competition:cfg.competition_id,space_id:cfg.space_id,updated_at:'2026-10-24T12:00:00Z',entries:[],requests:[],teams,selected:{}},offline=false,loginCalls=0;
  const location={origin:'https://example.invalid',pathname:integrated?'/index.html':'/upload.html',hash:'',search,assign(){}};const history={replaceState:(_,__,url)=>{location.search='';location.hash=url.includes('#')?'#'+url.split('#')[1]:'';}};const values=new Map([['aifn-pkce',JSON.stringify({nonce:'synthetic',codeVerifier:'synthetic'})]]);const storage={getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
  if(savedPending)storage.setItem('aifn-pending:'+ 'a'.repeat(24),JSON.stringify(savedPending));
  const fetcher=async url=>{if(url.includes('receipts.json')){if(offline)throw Error('Synthetic outage');return {ok:true,json:async()=>structuredClone(feed)};}if(url.includes('worker-status.json'))return {ok:true,json:async()=>({competition_id:cfg.competition_id,updated_at:'2026-10-24T11:00:00Z',status:'retrying'})};if(url.includes('config.json'))return {ok:true,json:async()=>config};if(url.includes('submission-key.json'))return {ok:true,json:async()=>key};if(url==='./practice_submission.csv')return {ok:true,text:async()=>practice.toString()};throw Error('Unexpected test request');};
- const expires=[];const timers=[];let source=await readFile('submission-src/app.js','utf8');source=source.replace(/^import .*$/gm,'').replace('\n(async()=>{try{','\nconst ready=(async()=>{try{');source+='\nawait ready;await new Promise(r=>setImmediate(r));return {refresh,controls,sendSelection,submit:()=>$("#form").listeners.submit({preventDefault(){}})};';
- const names=['document','fetch','Date','location','history','sessionStorage','setTimeout','setInterval','requestAnimationFrame','oauthLoginUrl','oauthHandleRedirect','uploadFiles','validateCSV','encryptCSV','requireCompetition','prepareRequest','acceptanceMessage','bounded','receiptReader','pendingRecord','loadPending','savePending','transfer'];
- const valuesArgs=[document,fetcher,Clock,location,history,storage,(fn,ms)=>{if(ms>1000){expires.push(fn);return 1;}queueMicrotask(fn);return 1;},fn=>timers.push(fn),fn=>fn(),async()=>'',async()=>{loginCalls++;if(sessionError)throw Error('Synthetic sign-in failure');return {accessToken:'synthetic-token',accessTokenExpiresAt:new Date(now+3600000),userInfo:{sub:'a'.repeat(24),preferred_username:'synthetic-captain'}};},upload,validateCSV,encryptCSV,requireCompetition,prepareRequest,acceptanceMessage,bounded,c=>receiptReader(c,{fetcher,ms:25}),pendingRecord,loadPending,savePending,transfer];
+ const expires=[];const timers=[];let source=await readFile('submission-src/app.js','utf8');source=source.replace(/^import .*$/gm,'').replace('\n(async()=>{try{','\nconst ready=(async()=>{try{');source+='\nawait ready;await new Promise(r=>setImmediate(r));return {refresh,controls,sendSelection,register:()=>$("#registration-form").listeners.submit({preventDefault(){}}),submit:()=>$("#form").listeners.submit({preventDefault(){}})};';
+ const names=['encryptPayload','teamSlug','registrationPayload','ownedTeams','isCaptain','isOrganizer','requestLabel','rejectionMessage','renderWorkspace','initLeaderboardPreview','document','fetch','Date','location','history','sessionStorage','setTimeout','setInterval','requestAnimationFrame','oauthLoginUrl','oauthHandleRedirect','uploadFiles','validateCSV','encryptCSV','requireCompetition','prepareRequest','acceptanceMessage','bounded','receiptReader','pendingRecord','loadPending','savePending','transfer'];
+ const valuesArgs=[encryptPayload,teamSlug,registrationPayload,ownedTeams,isCaptain,isOrganizer,requestLabel,rejectionMessage,()=>{},async()=>{},document,fetcher,Clock,location,history,storage,(fn,ms)=>{if(ms>1000){expires.push(fn);return 1;}queueMicrotask(fn);return 1;},fn=>timers.push(fn),fn=>fn(),async()=>'',async()=>{loginCalls++;if(sessionError)throw Error('Synthetic sign-in failure');return {accessToken:'synthetic-token',accessTokenExpiresAt:new Date(now+3600000),userInfo:{sub:subject,preferred_username:'synthetic-captain'}};},upload,validateCSV,encryptCSV,requireCompetition,prepareRequest,acceptanceMessage,bounded,c=>receiptReader(c,{fetcher,ms:25}),pendingRecord,loadPending,savePending,transfer];
  const api=await new(Object.getPrototypeOf(async function(){}).constructor)(...names,source)(...valuesArgs);
  return {...api,node:s=>document.querySelector(integrated?s.replace(/#([a-z][a-z0-9-]*)/gi,'#upload-$1'):s),raw:s=>document.querySelector(s),location,expire:()=>expires[0](),cancel:()=>document.querySelector(integrated?'#upload-cancel':'#cancel').listeners.click(),get loginCalls(){return loginCalls;},storage,setOffline:value=>offline=value,setFeed:value=>feed=value,config,feed,signout:()=>document.querySelector(integrated?'#upload-logout':'#logout').listeners.click()};
 }
@@ -63,3 +67,16 @@ for(const integrated of [false,true]){
  });
 }
 test('failed OAuth leaves no active upload session and permits another sign-in',async()=>{const ui=await harness({integrated:true,sessionError:true});assert.equal(ui.node('#submit').disabled,true);assert.equal(ui.node('#signin').hidden,false);assert.match(ui.node('#status').textContent,/could not be completed/);});
+
+test('teammates can submit but cannot select a final model or auto-select their upload',async()=>{
+ let sent;const ui=await harness({subject:'b'.repeat(24),integrated:true,upload:async p=>{sent=p;return {pullRequestUrl:'https://huggingface.co/spaces/'+cfg.space_id+'/discussions/8'};}});await ui.refresh();
+ assert.equal(ui.node('#submit').disabled,false);assert.equal(ui.node('#final-label').hidden,true);
+ await ui.sendSelection({team_slug:'team-a',entry_id:'HF-3'});assert.equal(sent,undefined);assert.match(ui.node('#status').textContent,/Only the captain/);
+ ui.node('#csv').files=[{size:practice.length,arrayBuffer:async()=>practice}];await ui.submit();const manifest=JSON.parse(await sent.files[0].content.text());assert.equal(manifest.make_final,false);
+});
+test('new captain can send an encrypted registration without publishing roster nicknames',async()=>{
+ let sent;const ui=await harness({registered:false,integrated:true,upload:async p=>{sent=p;return {pullRequestUrl:'https://huggingface.co/spaces/'+cfg.space_id+'/discussions/8'};}});await ui.refresh();
+ ui.node('#team-name').value='Woodland Crew';ui.node('#members').value='Private Captain\nPrivate Teammate';ui.node('#rules').checked=true;await ui.register();assert(sent);
+ const manifest=JSON.parse(await sent.files[0].content.text());assert.equal(manifest.kind,'registration');assert.equal(manifest.channel,'registration');assert.equal(manifest.make_final,false);
+ const all=await new Blob(sent.files.map(f=>f.content)).text();assert(!all.includes('Private Captain'));assert(!all.includes('Private Teammate'));
+});
