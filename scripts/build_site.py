@@ -31,7 +31,8 @@ assert '</script' not in SCRIPT.lower()
 CONTRACT_KEYS = ['competition_id', 'dataset_release', 'dataset_manifest_sha256',
                  'expected_rows', 'max_csv_bytes', 'max_envelope_bytes',
                  'submission_key_id', 'max_final_submissions', 'max_practice_submissions',
-                 'space_id', 'scoring_policy']
+                 'space_id', 'scoring_policy', 'data_release_utc', 'data_release_policy',
+                 'alphaearth_drive_url', 'alphaearth_hf_url', 'alphaearth_hf_ready']
 frozen_contract = json.loads((ROOT / 'config/challenge.json').read_text())
 public_config = json.loads((SITE / 'config.json').read_text())
 for key in CONTRACT_KEYS:
