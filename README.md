@@ -4,6 +4,8 @@ Build habitat rankings for ten birds from German observations, AlphaEarth embedd
 
 [Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant guide at 10:00](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Register](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register)
 
+**Before the event:** only [German AlphaEarth on Drive](https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk) is available (87 tiles, 148.57 GB). The separate HF raster mirror is still being prepared. All other data open at 10:00 German time on 24 October.
+
 ## What teams deliver
 
 - A valid prediction for all **159,150** bird-location requests.
@@ -85,7 +87,7 @@ Sources live in `config/`, `scripts/build_site.py`, `site/app.js` and `site/styl
 
 Organizers use the **private evaluator repository's PRE_EVENT_CHECKLIST.md and RUNBOOK.md** for readiness, credentials, approval, queue processing and closure. The timed jobs need verified permissions and an operator fallback; team corrections, final sealing and judging remain human responsibilities. This repository and the Space are public by organizer approval. Keep the starter private until its 10:00 release and the evaluator private throughout.
 
-Optional German GeoTIFFs are also available from the [Hugging Face raster mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters). These are byte-identical to the frozen raster files; keep their license notices and verify SHA256SUMS.
+Optional German GeoTIFFs are available in the separate [AlphaEarth Drive folder](https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk), with their technical notes and source licenses. The future separate HF mirror will be advertised only after verification.
 
 Optional [Germany mapping inputs](https://drive.google.com/drive/folders/1MXcAoRPddo4ZrOCaFrhFeTClM_yi3fe1) are available at 1 km (866.9 MB) and 5 km (58.3 MB), with a [Hugging Face mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/mapping). They contain predictor tables/rasters and hillshade for mapping participants’ own models. The clean mapping tool is part of the starter released at 10:00; map outputs are optional presentation material. These packages do not change the fixed training labels, validation or anonymous final-test submission contract.
 
@@ -93,7 +95,7 @@ Leaderboard ranking follows the captain’s **currently selected model**, using 
 
 ## Data delivery fallback
 
-Use the [German tables, patches and exploration mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/challenge)
+From **10:00 on competition day**, use the [German tables, patches and exploration mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/challenge)
 if Drive returns a quota page. Download only the required components and verify
 SHA256SUMS. The compact modeling ZIP is 76.1 MB; the complete mirrored component
 is 34.30 GB. Code and the day-of guide are released separately. Final test inputs

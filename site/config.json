@@ -98,5 +98,10 @@
   },
   "working_hours": "6.5",
   "presentation_minutes": 5,
-  "questions_minutes": 2
+  "questions_minutes": 2,
+  "alphaearth_drive_url": "https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk",
+  "alphaearth_hf_url": "https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024",
+  "data_release_utc": "2026-10-24T08:00:00Z",
+  "data_release_policy": "alphaearth-only-before-event",
+  "alphaearth_hf_ready": false
 }
