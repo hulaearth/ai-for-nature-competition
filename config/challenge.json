@@ -78,6 +78,13 @@
     "reference_sha256": "9ca3574175bf08774a5c64c15825ce62cc7ae43f4d8a37e7068b713f53e98ea4",
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
   },
+  "registration_enabled": true,
+  "registration_rules_version": "competition-members-2026-10-22",
+  "registration_epoch": "",
+  "max_teams": 30,
+  "organizer_hf_ids": [
+    "6ad5d7cbf506f545beadf9ce"
+  ],
   "status": "prelaunch",
   "captain_only": false,
   "metric": "Species macro average precision (countries pooled)",
@@ -89,12 +96,5 @@
   },
   "working_hours": "6.5",
   "presentation_minutes": 5,
-  "questions_minutes": 2,
-  "registration_enabled": true,
-  "registration_rules_version": "competition-members-2026-10-22",
-  "registration_epoch": "",
-  "max_teams": 30,
-  "organizer_hf_ids": [
-    "6ad5d7cbf506f545beadf9ce"
-  ]
+  "questions_minutes": 2
 }

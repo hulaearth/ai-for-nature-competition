@@ -1,9 +1,9 @@
 {
   "schema": 2,
-  "generation": 11,
+  "generation": 12,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-21T16:08:56.584895+00:00",
+  "updated_at": "2026-10-22T09:55:18.798853+00:00",
   "entries": [],
   "requests": [
     {
@@ -31,5 +31,7 @@
   ],
   "selected": {},
   "teams": [],
+  "registration_open": true,
+  "invitations": [],
   "private_results_released": false
 }
