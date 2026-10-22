@@ -130,17 +130,25 @@ function testKeyRelease(config) {
   async function check() {
     if(busy||identity)return;busy=true;
     try {
-      const r=await fetch('./test-key-release.json',{cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(4000)});
-      if(!r.ok){status.textContent=Date.now()<Date.parse(plan.not_before_utc)?pending:'The key is not available in this view yet. Check again, or open the key download after the announced release time.';return;}
-      const released=await r.json();
-      if(released.competition_id!==config.competition_id||released.dataset_release!==config.dataset_release||released.not_before_utc!==plan.not_before_utc||released.identity_sha256!==plan.identity_sha256||!Number.isFinite(Date.parse(released.published_at_utc))||Date.parse(released.published_at_utc)<Date.parse(plan.not_before_utc))throw new Error('Release metadata mismatch');
-      if(typeof released.identity!=='string'||!/^AGE-SECRET-KEY-1[A-Z0-9]+\n$/.test(released.identity))throw new Error('Invalid age identity');
-      const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(released.identity)))].map(b=>b.toString(16).padStart(2,'0')).join('');
-      if(hash!==plan.identity_sha256)throw new Error('Identity fingerprint mismatch');
-      identity=released.identity;$('#test-key-identity').textContent=identity;$('#test-key-value').hidden=false;$('#test-key-copy').hidden=false;
-      status.textContent='The verified test-data unlock key is available. Download the age identity file or copy the key below.';
-    }catch{status.textContent='The key could not be verified in this view. Check again or use the key download after release; contact a conductor if the problem persists.';}
-    finally{busy=false;}
+      if(Date.now()<Date.parse(plan.not_before_utc)){status.textContent=pending;return;}
+      let invalid=false;
+      const endpoints=['./test-key-release.json','https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/releases/test-key/test-key-release.json'];
+      for(const endpoint of endpoints)try {
+        const r=await fetch(endpoint+'?t='+Date.now(),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(4000)});
+        if(!r.ok)continue;
+        const released=await r.json(),published=Date.parse(released.published_at_utc);
+        if(released.competition_id!==config.competition_id||released.dataset_release!==config.dataset_release||released.not_before_utc!==plan.not_before_utc||released.identity_sha256!==plan.identity_sha256||!Number.isFinite(published)||published<Date.parse(plan.not_before_utc)||published>Date.parse(plan.expires_utc))throw new Error('Release metadata mismatch');
+        if(typeof released.identity!=='string'||!/^AGE-SECRET-KEY-1[A-Z0-9]+\n$/.test(released.identity))throw new Error('Invalid age identity');
+        const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(released.identity)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+        if(hash!==plan.identity_sha256)throw new Error('Identity fingerprint mismatch');
+        const localDownload=URL.createObjectURL(new Blob([released.identity],{type:'text/plain'}));
+        identity=released.identity;$('#test-key-identity').textContent=identity;$('#test-key-value').hidden=false;$('#test-key-copy').hidden=false;
+        const download=$('#test-key-download');download.href=localDownload;download.download='test-release-key.agekey';download.removeAttribute('target');download.textContent='Download verified unlock key';
+        status.textContent='The verified test-data unlock key is available. Download the age identity file or copy the key below.';
+        return;
+      }catch{invalid=true;}
+      status.textContent=invalid?'The key could not be verified in this view. Check again or contact a conductor.':'The key is not available yet. This page checks both release routes automatically; check again shortly.';
+    }finally{busy=false;}
   }
   $('#test-key-refresh').addEventListener('click',check);
   $('#test-key-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(identity);$('#test-key-copy').textContent='Copied';}catch{status.textContent='Copy was unavailable. Use the key download or select the displayed key.';}});

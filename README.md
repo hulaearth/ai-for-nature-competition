@@ -61,6 +61,8 @@ flowchart LR
 
 The evaluator scores data only; it never runs team code. Hidden labels and the submission-decryption key stay private. The separate test-input key is published at 13:30. Live public AP is provisional; the chosen entry’s private AP determines model points after closure. Presentations are collected in private organizer storage.
 
+The Space checks both the primary and backup key routes automatically. If the Space is unavailable at release time, use the [backup unlock-key download](https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/releases/test-key/test-release-key.agekey), available from **24 October at 13:30 German time**. Its fingerprint is checked against the same frozen release plan.
+
 Training data and technical pages are available in advance. The participant guide and starter code open at **10:00** on event day; analysis and modeling begin at **11:00**. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
 
 ## Maintain this site
