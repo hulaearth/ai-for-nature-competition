@@ -14,6 +14,8 @@ import time
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.hub_http import configure_hub_http
 PUBLICATION = 'test-key-release.json'
 IDENTITY_FILE = 'test-release-key.agekey'
 
@@ -118,6 +120,7 @@ def check_current_main_plan(plan):
 
 def publish(plan, identity, token):
     from huggingface_hub import HfApi, CommitOperationAdd, hf_hub_download
+    configure_hub_http()
     api = HfApi(token=token)
     # Both files are outside the ordinary deployment allowlist, so later site deployments retain them.
     for attempt in range(3):
@@ -181,6 +184,7 @@ def main():
         raise ReleaseError('The existing HF_TOKEN or HF_SPACE_TOKEN secret is required.')
     if args.mode == 'verify':
         from huggingface_hub import HfApi
+        configure_hub_http()
         api = HfApi(token=token)
         api.repo_info(plan['space_id'], repo_type='space')
         if os.environ.get('GITHUB_ACTIONS') == 'true':
