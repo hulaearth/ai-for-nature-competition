@@ -40,7 +40,7 @@ checked_scripts=set()
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue
@@ -54,7 +54,7 @@ for page in SITE.glob('*.html'):
     assert "'unsafe-inline'" not in d.csp,page
     integrated=page.name!='legacy-submit.html'
     assert len(d.scripts)==(3 if integrated else 2),page
-    assert [s['src']for s in d.scripts if s['src']]==(['submission.js']if integrated else []),page
+    assert [s['src']for s in d.scripts if s['src']]==(['submission.js?v='+hashlib.sha256((SITE/'submission.js').read_bytes()).hexdigest()[:16]]if integrated else []),page
     if integrated:
         assert 'upload-form' in d.ids and 'upload-refresh' in d.ids and 'refresh' in d.ids,page
         assert 'https://huggingface.co' in d.csp,page
@@ -107,7 +107,7 @@ assert policy['baseline']['starter_ref']=='hackathon-2026' and policy['stretch_a
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue
@@ -120,7 +120,7 @@ for page in SITE.glob('*.html'):
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue

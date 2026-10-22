@@ -14,6 +14,8 @@ NOMINATE = "https://github.com/hulaearth/ai-for-nature-competition/issues/new?te
 SUBMISSION_FORM = (ROOT / 'scripts/submission_form.html').read_text()
 REGISTRATION_FORM = (ROOT / 'scripts/registration_form.html').read_text()
 UPLOAD_SHELL = (ROOT / 'scripts/upload_shell.html').read_text()
+SUBMISSION_ASSET = 'submission.js?v='+hashlib.sha256((SITE/'submission.js').read_bytes()).hexdigest()[:16]
+UPLOAD_SHELL = UPLOAD_SHELL.replace('src="submission.js"', 'src="'+SUBMISSION_ASSET+'"')
 (SITE / 'upload.html').write_text(UPLOAD_SHELL.replace('{{SUBMISSION_FORM}}', SUBMISSION_FORM+REGISTRATION_FORM))
 INLINE_UPLOAD = re.sub(r'id="([^"]+)"', lambda m: 'id="upload-'+m[1]+'"', SUBMISSION_FORM).replace('<h2>', '<h3>').replace('</h2>', '</h3>')
 CSS = (SITE / "style.css").read_text()
@@ -39,7 +41,7 @@ SCHEDULE_HTML = '<h3>Saturday 24 October 2026</h3><p>All times: Europe/Berlin, C
 def layout(title, page, *, integrated=True):
     config = json.loads((ROOT / "config/challenge.json").read_text())
     drive_url = config.get("drive_url")
-    upload_module = '<script type="module" src="submission.js"></script>' if integrated else ''
+    upload_module = '<script type="module" src="'+SUBMISSION_ASSET+'"></script>' if integrated else ''
     upload_flag = ' data-integrated-upload="true"' if integrated else ''
     initial = 'challenge' if page == 'index.html' else Path(page).stem
     views = []
