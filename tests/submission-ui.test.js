@@ -52,7 +52,8 @@ for(const integrated of [false,true]){
    assert.notEqual(invalid,practice.toString(),'Invalid fixture must differ from the supplied sample');const bytes=new TextEncoder().encode(invalid);
    ui.node('#csv').files=[{size:bytes.length,arrayBuffer:async()=>bytes}];await ui.submit();assert.equal(calls,0);assert.equal(ui.node('#submit').disabled,false);
   }
-  ui.node('#csv').files=[{size:8000001,arrayBuffer:async()=>{throw Error('Oversized file must not be read');}}];await ui.submit();assert.match(ui.node('#status').textContent,/8 MB/);assert.equal(calls,0);
+  const cap=ui.config.max_csv_bytes;
+  ui.node('#csv').files=[{size:cap+1,arrayBuffer:async()=>{throw Error('Oversized file must not be read');}}];await ui.submit();assert.ok(ui.node('#status').textContent.includes(`${cap/1e6} MB`));assert.equal(calls,0);
  });
  test(`${route}: double submit sends one request while repeated refreshes never resubmit`,async()=>{
   let calls=0,resolve;const ui=await harness({integrated,upload:()=>{calls++;return new Promise(r=>resolve=r);}});await ui.refresh();ui.node('#csv').files=[{size:practice.length,arrayBuffer:async()=>practice}];const a=ui.submit(),b=ui.submit();await b;while(!resolve)await new Promise(r=>setImmediate(r));await Promise.all([ui.refresh(),ui.refresh(),ui.refresh()]);assert.equal(calls,1);resolve({pullRequestUrl:'https://huggingface.co/spaces/'+cfg.space_id+'/discussions/3'});await a;assert.equal(calls,1);assert.equal(ui.node('#submit').disabled,false);
