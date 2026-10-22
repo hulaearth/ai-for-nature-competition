@@ -26,6 +26,17 @@ assert APP.startswith('import {encryptCSV, validateCSV, parseCSV} from "./envelo
 SCRIPT = (SITE / 'navigation.js').read_text() + '\n(async () => {\n' + ENVELOPE + '\n' + APP.split('\n', 1)[1] + '\n})();\n'
 SCRIPT_HASH = base64.b64encode(hashlib.sha256(SCRIPT.encode()).digest()).decode()
 assert '</script' not in SCRIPT.lower()
+# Keep the immutable data contract aligned in both fetchable and embedded config.
+# Runtime flags, team state and receipts still come from the private publisher.
+CONTRACT_KEYS = ['competition_id', 'dataset_release', 'dataset_manifest_sha256',
+                 'expected_rows', 'max_csv_bytes', 'max_envelope_bytes',
+                 'submission_key_id', 'max_final_submissions', 'max_practice_submissions',
+                 'space_id', 'scoring_policy']
+frozen_contract = json.loads((ROOT / 'config/challenge.json').read_text())
+public_config = json.loads((SITE / 'config.json').read_text())
+for key in CONTRACT_KEYS:
+    public_config[key] = frozen_contract[key]
+(SITE / 'config.json').write_text(json.dumps(public_config, indent=2) + '\n')
 PUBLIC_DATA = {name: json.loads((SITE / name).read_text()) for name in ['config.json', 'teams.json', 'leaderboard.json', 'submission-key.json']}
 PUBLIC_DATA['test-key-plan.json'] = json.loads((ROOT / 'config/test-key-release.json').read_text())
 (SITE / 'test-key-plan.json').write_text(json.dumps(PUBLIC_DATA['test-key-plan.json'], indent=2) + '\n')

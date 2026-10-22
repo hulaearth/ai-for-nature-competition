@@ -6,8 +6,8 @@
   "competition_repository": "hulaearth/ai-for-nature-competition",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
   "expected_rows": 159150,
-  "max_csv_bytes": 8000000,
-  "max_envelope_bytes": 12000000,
+  "max_csv_bytes": 24000000,
+  "max_envelope_bytes": 36000000,
   "submission_key_id": "00be06ac800863a16cc01d42c8da629cf0b15f97f17387ec94e32194445e7ce7",
   "max_final_submissions": 5,
   "max_practice_submissions": 10,
@@ -75,7 +75,7 @@
       },
       "model_sha256": "74f3ee7a61038bff8d0a8da295d16ba83562fad32edaae743117fc2ddf3a7780"
     },
-    "reference_sha256": "9ca3574175bf08774a5c64c15825ce62cc7ae43f4d8a37e7068b713f53e98ea4",
+    "reference_sha256": "d2c37e456efbd7fa35b6cee0d8c8167f74b89c7ed10a6fdc8b395c200baece16",
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
   },
   "registration_enabled": true,
