@@ -16,6 +16,8 @@ function date(value) {return value?new Date(value).toLocaleString(undefined,{tim
 function isFinalOpen(c) {const t=Date.now();return c.final_submissions_enabled&&c.test_release_utc&&c.deadline_utc&&t>=Date.parse(c.test_release_utc)&&t<Date.parse(c.deadline_utc);}
 
 function renderConfig(c) {
+  const dataOpen=Date.now()>=Date.parse(c.data_release_utc||c.materials_release_utc);
+  const downloadURL=dataOpen?c.drive_url:(c.alphaearth_drive_url||c.drive_url);
   document.querySelectorAll("[data-guide]").forEach(e=>{
     if(c.starter_released && Date.now()>=Date.parse(c.materials_release_utc)){e.href="https://huggingface.co/spaces/"+c.space_id+"/resolve/main/participant-guide.pdf?download=true";e.textContent="Download participant guide PDF ↓";e.removeAttribute("aria-disabled");}
     else{e.href="#";e.textContent="Participant guide released at 10:00";e.setAttribute("aria-disabled","true");}
@@ -28,14 +30,14 @@ function renderConfig(c) {
   if(conversion[c.jury_performance_points])document.querySelectorAll("[data-performance-points]").forEach(e=>e.textContent=conversion[c.jury_performance_points]);
   document.querySelectorAll("[data-status]").forEach(e=>e.textContent=isFinalOpen(c)?"Final predictions open":c.deadline_utc&&Date.now()>=Date.parse(c.deadline_utc)?"Submissions closed":"Registration and preparation");
   document.querySelectorAll("[data-drive]").forEach(e=>{
-    if(c.drive_url?.startsWith("https://drive.google.com/")){e.href=c.drive_url;e.target="_blank";e.rel="noopener noreferrer";e.textContent="Open Challenge data ↗";e.removeAttribute("aria-disabled");}
+    if(downloadURL?.startsWith("https://drive.google.com/")){e.href=downloadURL;e.target="_blank";e.rel="noopener noreferrer";e.textContent=dataOpen?"Open Challenge data ↗":"Download German AlphaEarth ↗";e.removeAttribute("aria-disabled");}
   });
-  document.querySelectorAll("[data-drive-address]").forEach(e=>{if(c.drive_url?.startsWith("https://drive.google.com/"))e.textContent=c.drive_url;});
+  document.querySelectorAll("[data-drive-address]").forEach(e=>{if(downloadURL?.startsWith("https://drive.google.com/"))e.textContent=downloadURL;});
   document.querySelectorAll("[data-copy-drive]").forEach(e=>{
-    e.disabled=!c.drive_url?.startsWith("https://drive.google.com/");
-    e.onclick=async()=>{try{await navigator.clipboard.writeText(c.drive_url);$("[data-drive-copy-status]").textContent="Link copied. Paste it into a new browser tab.";}catch{$("[data-drive-copy-status]").textContent="Select and copy the address above, then open it in a new browser tab.";}};
+    e.disabled=!downloadURL?.startsWith("https://drive.google.com/");
+    e.onclick=async()=>{try{await navigator.clipboard.writeText(downloadURL);$("[data-drive-copy-status]").textContent="Link copied. Paste it into a new browser tab.";}catch{$("[data-drive-copy-status]").textContent="Select and copy the address above, then open it in a new browser tab.";}};
   });
-  document.querySelectorAll("[data-data-readiness]").forEach(e=>e.textContent=c.data_ready?"Challenge data is ready. Anyone with the folder link can download it; verify SHA256SUMS before use.":"German training data is available, with a verified Hugging Face fallback below. Final test inputs are being finalized; follow the current component manifest and verify SHA256SUMS before use.");
+  document.querySelectorAll("[data-data-readiness]").forEach(e=>e.textContent=!dataOpen?"Advance download: only Germany’s full AlphaEarth rasters (148.57 GB). Bird observations, modeling tables, patches, other layers and encrypted test inputs open on Saturday 24 October at 10:00 German time. Modeling and analysis start at 11:00.":c.data_ready?"Challenge data is ready. Download only the components you need and verify their checksums. Encrypted test inputs unlock at 13:30.":"The data-release time has arrived. Follow the current component manifest and release status before downloading; encrypted test inputs unlock at 13:30.");
   const presentationClosed=c.deadline_utc&&Date.now()>=Date.parse(c.deadline_utc);
   const presentationOpen=!presentationClosed&&c.presentation_form_open&&c.presentation_form_url?.startsWith("https://docs.google.com/forms/");
   document.querySelectorAll("[data-presentation]").forEach(e=>{
