@@ -32,3 +32,17 @@ test("WebCrypto envelope is authenticated and randomized",async()=>{
  assert.deepEqual(new Uint8Array(decoded),plain);
  aad[0]^=1;await assert.rejects(crypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(a.iv,'base64'),additionalData:aad},aes,Buffer.from(a.ciphertext,'base64')));
 });
+
+test("Expanded test CSV follows the explicit published byte cap and preserves exact row-ID checking",()=>{
+ const count=220_000;
+ const rows=Array.from({length:count},(_,i)=>`${i.toString(16).padStart(32,'0')},0.1234567890123456`);
+ const bytes=encoder.encode('row_id,score\n'+rows.join('\n')+'\n');
+ assert(bytes.length>8_000_000 && bytes.length<16_000_000);
+ assert.throws(()=>validateCSV(bytes,count),/8 MB/);
+ const ids=validateCSV(bytes,count,null,16_000_000);
+ assert.equal(ids.size,count);
+ assert.equal(validateCSV(bytes,count,ids,16_000_000).size,count);
+ ids.delete('0'.repeat(32));ids.add('f'.repeat(32));
+ assert.throws(()=>validateCSV(bytes,count,ids,16_000_000),/row IDs/);
+ for(const maxBytes of [0,-1,NaN,32_000_001])assert.throws(()=>validateCSV(bytes,count,null,maxBytes),/size setting/);
+});
