@@ -1,9 +1,9 @@
 {
   "schema": 2,
-  "generation": 14,
+  "generation": 15,
   "competition": "ai-for-nature-2026",
   "space_id": "HulaEarth/ai-for-nature-hula-earth",
-  "updated_at": "2026-10-22T11:41:18.438449+00:00",
+  "updated_at": "2026-10-22T11:56:04.797711+00:00",
   "entries": [
     {
       "team_slug": "team-fb9da411334b33a3",
@@ -62,6 +62,19 @@
       "status": "accepted",
       "reason": null,
       "received_at": "2026-10-22T11:40:58.389000+00:00"
+    },
+    {
+      "request_id": "0454db00-35fb-42cc-ae45-2b40a1a7aa86",
+      "pr_number": 5,
+      "entry_id": "HF-5",
+      "team_slug": "team-fb9da411334b33a3",
+      "kind": "membership",
+      "channel": "membership",
+      "status": "accepted",
+      "reason": null,
+      "received_at": "2026-10-22T11:54:11.028000+00:00",
+      "action": "invite",
+      "affected_team": "team-fb9da411334b33a3"
     }
   ],
   "selected": {},
@@ -77,6 +90,15 @@
     }
   ],
   "registration_open": true,
-  "invitations": [],
+  "invitations": [
+    {
+      "id": "0454db00-35fb-42cc-ae45-2b40a1a7aa86",
+      "team_slug": "team-fb9da411334b33a3",
+      "invitee_hf_id": "66fd491553a22cc59893a16c",
+      "hf_username": "ikumpli",
+      "status": "pending",
+      "expires_at": "2026-10-23T11:54:11.028000+00:00"
+    }
+  ],
   "private_results_released": false
 }
