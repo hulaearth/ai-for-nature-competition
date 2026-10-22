@@ -88,3 +88,11 @@ Optional German GeoTIFFs are also available from the [Hugging Face raster mirror
 Optional [Germany mapping inputs](https://drive.google.com/drive/folders/1MXcAoRPddo4ZrOCaFrhFeTClM_yi3fe1) are available at 1 km (866.9 MB) and 5 km (58.3 MB), with a [Hugging Face mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/mapping). They contain predictor tables/rasters and hillshade for mapping participants’ own models. The clean mapping tool is part of the starter released at 10:00; map outputs are optional presentation material. These packages do not change the fixed training labels, validation or anonymous final-test submission contract.
 
 Leaderboard ranking follows the captain’s **currently selected model**, using its public AP during the event and its private AP after final evaluation. Switching the choice updates the public score and rank. A member-only upload needs a captain choice; otherwise the latest captain upload is the fallback. Earlier accepted scores remain in the team entry history.
+
+## Data delivery fallback
+
+Use the [German tables, patches and exploration mirror](https://huggingface.co/datasets/HulaEarth/ai-for-nature-rasters/tree/main/challenge)
+if Drive returns a quota page. Download only the required components and verify
+SHA256SUMS. The compact modeling ZIP is 76.1 MB; the complete mirrored component
+is 34.30 GB. Code and the day-of guide are released separately. Final test inputs
+remain a separate encrypted component; use the current Challenge data manifest.
