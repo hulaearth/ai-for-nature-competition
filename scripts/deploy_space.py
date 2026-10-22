@@ -44,11 +44,12 @@ The main **Submit** tab contains CSV upload, acceptance status and final-choice 
 
 The three tasks are habitat suitability modeling, ecological data insights and visualizations, and an optional cross-species extension. The jury uses 50 model-performance points under a fixed baseline-relative conversion, 30 insight/visualization points, 15 presentation/question points and a 5-point reproducibility checklist. Matching the unchanged shipped starter earns 15 model points; +0.15 AP earns 50. See the Rules view for the full formula, caps and evidence criteria.
 
-- [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) (access and upload readiness are announced on the Data page)
+- [Advance download: German AlphaEarth](https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024) (87 tiles, 148.57 GB; technical notes and licenses only)
+- [Challenge data at 10:00 on event day](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) (access and upload readiness are announced on the Data page)
 - [Register a team](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register)
 - [Participant materials and release status](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#guide)
 
-Before kickoff, only downloads, technical documentation and environment checks are allowed. Training is unencrypted; the final feature package is encrypted and unlocked at 13:30 German time on Saturday 24 October 2026. Work runs 11:00-17:30 and presentations 17:45-19:45. The competition pages are available now. The participant guide and starter code open at 10:00 on event day; modeling begins at 11:00. Final submissions still require the evaluator launch checks. Dataset attribution and upstream licenses are supplied with the data; the MIT license here applies to the site code.
+Before kickoff, only downloads, technical documentation and environment checks are allowed. Only full German AlphaEarth is available in advance. Bird observations, modeling tables, patches, optional layers and encrypted test inputs are released at 10:00 on event day. Training is unencrypted; the final feature package is encrypted and unlocked at 13:30 German time on Saturday 24 October 2026. Work runs 11:00-17:30 and presentations 17:45-19:45. The competition pages are available now. The participant guide and starter code open at 10:00 on event day; modeling begins at 11:00. Final submissions still require the evaluator launch checks. Dataset attribution and upstream licenses are supplied with the data; the MIT license here applies to the site code.
 '''
 
 
