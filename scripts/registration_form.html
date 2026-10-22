@@ -1,0 +1,28 @@
+<section id="incoming-panel" class="card"><h2>Join a team</h2><p id="incoming-note">Sign in above to see invitations. You do not need to create another team.</p><p class="small">Invitations appear on this page after the worker confirms them. No email or Hugging Face notification is sent. Sign in with the exact account your captain invited, then accept here.</p><div id="incoming-list"></div></section>
+<section id="registration-panel" class="card">
+<p class="eyebrow">YOUR TEAM</p><h2>2. Create your team</h2>
+<p id="registration-note" class="status">Sign in above to create your team. The captain creates the team; teammates can join by invitation to upload too.</p>
+<form id="registration-form">
+<fieldset id="registration-fields" aria-label="Team registration" disabled>
+<label>Public team name<input id="team-name" minlength="2" maxlength="60" required autocomplete="off" placeholder="e.g. Forest Finders"></label>
+<label>Member nicknames, including you<textarea id="members" rows="3" maxlength="240" required placeholder="Alex&#10;Sam&#10;Robin" aria-describedby="roster-help"></textarea></label>
+<p id="roster-help" class="small">Use 2 or 3 different nicknames, one per line. The captain creates the team. Teammates can optionally sign in with their own Hugging Face accounts, accept an invitation and upload predictions. Nicknames are encrypted for organizers; do not enter emails or other private details.</p>
+<label class="check"><input id="rules" type="checkbox" required> I accept the competition rules: one competition team per account, and the team’s allowance applies to the whole team. I understand that the team name, invitations and verified Hugging Face account bindings are public.</label>
+<button id="create-team" type="submit" disabled>Create team</button>
+</fieldset></form><p class="small">Registration is automatic while open. Confirmation appears after the trusted worker processes your request. Keep the receipt and check status below; do not create the team again while confirmation is pending.</p>
+</section>
+
+<section id="workspace" class="card" hidden><h2>Your team workspace</h2><p id="workspace-summary" class="status"></p><p id="workspace-role" class="role-notice"></p><h3>Verified accounts</h3><ul id="account-list"></ul>
+<form id="invite-form" hidden><h3>Invite a teammate</h3><p class="small">Enter their Hugging Face username, then share <a href="https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register" target="_blank" rel="noopener">this registration page</a> with them. No email or Hugging Face notification is sent. Once the worker confirms your request, they can sign in and accept under “Join a team”.</p><label>Teammate’s Hugging Face username<input id="invite-username" maxlength="96" required autocomplete="off" placeholder="e.g. ikumpli"></label><label class="check"><input id="invite-confirm" type="checkbox" required> I confirm this invitation. The account username and invitation to this team will be public. Access is granted only after that person accepts.</label><button id="invite-submit" type="submit">Invite teammate</button></form>
+<h3>Pending invitations</h3><ul id="outgoing-list"></ul><p class="small">Confirmed invitations waiting for a teammate’s response appear here. A new request may take a little while to appear while the evaluator processes the queue; uploading the request is the first step. Check your receipt below before retrying. Invitations reserve a place in the declared 2–3-person team and expire after 24 hours or at the submission deadline.</p></section>
+<section id="organizer-panel" class="card" hidden>
+<p class="eyebrow">ORGANIZERS</p><h2>Manage competition teams</h2><p id="registration-state"></p>
+<p class="small">Changes are checked by the worker against the organizer account allowlist. They preserve accepted entries and final choices. Closing registration does not close submissions.</p>
+<form id="admin-form">
+<label>Change<select id="admin-action"><option value="registration_open">Open or close registration</option><option value="rename">Rename a team</option><option value="active">Enable or disable a team</option><option value="transfer_captain">Replace the captain</option></select></label>
+<label id="admin-team-label">Team<select id="admin-team"></select></label>
+<label id="admin-switch-label">New state<select id="admin-switch"><option value="true">Open / enabled</option><option value="false">Closed / disabled</option></select></label>
+<label id="admin-value-label" hidden><span id="admin-value-title">New public team name</span><input id="admin-value" maxlength="96" autocomplete="off"></label>
+<label class="check"><input id="admin-confirm" type="checkbox" required> I confirm this organizer change. A replacement captain takes over the existing team, submissions and remaining allowance.</label>
+<button id="admin-submit" type="submit">Send organizer change</button>
+</form><h3>Recent team requests</h3><ul id="team-activity"></ul></section>

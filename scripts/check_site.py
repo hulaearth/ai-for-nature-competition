@@ -40,12 +40,12 @@ checked_scripts=set()
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue
-    d=Document();d.feed(page.read_text());assert d.headings==6,page
-    assert {v['data-view'] for v in d.views}=={'challenge','data','rules','guide','submit','leaderboard'},page
+    d=Document();d.feed(page.read_text());assert d.headings==7,page
+    assert {v['data-view'] for v in d.views}=={'challenge','data','rules','guide','submit','leaderboard','register'},page
     assert [v['data-view'] for v in d.views if 'hidden' not in v]==[d.initial],page
     css=(SITE/'style.css').read_text()
     assert d.styles==[css],('Page must carry the complete shared design',page)
@@ -54,7 +54,7 @@ for page in SITE.glob('*.html'):
     assert "'unsafe-inline'" not in d.csp,page
     integrated=page.name!='legacy-submit.html'
     assert len(d.scripts)==(3 if integrated else 2),page
-    assert [s['src']for s in d.scripts if s['src']]==(['submission.js']if integrated else []),page
+    assert [s['src']for s in d.scripts if s['src']]==(['submission.js?v='+hashlib.sha256((SITE/'submission.js').read_bytes()).hexdigest()[:16]]if integrated else []),page
     if integrated:
         assert 'upload-form' in d.ids and 'upload-refresh' in d.ids and 'refresh' in d.ids,page
         assert 'https://huggingface.co' in d.csp,page
@@ -91,14 +91,14 @@ assert 'identity' not in plan and 'key' not in plan
 assert c['preparation_policy']=='environment-checks-only'
 assert c['drive_url']=='https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT'
 assert 'data-guide' in (SITE/'guide.html').read_text()
-assert len(list(SITE.glob('*.html')))==8
+assert len(list(SITE.glob('*.html')))==9
 assert len(c['dataset_manifest_sha256'])==64
 assert c['dataset_manifest_sha256']==json.loads((ROOT/'config/challenge.json').read_text())['dataset_manifest_sha256']
 with (SITE/'practice_submission.csv').open() as f:
     rows=list(csv.DictReader(f));assert len(rows)==120 and set(rows[0])=={'row_id','score'}
 for p in SITE.iterdir():
     if p.is_file():assert b'-----BEGIN PRIVATE KEY' not in p.read_bytes(),p
-print('Eight styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
+print('Nine styled pages, private guide gating, local links, IDs, practice schema and frozen contract passed')
 
 policy=json.loads((ROOT/'config/scoring.json').read_text())
 assert c['rubric']==policy.pop('rubric')=={'model_performance':50,'insights':30,'presentation':15,'reproducibility_checklist':5}
@@ -107,7 +107,7 @@ assert policy['baseline']['starter_ref']=='hackathon-2026' and policy['stretch_a
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue
@@ -120,7 +120,7 @@ for page in SITE.glob('*.html'):
 for page in SITE.glob('*.html'):
     if page.name == 'upload.html':
         source=page.read_text();d=Document();d.feed(source)
-        assert d.headings==1 and 'submission.js' in d.references and 'upload.css' in d.references
+        assert d.headings==1 and any(r.startswith('submission.js?v=')for r in d.references) and 'upload.css' in d.references
         assert 'https://huggingface.co' in d.csp and 'unsafe-eval' not in d.csp
         assert len(d.ids)==len(set(d.ids))
         continue

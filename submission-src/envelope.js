@@ -1,1 +1,1 @@
-export {parseCSV,validateCSV,encryptCSV} from '../site/envelope.js';
+export {parseCSV,validateCSV,encryptCSV,encryptPayload} from '../site/envelope.js';

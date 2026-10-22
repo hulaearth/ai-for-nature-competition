@@ -18,3 +18,5 @@ Insights have three 0-10 criteria: useful question; supported analysis and inter
 Overall-prize eligibility requires a valid prediction, supported insights with visualizations, reproducibility references and the presentation. Permitted-data and leakage rules remain validity requirements regardless of checklist points. An exact overall-points tie uses the chosen prediction's earlier original receipt, then stable entry reference, including when model points are capped. The AP board ranks full-precision AP, with the same receipt rule for exact AP ties.
 
 The machine-readable policy and reference fingerprint are in [config/scoring.json](../config/scoring.json). The reference CSV, calibration and hidden labels remain in the private evaluator.
+
+Leaderboard ranking follows the captain’s **currently selected model**, using its public AP during the event and its private AP after final evaluation. Switching the choice updates the public score and rank. A member-only upload needs a captain choice; otherwise the latest captain upload is the fallback. Earlier accepted scores remain in the team entry history.

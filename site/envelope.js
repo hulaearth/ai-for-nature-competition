@@ -56,8 +56,13 @@ function base64(bytes) {
 async function sha(bytes) { return [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(b=>b.toString(16).padStart(2,"0")).join(""); }
 
 export async function encryptCSV(bytes, teamSlug, channel, keyDocument, config) {
+  if (!["final", "practice"].includes(channel)) throw new Error("Select an approved team and submission type.");
+  return encryptPayload(bytes,teamSlug,channel,keyDocument,config);
+}
+
+export async function encryptPayload(bytes, teamSlug, channel, keyDocument, config) {
   if (!globalThis.crypto?.subtle || !globalThis.crypto?.randomUUID) throw new Error("Use a current browser over HTTPS, or the local preview on localhost.");
-  if (!SLUG.test(teamSlug) || !["final", "practice"].includes(channel)) throw new Error("Select an approved team and submission type.");
+  if (!SLUG.test(teamSlug) || !["final", "practice", "registration", "membership", "team_admin"].includes(channel)) throw new Error("Select an approved team and submission type.");
   const spki = unbase64(keyDocument.spki_base64);
   if (keyDocument.version !== 1 || keyDocument.competition !== config.competition_id || await sha(spki) !== config.submission_key_id || keyDocument.key_id !== config.submission_key_id) throw new Error("The competition public key does not match the release. Contact an organizer.");
   const rsa = await crypto.subtle.importKey("spki", spki, {name:"RSA-OAEP", hash:"SHA-256"}, false, ["encrypt"]);

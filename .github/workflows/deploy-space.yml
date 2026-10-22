@@ -8,7 +8,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ['site/**', '!site/worker-status.json', 'config/**', 'scripts/build_site.py', 'scripts/deploy_space.py', '.github/workflows/deploy-space.yml']
+    paths: ['site/**', '!site/worker-status.json', '!site/receipts.json', '!site/teams.json', '!site/leaderboard.json', '!site/config.json', 'config/**', '!config/challenge.json', 'scripts/build_site.py', 'scripts/deploy_space.py', '.github/workflows/deploy-space.yml']
 permissions:
   contents: read
 concurrency:

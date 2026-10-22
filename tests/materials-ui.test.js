@@ -36,7 +36,7 @@ test('open pages enable guide and starter automatically; enabled links remain cl
   await new Promise(resolve=>setImmediate(resolve));
   assert.equal(guide.getAttribute('aria-disabled'),'true');
   let prevented=false;guide.listeners[0]({preventDefault(){prevented=true;}});assert.equal(prevented,true);
-  assert.equal(timers.length,1);
+  assert.equal(timers.length,2);
   published=true;timers[0]();await new Promise(resolve=>setImmediate(resolve));
   assert.equal(guide.getAttribute('aria-disabled'),null);
   assert.match(guide.href,/synthetic-space\/resolve\/main\/participant-guide\.pdf/);

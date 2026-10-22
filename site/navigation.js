@@ -5,7 +5,7 @@
   const initial = document.body.dataset.initialPage;
   function showPage() {
     const params = new URLSearchParams(location.search);
-    const requested = ['code','error','signin'].some(key=>params.has(key)) ? 'submit' : location.hash.slice(1);
+    const requested = ['code','error','signin'].some(key=>params.has(key)) ? (location.hash==='#register'||sessionStorage.getItem('aifn-return-view')==='register'?'register':'submit') : location.hash.slice(1);
     if (requested === 'main') return; // Keep the keyboard skip link on the current view.
     const active = views.find(view => view.dataset.view === requested)
       || views.find(view => view.dataset.view === initial);
