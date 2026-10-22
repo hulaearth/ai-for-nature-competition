@@ -18,6 +18,8 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.hub_http import configure_hub_http
 REPOSITORIES = ('hulaearth/ai-for-nature-competition', 'hulaearth/ai-for-nature-codebase')
 SPACE = 'HulaEarth/ai-for-nature-hula-earth'
 PLAN_FILE = 'config/materials-release.json'
@@ -135,6 +137,7 @@ def run(mode):
     if not hf_token:
         raise ReleaseError('Existing HF_TOKEN or HF_SPACE_TOKEN is required.')
     from huggingface_hub import HfApi, hf_hub_download, CommitOperationAdd
+    configure_hub_http()
     api = HfApi(token=hf_token)
     info = api.repo_info(SPACE, repo_type='space')
     if not token:

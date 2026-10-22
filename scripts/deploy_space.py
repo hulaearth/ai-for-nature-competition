@@ -12,6 +12,8 @@ from datetime import datetime, timezone
 from huggingface_hub import HfApi, hf_hub_download, CommitOperationDelete
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.hub_http import configure_hub_http
 SPACE='HulaEarth/ai-for-nature-hula-earth'
 FILES=['index.html','data.html','rules.html','submit.html','leaderboard.html','style.css','app.js',
        'envelope.js','config.json','teams.json','leaderboard.json','submission-key.json','practice_submission.csv',
@@ -56,6 +58,7 @@ def deploy(token=None):
     # Rebuild when roster/config/standings JSON changes, including trusted worker publications.
     subprocess.run([sys.executable,str(ROOT/'scripts'/'build_site.py')],check=True)
     subprocess.run([sys.executable,str(ROOT/'scripts'/'check_site.py')],check=True)
+    configure_hub_http()
     api=HfApi(token=token)
     info=api.repo_info(SPACE,repo_type='space')
     plan=json.loads((ROOT/'config/materials-release.json').read_text())

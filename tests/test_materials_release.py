@@ -125,7 +125,7 @@ class MaterialsReleaseTests(unittest.TestCase):
                 hf_hub_download=lambda repo, name, **kwargs:files[name])
             with patch.dict('sys.modules', {'huggingface_hub':module}), patch.dict('os.environ',
                     {'MATERIALS_RELEASE_TOKEN':token,'HF_TOKEN':'synthetic','GITHUB_ACTIONS':'false'}), \
-                    patch.object(release,'datetime',clock), patch.object(release,'github',side_effect=api), patch.object(release,'load_plan',return_value=plan):
+                    patch.object(release,'configure_hub_http'), patch.object(release,'datetime',clock), patch.object(release,'github',side_effect=api), patch.object(release,'load_plan',return_value=plan):
                 release.run(mode)
                 if mode == 'publish':
                     release.run(mode)  # same receipt, safe completion after a repeated dispatch
