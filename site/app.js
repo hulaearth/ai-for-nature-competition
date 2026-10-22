@@ -99,15 +99,15 @@ async function uploader(config) {
     try{
       const file=$("#csv").files[0],channel=$("#channel").value,teamSlug=select.value;if(!file)throw new Error("Select your prediction CSV.");
       if(channel==="final"&&!isFinalOpen(config))throw new Error("Final-test submissions are closed.");
-      if(file.size>config.max_csv_bytes)throw new Error("CSV exceeds 8 MB.");
+      if(file.size>config.max_csv_bytes)throw new Error(`CSV exceeds ${config.max_csv_bytes/1_000_000} MB.`);
       const bytes=new Uint8Array(await file.arrayBuffer());let expected=null;
       if(channel==="practice"){
         let practice=BUNDLED_DATA["practice_submission.csv"];
         if(!practice){const response=await fetch("./practice_submission.csv");if(!response.ok)throw new Error("Practice sample unavailable.");practice=await response.text();}
         expected=new Set(parseCSV(practice).slice(1).map(r=>r[0]));
       }
-      const sample=$("#sample").files[0];if(sample){if(sample.size>config.max_csv_bytes)throw new Error("Sample exceeds 8 MB.");const sampleBytes=new Uint8Array(await sample.arrayBuffer());expected=validateCSV(sampleBytes,channel==="final"?config.expected_rows:120);}
-      validateCSV(bytes,channel==="final"?config.expected_rows:120,expected);
+      const sample=$("#sample").files[0];if(sample){if(sample.size>config.max_csv_bytes)throw new Error(`Sample exceeds ${config.max_csv_bytes/1_000_000} MB.`);const sampleBytes=new Uint8Array(await sample.arrayBuffer());expected=validateCSV(sampleBytes,channel==="final"?config.expected_rows:120,null,config.max_csv_bytes);}
+      validateCSV(bytes,channel==="final"?config.expected_rows:120,expected,config.max_csv_bytes);
       const envelope=await encryptCSV(bytes,teamSlug,channel,key,config);
       currentEnvelopeText=JSON.stringify(envelope);
       const blob=new Blob([currentEnvelopeText],{type:"application/json"});

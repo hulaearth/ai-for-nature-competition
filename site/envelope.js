@@ -30,8 +30,9 @@ export function parseCSV(text) {
   return rows;
 }
 
-export function validateCSV(bytes, count, expectedIds = null) {
-  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > MAX_CSV_BYTES) throw new Error("CSV must be between 1 byte and 8 MB.");
+export function validateCSV(bytes, count, expectedIds = null, maxBytes = MAX_CSV_BYTES) {
+  if (!Number.isSafeInteger(maxBytes) || maxBytes < 1 || maxBytes > 32_000_000) throw new Error("Invalid CSV size setting. Contact an organizer.");
+  if (!(bytes instanceof Uint8Array) || !bytes.length || bytes.length > maxBytes) throw new Error(`CSV must be between 1 byte and ${maxBytes / 1_000_000} MB.`);
   const rows = parseCSV(new TextDecoder("utf-8", {fatal: true}).decode(bytes));
   const header=rows.shift();
   if (header?.length!==2 || header[0]!=="row_id" || header[1]!=="score") throw new Error("Use exactly the header row_id,score.");
