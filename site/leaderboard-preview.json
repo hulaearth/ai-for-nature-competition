@@ -10,7 +10,9 @@
       "higher_is_better": true,
       "dataset_release": "fictional-preview",
       "updated_at": "2026-10-24T15:00:00Z",
-      "tie_break": "Earlier relevant accepted prediction receipt; issue number breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
+      "ranking_entry": "captain-selected",
+      "awaiting_selection": [],
+      "tie_break": "Earlier selected prediction receipt; provider entry reference breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
       "private_results_released": false,
       "teams": [
         {
@@ -19,6 +21,7 @@
           "score": 0.62,
           "submission_issue": 102,
           "submitted_at": "2026-10-24T12:01:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 1
         },
@@ -28,6 +31,7 @@
           "score": 0.58,
           "submission_issue": 104,
           "submitted_at": "2026-10-24T12:03:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 2
         },
@@ -37,6 +41,7 @@
           "score": 0.55,
           "submission_issue": 106,
           "submitted_at": "2026-10-24T12:05:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 3
         },
@@ -46,6 +51,7 @@
           "score": 0.55,
           "submission_issue": 108,
           "submitted_at": "2026-10-24T12:07:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 4
         },
@@ -55,6 +61,7 @@
           "score": 0.51,
           "submission_issue": 110,
           "submitted_at": "2026-10-24T12:09:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 5
         },
@@ -64,6 +71,7 @@
           "score": 0.48,
           "submission_issue": 112,
           "submitted_at": "2026-10-24T12:11:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 6
         },
@@ -73,6 +81,7 @@
           "score": 0.44,
           "submission_issue": 114,
           "submitted_at": "2026-10-24T12:13:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 7
         },
@@ -82,6 +91,7 @@
           "score": 0.39,
           "submission_issue": 116,
           "submitted_at": "2026-10-24T12:15:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 8
         }
@@ -94,7 +104,9 @@
       "higher_is_better": true,
       "dataset_release": "fictional-preview",
       "updated_at": "2026-10-24T16:00:00Z",
-      "tie_break": "Earlier relevant accepted prediction receipt; issue number breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
+      "ranking_entry": "captain-selected",
+      "awaiting_selection": [],
+      "tie_break": "Earlier selected prediction receipt; provider entry reference breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
       "private_results_released": true,
       "teams": [
         {
@@ -103,6 +115,7 @@
           "score": 0.57,
           "submission_issue": 104,
           "submitted_at": "2026-10-24T12:03:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 1,
           "model_points_50": 45.33333333333332
@@ -113,6 +126,7 @@
           "score": 0.54,
           "submission_issue": 102,
           "submitted_at": "2026-10-24T12:01:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 2,
           "model_points_50": 38.33333333333334
@@ -123,6 +137,7 @@
           "score": 0.53,
           "submission_issue": 106,
           "submitted_at": "2026-10-24T12:05:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 3,
           "model_points_50": 36.00000000000001
@@ -133,6 +148,7 @@
           "score": 0.51,
           "submission_issue": 108,
           "submitted_at": "2026-10-24T12:07:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 4,
           "model_points_50": 31.333333333333336
@@ -143,6 +159,7 @@
           "score": 0.5,
           "submission_issue": 110,
           "submitted_at": "2026-10-24T12:09:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 5,
           "model_points_50": 29.0
@@ -153,6 +170,7 @@
           "score": 0.46,
           "submission_issue": 112,
           "submitted_at": "2026-10-24T12:11:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 6,
           "model_points_50": 19.66666666666667
@@ -163,6 +181,7 @@
           "score": 0.42,
           "submission_issue": 114,
           "submitted_at": "2026-10-24T12:13:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 7,
           "model_points_50": 13.902439024390244
@@ -173,6 +192,7 @@
           "score": 0.36,
           "submission_issue": 116,
           "submitted_at": "2026-10-24T12:15:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 8,
           "model_points_50": 10.609756097560977
@@ -198,26 +218,20 @@
       "higher_is_better": true,
       "dataset_release": "fictional-preview",
       "updated_at": "2026-10-24T15:00:00Z",
-      "tie_break": "Earlier relevant accepted prediction receipt; issue number breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
+      "ranking_entry": "captain-selected",
+      "awaiting_selection": [],
+      "tie_break": "Earlier selected prediction receipt; provider entry reference breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
       "private_results_released": false,
       "teams": [
-        {
-          "slug": "example-0",
-          "name": "Woodland Lab",
-          "score": 0.62,
-          "submission_issue": 102,
-          "submitted_at": "2026-10-24T12:01:00Z",
-          "accepted_submissions": 2,
-          "rank": 1
-        },
         {
           "slug": "example-1",
           "name": "Wetland Watch",
           "score": 0.58,
           "submission_issue": 104,
           "submitted_at": "2026-10-24T12:03:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
-          "rank": 2
+          "rank": 1
         },
         {
           "slug": "example-2",
@@ -225,8 +239,9 @@
           "score": 0.55,
           "submission_issue": 106,
           "submitted_at": "2026-10-24T12:05:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
-          "rank": 3
+          "rank": 2
         },
         {
           "slug": "example-3",
@@ -234,6 +249,17 @@
           "score": 0.55,
           "submission_issue": 108,
           "submitted_at": "2026-10-24T12:07:00Z",
+          "selection": "nominated",
+          "accepted_submissions": 2,
+          "rank": 3
+        },
+        {
+          "slug": "example-0",
+          "name": "Woodland Lab",
+          "score": 0.52,
+          "submission_issue": 101,
+          "submitted_at": "2026-10-24T12:00:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 4
         },
@@ -243,6 +269,7 @@
           "score": 0.51,
           "submission_issue": 110,
           "submitted_at": "2026-10-24T12:09:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 5
         },
@@ -252,6 +279,7 @@
           "score": 0.48,
           "submission_issue": 112,
           "submitted_at": "2026-10-24T12:11:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 6
         },
@@ -261,6 +289,7 @@
           "score": 0.44,
           "submission_issue": 114,
           "submitted_at": "2026-10-24T12:13:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 7
         },
@@ -270,6 +299,7 @@
           "score": 0.39,
           "submission_issue": 116,
           "submitted_at": "2026-10-24T12:15:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 8
         }
@@ -282,7 +312,9 @@
       "higher_is_better": true,
       "dataset_release": "fictional-preview",
       "updated_at": "2026-10-24T16:00:00Z",
-      "tie_break": "Earlier relevant accepted prediction receipt; issue number breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
+      "ranking_entry": "captain-selected",
+      "awaiting_selection": [],
+      "tie_break": "Earlier selected prediction receipt; provider entry reference breaks same-second ties. AP comparisons use full precision; display uses six decimal places.",
       "private_results_released": true,
       "teams": [
         {
@@ -291,6 +323,7 @@
           "score": 0.59,
           "submission_issue": 101,
           "submitted_at": "2026-10-24T12:00:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 1,
           "model_points_50": 49.99999999999999
@@ -301,6 +334,7 @@
           "score": 0.57,
           "submission_issue": 104,
           "submitted_at": "2026-10-24T12:03:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 2,
           "model_points_50": 45.33333333333332
@@ -311,6 +345,7 @@
           "score": 0.53,
           "submission_issue": 106,
           "submitted_at": "2026-10-24T12:05:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 3,
           "model_points_50": 36.00000000000001
@@ -321,6 +356,7 @@
           "score": 0.51,
           "submission_issue": 108,
           "submitted_at": "2026-10-24T12:07:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 4,
           "model_points_50": 31.333333333333336
@@ -331,6 +367,7 @@
           "score": 0.5,
           "submission_issue": 110,
           "submitted_at": "2026-10-24T12:09:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 5,
           "model_points_50": 29.0
@@ -341,6 +378,7 @@
           "score": 0.46,
           "submission_issue": 112,
           "submitted_at": "2026-10-24T12:11:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 6,
           "model_points_50": 19.66666666666667
@@ -351,6 +389,7 @@
           "score": 0.42,
           "submission_issue": 114,
           "submitted_at": "2026-10-24T12:13:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 7,
           "model_points_50": 13.902439024390244
@@ -361,6 +400,7 @@
           "score": 0.36,
           "submission_issue": 116,
           "submitted_at": "2026-10-24T12:15:00Z",
+          "selection": "nominated",
           "accepted_submissions": 2,
           "rank": 8,
           "model_points_50": 10.609756097560977
