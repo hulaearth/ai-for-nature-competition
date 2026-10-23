@@ -1,5 +1,13 @@
 # Participant materials: 10:00 German time
 
+> **Retired controller — 23 October 2026.** The current
+> `release-materials.yml` is an informational manual job; it does not execute the
+> release described below. Starter delivery moved to the event website. See
+> [HANDOVER.md](../HANDOVER.md#current-activation-gaps) for the unresolved 10:00/11:00
+> timing and readiness migration. The remaining text describes the former setup
+> and is retained for maintainers considering a deliberate port. Do not rely on
+> these warm-ups, token or an old armed receipt for the current website release.
+
 On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** the guarded job opens `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`, and publishes its release receipt.
 
 The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `HulaEarth/ai-for-nature-hula-earth` early for the colleague rehearsal. The registration and technical pages stay public. The updated participant PDF is held in the private starter and published on the Space only at 10:00; verification never uploads the PDF or opens the starter early.

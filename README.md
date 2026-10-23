@@ -69,6 +69,11 @@ Training data and technical pages are available in advance. The participant guid
 
 ## Maintain this site
 
+**Maintainers: start with [HANDOVER.md](HANDOVER.md)** for deployment, secrets,
+runners, release schedules, activation checks, recovery and reuse instructions.
+It records the current starter-release migration and unresolved launch checks;
+older materials-release instructions do not certify the replacement route.
+
 The Static Hugging Face Space needs no running CPU service. Build and check locally:
 
 ```bash
