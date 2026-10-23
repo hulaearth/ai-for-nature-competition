@@ -10,6 +10,8 @@
 > and is retained for maintainers considering a deliberate port. Do not rely on
 > these warm-ups, token or an old armed receipt for the current website release.
 
+> **Current starter cleanup — 23 October:** the participant release now uses uv and the primary website/on-site guide. Its legacy PDF and source JSON were removed with organizer approval. The retained PDF fingerprint below belongs to the retired process and cannot certify the current release. Verify private-repository access and independent primary-site material/key delivery before the event.
+
 On **Saturday 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC)** the guarded job opens `hulaearth/ai-for-nature-codebase`, pinned tag `hackathon-2026`, and publishes its release receipt.
 
 The organizer explicitly opened `hulaearth/ai-for-nature-competition` and `HulaEarth/ai-for-nature-hula-earth` early for the colleague rehearsal. The registration and technical pages stay public. The updated participant PDF is held in the private starter and published on the Space only at 10:00; verification never uploads the PDF or opens the starter early.
