@@ -18,3 +18,16 @@ by organizer instruction. Read `BACKUP_ACTIVATION.md` before operational work.
   the control script/workflow on main automatically runs stop; it never activates.
 - `HANDOVER.md` and `docs/evaluation-and-closing.md` describe retained capabilities;
   current standby policy and `BACKUP_ACTIVATION.md` take operational precedence.
+
+## Dataset release exception — 23 October 2026
+
+The organizer explicitly requires the HF challenge dataset to open publicly at
+10:00 Europe/Berlin on 24 October while the HF Space stays private and stopped.
+Only the private evaluator's `release-hf-data.yml` is enabled under its separate
+release profile (`runtime_enabled=false`, `releases_enabled=true`). The
+competition repository remains fully stopped. Do not interpret a private Space
+or runtime standby as an instruction to cancel this independent dataset release.
+A deliberate `stop` or `enable-runtime` in the private evaluator closes this
+release gate; warn the organizer and preserve the requested dataset delivery when
+performing unrelated maintenance. Do not publish early or enable workers/key
+release/deployment. Use the fixed date and dataset-integrity guards.

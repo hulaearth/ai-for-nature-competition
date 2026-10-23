@@ -1,5 +1,17 @@
 # Emergency activation: GitHub / Hugging Face backup platform
 
+> **Dataset-only exception, confirmed 23 October:** the HF Space and competition
+> runtime remain private/stopped, but the organizer requires public dataset
+> downloads from Saturday 24 October at 10:00 Europe/Berlin. In the private
+> evaluator only, `enable-releases` has enabled `release-hf-data.yml`; runtime
+> remains false and all other jobs remain disabled. The competition repository
+> stays fully stopped. Earlier statements below that every release is disabled
+> describe the original shutdown snapshot, not this current exception.
+> `all_stopped=false` in the private evaluator is therefore expected. Do not run
+> a blanket stop or enable-runtime merely to make that field true: both would
+> cancel the requested data release. This does not open the Space or release the
+> 13:30 decryption key early.
+
 **For agents and operators under time pressure. Read the quick route first.**
 The private event website is the primary platform. GitHub/HF competition automation
 is in **standby**, by organizer instruction on 23 October 2026. Do not activate it
