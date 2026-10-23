@@ -4,14 +4,14 @@ The model score uses a fixed reference baseline. The scoring metric and evidence
 
 ## Model points
 
-Let `s` be the chosen model's final private AP, `a = 1/6` the constant-score AP, and `b` the unchanged shipped reference model's AP on that same private split.
+Let `s` be the chosen model's final private AP, `a = 1/6` the constant-score AP, and `b` the fixed shipped reference model's AP on that same private split.
 
 - When `s <= b`: `max(0, 15 * (s - a) / (b - a))`.
 - When `s > b`: `min(50, 15 + 35 * (s - b) / 0.15)`.
 
 Matching the reference earns **15/50**. Improvements of +0.02, +0.05, +0.10 and +0.15 AP earn **19.7, 26.7, 38.3 and 50**. Examples are rounded; calculations and ties use full precision. Scores at or below constant-score AP earn zero. No team's result changes the reference or thresholds.
 
-The award reference is the separately frozen 289-feature linear CPU model, fitted only on German training rows with seed 20261016 and the pinned Python 3.14.4 environment. The quickstart now starts with only 64 native AlphaEarth values. The reference's German development AP is **0.38586286412186144**; that is not `b`. The fixed reference predictions and foreign AP are organizer-private until final results. The live AP leaderboard is feedback, separate from the overall award.
+The award reference is the supplied 64-feature, 1 km-radius AlphaEarth logistic model, fitted only on German training rows with seed 20261016 and the pinned Python 3.14.4 environment. Its German development AP is **0.34087975805917803**; that is not `b`. The fixed reference predictions and foreign AP are organizer-private until final results. The live AP leaderboard is feedback, separate from the overall award.
 
 Insights have three 0-10 criteria: useful question; supported analysis and interpretation; effective visualizations. Presentation has three 0-5 criteria: clear explanation; understanding and answers; focused use of the five-minute slot. A technical organizer awards one reproducibility point for each of: code/configuration; reproduction instructions/dependencies; correct common German validation evidence; features/preprocessing/helpers declaration; accurate limitations. Provide evidence in `make_method_report.py`'s report; it is not an automatic self-award.
 

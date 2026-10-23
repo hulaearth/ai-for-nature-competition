@@ -14,7 +14,7 @@
   "expires_utc": "2026-10-24T15:30:00Z",
   "timezone": "Europe/Berlin",
   "starter_ref": "hackathon-2026",
-  "starter_commit": "8405379a594ff27157044d099292443a8e3bb7dc",
-  "guide_sha256": "48e66d5bc8af609e28847ae7f7b4297cb32998995eee05bf1e1963b887d051e3",
+  "starter_commit": "d8b16c65cd02b8457e569eab6c345bafaaf320c9",
+  "guide_sha256": "bbacedbbab6d7ebec69caf4a351f4ecdd7f32f089eb446b4aa029ab1ab532483",
   "early_public_space": true
 }

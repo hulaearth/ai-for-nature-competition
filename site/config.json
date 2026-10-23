@@ -15,7 +15,7 @@
   "final_submissions_enabled": false,
   "materials_release_utc": "2026-10-24T08:00:00Z",
   "starter_ref": "hackathon-2026",
-  "starter_commit": "8405379a594ff27157044d099292443a8e3bb7dc",
+  "starter_commit": "d8b16c65cd02b8457e569eab6c345bafaaf320c9",
   "start_utc": "2026-10-24T09:00:00Z",
   "test_release_utc": "2026-10-24T11:30:00Z",
   "deadline_utc": "2026-10-24T15:30:00Z",
@@ -40,10 +40,10 @@
     "minimum_model_points": 0,
     "maximum_model_points": 50,
     "baseline": {
-      "name": "Supplied 289-feature linear starter; Germany training only",
+      "name": "Supplied 64-feature, 1 km-radius AlphaEarth logistic starter; Germany training only",
       "starter_ref": "hackathon-2026",
-      "starter_commit": "ba4f2b427c618b2d3511b1e1ad62e29b8739619c",
-      "feature_set": "all",
+      "starter_commit": "d8b16c65cd02b8457e569eab6c345bafaaf320c9",
+      "feature_set": "context1000",
       "seed": 20261016,
       "fit": "Germany training only; no development refit",
       "runtime": {
@@ -66,16 +66,20 @@
         "matches_tested_python": true
       },
       "source_sha256": {
-        "starter_model.py": "9d350453d147af3cd2ea6a959d65493d2a762bf905b2e168fd88d2dc4fd20b35",
-        "environment_inputs.py": "2c8800b97fb18ae778f2ac4616f6e8a7f9519ecc85ff4b3ec30c3d3894ac3a47",
-        "validation_tools.py": "3af16222f580067c7570d61c0b288b1d34282d4d3a727771d65eb671cf013f29",
-        "validation_models.py": "c6a450558800dcd7c03c6ee6141d8ae2ccf8f47925570e317933893fbc2af95c",
-        "submission.py": "ee2e0e00559370f96d1bd615b98f2194d2523d857cead595a442ed57e8775195",
+        "starter_model.py": "0af7bc52baf6788e66c87500a47f0c83b1c37bf10d476c75173346708acf3ad6",
+        "environment_inputs.py": "234d1633b903e5a0ed4da3f53c1bd7f18c49c3d29198ae71fa03979ef0ffd0e7",
+        "validation_tools.py": "1a2622569f6918abd3684752afb94df2ad256fe5934ba4690ae22e70dfd64ff4",
+        "validation_models.py": "bac15f24ec682733ab93777393a8f9af32413e3caa0f2d19405f99001c0579f2",
+        "validate_model.py": "3e9c1a67b5b96202037cced9508a1b9006fa4e1d87c36887bcca4d78ace1072c",
+        "submission.py": "dcc598e843eb85326a344f6b92cd74d3ac0d0c31f57f8c8899a0e58475d2458e",
         "requirements.txt": "0dbc51ef6bf1a60439ece979d6180b4c6498507544fcd486b40197dce26d6029"
       },
-      "model_sha256": "74f3ee7a61038bff8d0a8da295d16ba83562fad32edaae743117fc2ddf3a7780"
+      "model_sha256": "b0a39f6d9d9057a4bf753a2147a3729d8bf5362a2c090cdc5991225d9db174ed",
+      "predictors": 64,
+      "coverage_predictors": false,
+      "support_radius_m": 1000
     },
-    "reference_sha256": "d2c37e456efbd7fa35b6cee0d8c8167f74b89c7ed10a6fdc8b395c200baece16",
+    "reference_sha256": "0d30024073d7800a06f4c05eec0deb75083391cbec5dfc17db1963c4a4118eb2",
     "calibration_visibility": "Reference private AP and final model points revealed only with final results; German development AP is a different comparison."
   },
   "registration_enabled": true,
