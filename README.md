@@ -4,7 +4,7 @@ Build habitat rankings for ten birds from German observations, AlphaEarth embedd
 
 [Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant guide at 10:00](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Register](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register)
 
-**Before the event:** only [German AlphaEarth on Drive](https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk) is available (87 tiles, 148.57 GB). The separate HF raster mirror is still being prepared. All other data open at 10:00 German time on 24 October.
+**Before the event:** only German AlphaEarth is available: [Hugging Face](https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024) or [Google Drive](https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk). Both provide the same 87 tiles (148.57 GB), technical notes, checksums and source licenses. The other competition data remain in a separate restricted dataset until their event-day release.
 
 ## What teams deliver
 

@@ -59,6 +59,16 @@ def layout(title, page, *, integrated=True):
     views = []
     for path, view_title, view_content in PAGES:
         route = 'challenge' if path == 'index.html' else Path(path).stem
+        if route == 'data' and config.get('alphaearth_hf_ready') is True:
+            public_rasters = ('<div class="notice"><strong>German AlphaEarth is ready on Hugging Face.</strong>'
+                '<p><a href="https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024/tree/main" '
+                'target="_blank" rel="noopener noreferrer">Download the public AlphaEarth tiles ↗</a> '
+                '(87 GeoTIFFs, 148.57 GB), or use the separate Drive folder above. All tile sizes and '
+                'SHA256 identifiers match; technical notes and source licenses are included. '
+                'This public dataset contains only the native German rasters. The other competition '
+                'data remain restricted until their event-day release.</p></div>')
+            view_content = view_content.replace('<div class="notice"><strong>Two download stages.</strong>',
+                                                public_rasters+'<div class="notice"><strong>Two download stages.</strong>')
         if drive_url and drive_url.startswith("https://drive.google.com/"):
             view_content = view_content.replace('href="#" aria-disabled="true" data-drive>Challenge data link forthcoming',
                                                 'href="'+escape(drive_url,quote=True)+'" target="_blank" rel="noopener noreferrer" data-drive>Download German AlphaEarth ↗')
