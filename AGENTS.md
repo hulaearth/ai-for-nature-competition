@@ -31,3 +31,15 @@ A deliberate `stop` or `enable-runtime` in the private evaluator closes this
 release gate; warn the organizer and preserve the requested dataset delivery when
 performing unrelated maintenance. Do not publish early or enable workers/key
 release/deployment. Use the fixed date and dataset-integrity guards.
+
+## Live AlphaEarth folder — preserve location and link
+
+The organizer clarified during task-based data reorganization that the already
+live **AlphaEarth embeddings — Germany — 2024** Drive folder must stay directly
+inside **AI for Nature – Competition**. Folder ID
+`11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk`, parent
+`1miEMvE30MG-nJVjq8vr_KLOLzlHza98h`. Preserve its existing share link and
+Anyone-with-link Viewer access, with search discovery disabled. Do not move it
+into Challenge data. Task 3 references this original folder and the separate
+public `HulaEarth/alphaearth-germany-2024` HF dataset instead of duplicating or
+relocating the live tiles. Never broaden sharing on the company parent folder.
