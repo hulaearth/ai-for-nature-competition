@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-10-23T10:14:37.786730+00:00",
+  "repository": "hulaearth/ai-for-nature-competition",
+  "runtime_enabled": false,
+  "releases_enabled": false,
+  "workflows": [
+    {
+      "id": 390238403,
+      "name": "Deploy static competition Space",
+      "path": ".github/workflows/deploy-space.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 392721402,
+      "name": "Publish team and submission feedback",
+      "path": ".github/workflows/publish-feedback.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 390462002,
+      "name": "Legacy participant materials release (retired)",
+      "path": ".github/workflows/release-materials.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 390357977,
+      "name": "Release test-data unlock key",
+      "path": ".github/workflows/release-test-key.yml",
+      "state": "disabled_manually"
+    },
+    {
+      "id": 390253683,
+      "name": "Public site and envelope tests",
+      "path": ".github/workflows/test.yml",
+      "state": "disabled_manually"
+    }
+  ],
+  "active_runs": [],
+  "all_stopped": true,
+  "mode": "stop",
+  "workflow_run_id": "39937659334",
+  "control_workflow_remains_available": true,
+  "event_flags_changed": false,
+  "secrets_read": false,
+  "releases_dispatched": false
+}
