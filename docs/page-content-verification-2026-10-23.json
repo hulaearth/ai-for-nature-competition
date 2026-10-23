@@ -71,5 +71,29 @@
   "workflows_enabled_during_maintenance": [],
   "event_data_or_key_release_performed": false,
   "live_submission_rehearsal_performed": false,
-  "scope": "Content maintenance and private hosting verification; production activation intentionally not performed."
+  "scope": "Content maintenance and private hosting verification; production activation intentionally not performed.",
+  "post_publication_verification": {
+    "verified_at_utc": "2026-10-23T11:44:42.110010+00:00",
+    "competition_source_commit": "0f5dd03",
+    "evaluator_guide_commit": "81b8abc",
+    "hosted_routes_verified": [
+      "challenge",
+      "data",
+      "rules",
+      "guide",
+      "register",
+      "submit",
+      "leaderboard"
+    ],
+    "hosted_browser_console_errors": [],
+    "competition_noncontrol_workflows_disabled": 5,
+    "competition_in_progress_runs": 0,
+    "competition_queued_runs": 0,
+    "private_evaluator_workflow_sidebar_disabled": 12,
+    "private_evaluator_verification_method": "Authenticated GitHub workflow sidebar; no activation or dispatch.",
+    "anonymous_api_http_status": 401,
+    "anonymous_static_http_status": 401,
+    "reference_metadata_download_sha256_verified": true,
+    "state_and_submission_logic_unchanged": true
+  }
 }
