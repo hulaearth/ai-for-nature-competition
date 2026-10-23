@@ -41,7 +41,14 @@
     },
     "yaml_and_operational_gates_passed": true,
     "scientific_inputs_and_event_flags_unchanged": true,
-    "live_reactivation_exercised": false
+    "live_reactivation_exercised": false,
+    "scientific_input_check_scope": "Standby changes preserved the installation snapshot. A concurrent authorized reference update was retained, not overwritten.",
+    "latest_reference_after_rebase": {
+      "private_main": "f63ca0e",
+      "public_main": "2912187",
+      "bundle_and_reference_reproduce": true,
+      "standby_flags_remain_false": true
+    }
   },
   "activation_requires": "Explicit organizer instruction and controller confirmation; live acceptance gates still apply"
 }
