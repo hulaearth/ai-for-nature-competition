@@ -6,6 +6,8 @@
 > releases. Operators and agents: use [BACKUP_ACTIVATION.md](BACKUP_ACTIVATION.md)
 > for verified shutdown, selective reactivation and emergency takeover. The
 > schedules below describe the event plan; they do not activate disabled jobs.
+> The HF Space is **private**. Reopening participant access is a separate,
+> explicit takeover step. [Content alignment and preserved behavior](docs/page-content-alignment.md).
 
 Build habitat rankings for ten birds from German observations, AlphaEarth embeddings, WorldCover, terrain and historical OpenStreetMap. Compare models on one common German validation set, then predict anonymous locations in nearby Central Europe. Teams of 2–3 work for 6.5 hours.
 
@@ -75,6 +77,11 @@ The Space checks both the primary and backup key routes automatically. If the Sp
 Only the full German AlphaEarth rasters are available in advance. The remaining challenge data and intended participant guide/starter access open at **10:00** on event day, allowing an hour for downloads and checks before the advertised **11:00** analysis/modeling start. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
 
 ## Maintain this site
+
+Participant prose is in `scripts/content/*.html`, shared design in `site/style.css`.
+Run `python3 scripts/build_site.py` and `python3 scripts/check_site.py` after edits.
+The build keeps existing forms, routing and the evaluator contract; see
+[page content alignment](docs/page-content-alignment.md) for differences from the primary site.
 
 **Maintainers: start with [HANDOVER.md](HANDOVER.md)** for deployment, secrets,
 runners, release schedules, activation checks, recovery and reuse instructions.

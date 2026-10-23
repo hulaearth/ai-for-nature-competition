@@ -7,3 +7,40 @@
 
 /* Team roles and final selection share the main forest/cream design. */
 .captain-notice{background:#edf5d9;border:1px solid #9dbd6b;border-left:6px solid #74992d;border-radius:8px;padding:20px 24px;margin:24px 0}.captain-notice>strong{display:block;font-size:21px;line-height:1.35}.captain-notice p{margin:10px 0 0}.role-notice{font-weight:700;border-left:4px solid #8baf43;padding:12px 16px;background:#f2f6e8}.chosen-entry{background:#edf6d8!important}.chosen-label{font-weight:750;color:#315400;white-space:nowrap}.prediction-uploader fieldset{border:0;padding:0;margin:0;min-width:0}.prediction-uploader textarea{display:block;width:100%;min-height:100px;padding:11px;margin-top:7px;border:1px solid #9bb094;border-radius:5px;font:inherit;resize:vertical}.prediction-uploader .invitation{padding:18px;border:1px solid var(--line);border-radius:8px;margin:15px 0}.prediction-uploader li{margin:10px 0}.prediction-uploader .membership-action{font-size:12px;padding:7px 10px;margin-left:8px}.prediction-uploader .secondary{background:#e7eddf;color:var(--ink)}.prediction-uploader #upload-registration-fields:disabled{opacity:.6}.preview-controls{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.preview-controls button{border:1px solid var(--forest);padding:11px 16px;border-radius:6px;background:var(--forest);color:white;font:600 14px system-ui;cursor:pointer}.preview-controls button[aria-pressed=false]{background:#e7eddf;color:var(--ink)}.leaderboard-preview{background:#edf2e6;border-top:1px solid var(--line)}.leaderboard-preview .check{display:flex;gap:10px;align-items:flex-start;font-weight:600;margin:20px 0}.leaderboard-preview .check input{margin-top:7px;flex-shrink:0}.leaderboard-preview table{min-width:700px}.leaderboard-preview .scroll{overflow-x:auto}.leaderboard-preview .status{padding:16px;background:white;border-radius:6px}.leaderboard-preview .small{font-size:13px;color:var(--muted)}
+
+/* Content structure aligned with the primary event website. */
+.challenge-extensions{margin:30px 0;padding:22px 24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white)}
+.challenge-extensions summary{font-size:17px;line-height:1.5}
+.challenge-extensions summary::marker{color:#557343}
+.challenge-extensions>p{color:var(--muted);margin:18px 0 24px}
+.challenge-extensions .steps article:last-child{padding-bottom:0}
+
+.challenge-context{margin:28px 0 32px}
+.final-submissions-table{min-width:800px}
+.final-submissions-table th[scope="row"]{font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;min-width:160px}
+.final-submissions-table small{display:block;margin:6px 0;color:var(--muted);font-size:12px}
+.final-submissions-table .button{margin:12px 0 6px;white-space:nowrap}
+.final-submissions-table td:nth-child(2){min-width:230px}
+.final-submissions-table td:last-child{min-width:220px;max-width:360px}
+.final-submissions-table details{margin-top:8px}
+.final-submissions-table details p{white-space:pre-wrap;overflow-wrap:anywhere}
+.final-submissions-table .supporting-file{display:block;margin-bottom:10px}
+.submission-pending{margin:12px 0 0}
+.challenge-context h3{font-size:23px;margin:0 0 12px}
+.challenge-context p{color:var(--muted);margin:0}
+.challenge-context p+p{margin-top:16px}
+
+.data-page [id],.guide-page [id]{scroll-margin-top:24px}
+.dataset-table small{display:block;margin-top:4px;font-size:11px;font-weight:500;color:var(--muted)}
+.dataset-table td:nth-child(2){white-space:nowrap}
+.data-details,.rules-details,.guide-details{margin:16px 0;padding:20px 24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white)}
+.data-details summary,.rules-details summary,.guide-details summary{font-size:17px;line-height:1.5}
+.data-details summary::marker,.rules-details summary::marker,.guide-details summary::marker{color:#557343}
+.data-details>p:last-child,.rules-details>p:last-child,.guide-details>p:last-child{margin-bottom:0}
+
+.rules-page th[scope="row"],.guide-page th[scope="row"]{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;min-width:145px}
+.rules-details code{overflow-wrap:anywhere}
+
+
+.brand{display:inline-flex;align-items:center;gap:12px;flex-shrink:0}.brand svg{display:block;width:190px;height:auto}.brand small{font-size:10px;font-weight:400;line-height:1.3;color:#afc8b7;letter-spacing:0;margin:0}.schedule-milestones{margin-bottom:32px}.schedule-milestones dd{font-size:17px}.data-page details .notice{margin:16px 0}.steps .main-task{grid-template-columns:1fr}@media(max-width:700px){.brand svg{width:148px}.brand small{display:none}}
+.backup-banner{padding:10px clamp(22px,5vw,80px);background:#e6eddd;border-bottom:1px solid var(--line);color:#405b4d;font-size:12px;line-height:1.6}.backup-banner a{font-weight:650;white-space:nowrap}

@@ -29,6 +29,11 @@ performed as a rehearsal: the organizer requested that operations remain stopped
 - Static HF pages and already-uploaded files can still exist. Stopping Actions
   does not take down hosting, withdraw downloads or erase previous publication.
   A form or stale heartbeat on an old page does not mean processing is active.
+- The backup Space is now **private**, by organizer instruction on 23 October.
+  Only authorized HulaEarth organization members can view it. Runtime activation
+  does **not** change its visibility. A participant frontend takeover requires
+  the separate, explicit public-access step below; private scoring/reporting alone
+  does not require reopening the Space.
 - Primary website deployment, independent data/key delivery and Google Form
   settings were not changed. **Those releases must be implemented independently**
   if the primary website needs them; these stopped jobs will not do them.
@@ -51,6 +56,8 @@ performed as a rehearsal: the organizer requested that operations remain stopped
 4. **For full HF takeover:** run **enable-runtime** in **both** repositories with
    that confirmation. Wait for both controls to complete. This enables processing/
    publishing workflows and their existing triggers; release workflows stay disabled.
+   Reopen and verify the Space using **Space visibility during a takeover** below
+   before directing participants there. Do not assume enabling Actions reopens it.
 5. Start private **Active competition evaluator → event** during its valid event
    window, or **rehearsal** for a ten-minute practice session. Do not wait for a
    missed cron to replay. Verify a fresh successful poll/heartbeat and practice acceptance.
@@ -66,6 +73,51 @@ performed as a rehearsal: the organizer requested that operations remain stopped
 If a required credential, identity binding, hidden bundle or contract is missing,
 do not fabricate it to make a readiness check green. Use the limited fallback that
 can actually be verified; tell the organizer exactly what remains unavailable.
+
+## Space visibility during a takeover
+
+The private backup is at
+[HulaEarth/ai-for-nature-hula-earth](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth).
+Its content was aligned with the primary website's clearer introduction, data
+explanations and six-step guide. It retains the backup's existing submission
+contract and behavior: HF sign-in, captain-only final choice, 159,150 rows,
+24 MB CSV limit, 10:00 materials, 11:00 kickoff, 17:30 deadline and 5+2 minute
+presentations. The primary site's smaller test, GitHub authentication, automatic
+star selection and some changed schedule text were **not** imported. See
+[`docs/page-content-alignment.md`](docs/page-content-alignment.md). Verify the
+incident's agreed contract before switching; a visual match is not state migration.
+
+For participant use, an authorized HulaEarth maintainer opens
+[Space Settings](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth/settings),
+finds **Space Access control**, selects **Public**, and waits for the explanatory
+text to say it is public. Do this only within an explicitly authorized frontend
+takeover. Publishing static files or enabling either repository's runtime does
+not perform this step. The low-level API equivalent is
+`HfApi(token=...).update_repo_settings(repo_id="HulaEarth/ai-for-nature-hula-earth", repo_type="space", private=False)`;
+use an existing authorized credential, never place it in source, chat or a URL.
+
+Then verify from an ordinary participant account and a signed-out session:
+
+1. The Space shell and static homepage load, and Data/Rules/Guide/Register/Submit/
+   Leaderboard navigation retains its styling. No special organizer-only signed
+   URL should be required by participants.
+2. HF OAuth returns to the correct Space, team invitations/approval work, a neutral
+   practice upload receives a provider receipt and is accepted by a fresh worker.
+3. Submission-key ID, manifest hash, full sample row count, release times and
+   captain-only final choice agree with the activated evaluator. Check any
+   incident-specific changes equally across frontend, private evaluator and starter.
+4. Primary website receipts and team mappings have been preserved, with the
+   cutover policy announced. They are not automatically visible in this backup.
+
+While private, anonymous API and static-page requests return HTTP 401/404. This
+is expected access control, not a broken deployment. The existing participant
+inbox/feedback flow is not certified for an organization-private Space; making
+every participant an organization member is not the recovery plan.
+
+After a frontend incident ends, run **stop** in both repositories and select
+**Private** in Space Settings again. Verify the settings text and signed-out
+HTTP denial. Stopping Actions alone does not restore privacy. Keep the guides
+and event history; do not delete the Space or rotate working keys as a shutdown step.
 
 ## Control pages and modes
 

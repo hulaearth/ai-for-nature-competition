@@ -1,0 +1,247 @@
+<section class="hero">
+  <div>
+    <p class="eyebrow">HULA EARTH / BIRD HABITAT HACKATHON</p>
+    <h1>Where could<br /> <em>birds</em> thrive?</h1>
+    <p class="hero-copy">
+      By exploring bird observations and environmental data, uncover
+      patterns and discover where different species might find the habitats they
+      need to thrive.
+    </p>
+    <div class="actions">
+      <a class="button primary" href="#register">Register your team ↗</a
+      ><a class="button ghost" href="#data">Explore the data →</a>
+    </div>
+    <p class="live-status">
+      <span class="dot"></span><strong data-status>Registration and preparation</strong>
+    </p>
+  </div>
+  <div class="hero-art">
+    <svg viewBox="0 0 500 430" role="img" aria-labelledby="landscape-title">
+      <title id="landscape-title">
+        Conceptual woodland, farmland, wetland and city habitat mosaic
+      </title>
+      <defs>
+        <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+          <path
+            d="M28 0H0V28"
+            fill="none"
+            stroke="#a8cb9c"
+            stroke-opacity=".22"
+          />
+        </pattern>
+        <clipPath id="clip">
+          <rect x="35" y="30" width="430" height="350" rx="28" />
+        </clipPath>
+      </defs>
+      <g clip-path="url(#clip)">
+        <rect x="35" y="30" width="430" height="350" fill="#65896d" />
+        <path d="M35 30H290L190 200 35 245Z" fill="#b6cd7d" />
+        <path d="M290 30H465V165L190 200Z" fill="#365e45" />
+        <path d="M35 245L190 200 465 290V380H35Z" fill="#799c57" />
+        <path d="M320 135L465 165V290L240 215Z" fill="#a9b5a4" />
+        <path
+          d="M40 295Q180 240 207 280T460 333"
+          stroke="#c7dfd2"
+          stroke-width="45"
+          fill="none"
+        />
+        <path
+          d="M40 295Q180 240 207 280T460 333"
+          stroke="#5d8a8b"
+          stroke-width="24"
+          fill="none"
+        />
+        <path
+          d="M45 109L242 136M41 156L221 174M75 54L52 220M128 61L98 214M183 55L148 207"
+          stroke="#8fa75f"
+          stroke-width="3"
+        />
+        <g fill="#cbd0c3">
+          <rect x="326" y="163" width="30" height="25" />
+          <rect x="365" y="180" width="38" height="23" />
+          <rect x="414" y="185" width="28" height="33" />
+          <rect x="349" y="213" width="25" height="22" />
+        </g>
+        <ellipse cx="405" cy="249" rx="30" ry="19" fill="#3b6a4c" />
+        <rect x="35" y="30" width="430" height="350" fill="url(#grid)" />
+        <rect
+          x="182"
+          y="116"
+          width="143"
+          height="143"
+          fill="none"
+          stroke="#e4f99c"
+          stroke-width="3"
+          stroke-dasharray="8 5"
+        />
+        <rect
+          x="218"
+          y="152"
+          width="71"
+          height="71"
+          fill="#eff9c8"
+          fill-opacity=".1"
+          stroke="#eff9c8"
+          stroke-width="2"
+        />
+        <path
+          d="M218 197Q236 171 255 190Q278 165 304 179Q278 180 260 208Q236 185 218 197Z"
+          fill="#eff9c8"
+        />
+      </g>
+      <text x="35" y="410" fill="#bbd0c2" font-size="11" letter-spacing="2">
+        LOCAL HABITAT + LANDSCAPE CONTEXT
+      </text>
+    </svg>
+  </div>
+</section>
+<section class="summary" aria-label="Challenge at a glance">
+  <div><small>TRAINING AREA</small><strong>Germany</strong></div>
+  <div><small>TARGETS</small><strong>10 bird species</strong></div>
+  <div><small>WORKING TIME</small><strong>6.5 hours</strong></div>
+  <div><small>TEAM SIZE</small><strong>2–3 people</strong></div>
+</section>
+<section class="section" id="main-challenge">
+  <div class="section-side">
+    <p class="eyebrow dark">THE MAIN CHALLENGE / 01</p>
+    <h2>Where could birds thrive?</h2>
+  </div>
+  <div class="section-body">
+    <p class="lead">
+      Birds offer clues about the health of our ecosystems. We chose this
+      challenge to explore how AI can help us understand the habitats they
+      depend on.
+    </p>
+    <div class="challenge-context">
+      <h3>Why birds and why habitat?</h3>
+      <p>
+        Every species needs food, water, shelter and space to survive and
+        reproduce. Some birds depend on forests, others on wetlands or open
+        grasslands. Their different needs connect bird observations to the
+        conditions of the surrounding landscape.
+      </p>
+      <p>
+        At Hula Earth, we want to turn that connection into useful insights for
+        understanding and protecting biodiversity: where could suitable habitat
+        exist, and what can environmental data tell us about it?
+      </p>
+    </div>
+    <div class="steps">
+      <article class="main-task">
+        <!-- <span aria-hidden="true"></span> -->
+        <div>
+          <h3>Your task: predict habitat suitability</h3>
+          <p>
+            Train a model on German bird observations and the supplied
+            environmental features. Use what it learns to rank anonymous
+            locations in neighboring Central Europe for ten bird species. Run
+            inference on your own compute and submit your predictions; we
+            evaluate them against hidden observation labels.
+          </p>
+        </div>
+      </article>
+    </div>
+    <p class="fineprint">
+      Observations also reflect where people look and how easily birds are
+      detected. The benchmark ranks reported seasonal presence against matched
+      recording opportunities. Backgrounds are not confirmed absences, and a
+      high score does not establish occupancy or breeding.
+    </p>
+    <details class="challenge-extensions">
+      <summary>Additional tasks</summary>
+      <p>
+        Start these only once your main challenge and presentation are ready.
+        Choose either extension if you have time; both are optional.
+      </p>
+      <div class="steps">
+        <article>
+          <span aria-hidden="true">02</span>
+          <div>
+            <h3>Explore the bird observations</h3>
+            <p>
+              Optional: choose an additional question about the German bird
+              collection and explore it through two or three clear
+              visualizations. Explain coverage, sampling and uncertainty.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span aria-hidden="true">03</span>
+          <div>
+            <h3>Learn from other species</h3>
+            <p>
+              Optional: test whether information learned from other birds
+              improves your model. Compare with and without these signals on the
+              same held-out data. A well-supported negative result is useful
+              evidence too.
+            </p>
+          </div>
+        </article>
+      </div>
+    </details>
+  </div>
+</section>
+<section class="section accent">
+  <div class="section-side">
+    <p class="eyebrow dark">RESOURCES / 02</p>
+    <h2>Start small. Explore further.</h2>
+  </div>
+  <div class="section-body">
+    <p class="lead">
+      A compact modeling package gets you running. Optional spatial inputs
+      preserve both fine habitat detail and landscape context.
+    </p>
+    <div class="tags">
+      <span>64-dimensional AlphaEarth</span><span>128 × 128 at 10 m</span
+      ><span>64 × 64 at 40 m</span><span>Fixed German development split</span
+      ><span>Optional spatial CV</span>
+    </div>
+    <p>
+      The supplied baseline runs on a CPU. Get a complete prediction pipeline
+      working first, then use your remaining time for focused improvements and a
+      clear explanation.
+    </p>
+    <a class="button outline" href="#data">Choose your inputs →</a>
+  </div>
+</section>
+<section class="section" id="timeline">
+  <div class="section-side">
+    <p class="eyebrow dark">TIMING / 03</p>
+    <h2>A shared finish line.</h2>
+  </div>
+  <div class="section-body">
+
+    <dl class="schedule schedule-milestones">
+      <div><dt>Starter and participant guide</dt><dd data-materials>24 October, 10:00 German time</dd></div>
+      <div><dt>Modeling kickoff</dt><dd data-start>24 October, 11:00 German time</dd></div>
+      <div><dt>Test-input unlock</dt><dd data-release>24 October, 13:30 German time</dd></div>
+      <div><dt>Submission deadline</dt><dd data-deadline>24 October, 17:30 German time</dd></div>
+    </dl>
+    {{SCHEDULE_HTML}}
+    <a class="text-link" href="#rules">Read the full competition rules →</a>
+  </div>
+</section>
+<section class="section accent">
+  <div class="section-side">
+    <p class="eyebrow dark">ASSESSMENT / 04</p>
+    <h2>Evidence and explanation.</h2>
+  </div>
+  <div class="section-body">
+    <div class="rubric">
+      <div><strong>50%</strong><span>Private model performance</span></div>
+      <div><strong>30%</strong><span>Insights and visualizations</span></div>
+      <div><strong>15%</strong><span>Presentation and questions</span></div>
+      <div><strong>5%</strong><span>Reproducibility checklist</span></div>
+    </div>
+    <p>
+      Your main modeling work can provide the insights and visualizations for
+      judging: explain your experiments, model behavior and limitations. Tasks 2
+      and 3 are optional extensions, with no separate requirement or bonus. Any
+      extension work is assessed within the same categories. The provisional
+      public leaderboard is feedback; final performance uses your captain’s chosen
+      submission on the private split. The overall award is out of 100 points.
+      Matching the fixed starter baseline on the private test earns 15 of the
+      50 model points; beating it by 0.15 AP earns all 50.
+    </p>
+  </div>
+</section>

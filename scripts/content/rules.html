@@ -1,0 +1,137 @@
+<section class="page-heading">
+  <p class="eyebrow">RULES / A FAIR COMPARISON</p>
+  <h1>The rules, in plain language.</h1>
+  <p class="intro">Use the shared data, submit one final prediction and explain what you learned. Here is what is allowed, what to hand in and how the jury awards points.</p>
+</section>
+
+<section class="reading rules-page">
+  <div class="notice">
+    <strong>Saturday, 24 October 2026 · All times CEST (German time)</strong>
+    <p>Challenge work starts at <strong>11:00</strong>. Final submissions open at <strong>13:30</strong>. Submit your work and confirm your final choice <strong>before 17:30</strong>.</p>
+  </div>
+
+  <h2>1. What is allowed?</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">You can use</th><th scope="col">You cannot use</th></tr></thead>
+      <tbody>
+        <tr><td>The released German bird observations, AlphaEarth inputs and organizer-provided helper data on the <a href="#data">data page</a>.</td><td>Additional bird observations, external bird labels, species range maps or pretrained bird-distribution predictions.</td></tr>
+        <tr><td>AI coding assistants, general programming documentation, standard machine-learning libraries and the allocated compute. Give AI assistants these same data rules.</td><td>Hidden test labels, or attempts to identify test locations and look up their answers. Do not manually adjust predictions using test-label information.</td></tr>
+      </tbody>
+    </table>
+  </div>
+<p>Teams may obtain additional environmental data for analysis, visualization and training. Final predictions must be computable from the supplied anonymous test inputs; organizers will not prepare additional test features on request. Use supplied bird observations only. Retrieving external bird observations, species range maps or pretrained bird-distribution predictions, identifying test locations, or retrieving evaluation labels is prohibited.</p>
+  <h3>Before 11:00: prepare your setup</h3>
+  <p>You may download, copy and unpack files, verify checksums, read format and license instructions, and check accounts, packages and compute using unrelated synthetic examples. Once your team is approved and practice is open, you may use the neutral practice CSV for delivery checks. Do not explore challenge observations, create features or visualizations, train or tune models, or ask AI agents to do this work before kickoff. Declare compliance in your presentation.</p>
+  <p>Teams have <strong>two or three people</strong>. Create a team in <a href="#register">Register</a> using your own Hugging Face account. The captain invites teammates, who confirm from their own accounts. After organizer approval, confirmed members share one allowance and can upload. <strong>Only the captain chooses the final model.</strong></p>
+
+  <h2>2. What must your team submit?</h2>
+  <p>Hand in these two things <strong>before 17:30 CEST</strong>. Include supported insights and visualizations from your main challenge work. Tasks 2 and 3 are optional extensions for teams that finish early; they are not required for prize eligibility and earn no separate bonus or award.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Deliverable</th><th scope="col">What to include</th><th scope="col">Where it goes</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Prediction file</th><td>A CSV with columns <code>row_id,score</code> and exactly <strong>159,150 rows</strong>: ten species at 15,915 locations. Match every ID in the decrypted sample submission; row order does not matter. Scores must be finite numbers between 0 and 1. The CSV must be at most <strong>24 MB</strong>.</td><td>Open <a href="#submit">Submit</a>, choose your CSV and click <strong>Submit prediction</strong>. Encryption happens automatically. Keep the provider receipt and check for <strong>Accepted</strong>.</td></tr>
+        <tr><th scope="row">Presentation</th><td>Your question, approach, German development result, supported insights with visualizations, and limitations. Upload a <strong>PDF up to 10 MB</strong>; an editable source up to 100 MB is optional. You have <strong>five minutes to present and two minutes for questions</strong>.</td><td>Use the Google presentation form linked below predictions in <a href="#submit">Submit</a>. Google sign-in is required. Keep the confirmation page.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Presentation files are private to the organizers. They use your latest complete, valid form response received before closure. Include your method/report and exact code or checkpoint reference in Submit. Keep the presentation confirmation separately.</p>
+  <h3>Five final attempts per team</h3>
+  <p>Your team has <strong>five accepted final submissions for the entire event</strong>. Invalid files and repeated identical predictions do not use an accepted attempt. Practice has a separate allowance of <strong>ten accepted format checks</strong> and does not produce a leaderboard score.</p>
+  <div class="captain-notice"><strong>The captain chooses the final model.</strong><p>Leave “Make this my final entry if accepted” checked on a captain upload, or choose <strong>Use for final</strong> beside an accepted entry before 17:30. A rejected upload preserves the earlier choice. Without an explicit choice, the latest accepted captain upload is the fallback. If only teammates uploaded, the captain must choose an entry.</p><p>The public leaderboard and final private score both use that chosen prediction. Choosing an accepted entry does not use another prediction attempt.</p></div>
+  <p><strong>An upload receipt confirms delivery; Accepted confirms validation.</strong> The original unedited Hugging Face opening comment binds the complete request and encrypted file fingerprint. Its server timestamp controls eligibility, even if evaluation finishes later. Browser clocks and Git commit dates do not. Keep the receipt and leave time to check acceptance.</p>
+
+  <h2>3. How does scoring work?</h2>
+  <p>The overall award is out of <strong>100 points</strong>. A strong prediction matters, and so does explaining what your results mean.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Category</th><th scope="col">Points</th><th scope="col">What the jury looks for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Model performance</th><td><strong>50</strong></td><td>How well your chosen prediction performs on the hidden final test, compared with the fixed starter model.</td></tr>
+        <tr><th scope="row">Insights and visualizations</th><td><strong>30</strong></td><td>A useful question, supported analysis and interpretation, and effective visualizations. Each is worth up to 10 points.</td></tr>
+        <tr><th scope="row">Presentation and questions</th><td><strong>15</strong></td><td>A clear explanation, understanding and answers, and focused use of the five-minute slot. Each is worth up to 5 points.</td></tr>
+        <tr><th scope="row">Reproducibility</th><td><strong>5</strong></td><td>Five evidence checks, worth one point each, so another person can understand and reproduce your work.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>What does the prediction score measure?</h3>
+  <p><strong>Average precision (AP)</strong> measures how well your model ranks recorded bird observations above the supplied background examples. Higher is better. We calculate a score for each of the ten species, then average them equally. This average is called <strong>macro AP</strong>. Background examples are a comparison group, not proof that a bird was absent; unknown labels are excluded.</p>
+  <h3>The public leaderboard and the final result</h3>
+  <p>During the event, the <a href="#leaderboard">leaderboard</a> shows your chosen submission's AP on the <strong>public part of the test</strong>. This is provisional feedback. Final model points use the <strong>same chosen prediction</strong> on a geographically separate, hidden private part. Private scores and group details stay hidden until choices are locked, pending submissions are processed and organizers publish the results.</p>
+  <p>The AP leaderboard ranks prediction performance. The overall award adds the jury's points for insights, presentation and reproducibility. The jury does not select your best hidden result from earlier attempts.</p>
+  <h3>How AP becomes model points</h3>
+  <p><span data-performance-points>The supplied starter model is the fixed <strong>baseline</strong> for comparison.</span> Matching its AP on the private test earns <strong>15 out of 50</strong> model points. Beating it by 0.15 AP earns all <strong>50 points</strong>; smaller improvements earn proportionally fewer points. Scores below the baseline can earn 0–15 points. Another team's result does not change this scale.</p>
+
+  <h2>Detailed rules and checklists</h2>
+  <p>Use these notes when building your model, preparing the handoff or checking an edge case.</p>
+
+  <details class="rules-details">
+    <summary>Validation, preprocessing and the final model</summary>
+    <p>Report AP on the required German development split using the supplied labels and exclusions. This is the shared held-out check for comparing approaches before the final test.</p>
+    <ul>
+      <li>Fit learned preprocessing only on the permitted training data in each partition. This includes scaling, filling missing values, dimensionality reduction, feature selection and supervised auxiliary stages. Do not refit preprocessing to the anonymous test batch.</li>
+      <li>Apply the same spatial and source exclusions across species. Additional released German labels must follow the documented season, quality, site and buffer rules.</li>
+      <li>Optional five-fold spatial cross-validation is useful for comparing promising models. It is not required and earns no points just for being run.</li>
+      <li>To claim that using other species helps, compare results with and without them using identical target labels, backgrounds, splits and feature supports.</li>
+      <li>After choosing your model, you may refit it on German training plus development data. Declare this and retain the earlier held-out development score.</li>
+    </ul>
+  </details>
+
+  <details class="rules-details">
+    <summary>Presentation evidence and the five reproducibility points</summary>
+    <p>Explain your method and validation result in the presentation. Your method report and appendix slides can include feature and preprocessing choices, helpers, seeds, runtime, any final refit, AI/API use, code or checkpoint links, reproduction instructions and dependencies. Declare compliance with the preparation and permitted-data rules. Link the method report and exact code/checkpoint in Submit before uploading or changing your final choice. Include the submitted CSV SHA256.</p>
+    <p>A technical organizer awards one point for evidence of each of these:</p>
+    <ol>
+      <li>Code and configuration matching the submission.</li>
+      <li>Reproduction instructions and dependencies.</li>
+      <li>The correct common German validation result.</li>
+      <li>Documented features, preprocessing and helpers.</li>
+      <li>Accurate limitations.</li>
+    </ol>
+    <p>A checked box without evidence earns no point. Complex models and optional cross-validation are not requirements. Prize eligibility requires a valid prediction CSV and a presentation with supported insights and visualizations. Prohibited data or leaked test information can invalidate an entry regardless of its checklist score.</p>
+    <p>Existing data licenses still apply. Your team's original code and models remain your property.</p>
+  </details>
+
+  <details class="rules-details">
+    <summary>Exact AP calculation, model-point formula and ties</summary>
+    <p>Within each public or private partition, pool all scored countries for each species, calculate AP and average the ten species equally. The background ratio and eligibility rules are fixed. Unknown labels are excluded, not turned into negatives. Geographic identifiers and public/private membership are absent from test inputs. Submitted scores are ranking outputs, not calibrated probabilities that a bird occupies a location.</p>
+    <p>Let <code>s</code> be your chosen prediction's private AP, <code>a = 1/6</code> the constant-score AP, and <code>b</code> the fixed baseline's AP on that same private split.</p>
+    <ul>
+      <li>For <code>s ≤ b</code>: <code>max(0, 15 × (s − a) / (b − a))</code> model points.</li>
+      <li>For <code>s &gt; b</code>: <code>min(50, 15 + 35 × (s − b) / 0.15)</code> model points.</li>
+    </ul>
+    <p>At or below constant-score AP, you earn zero model points. Points are capped at 50.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Private AP relative to the baseline</th><th scope="col">Model points / 50</th></tr></thead>
+        <tbody>
+          <tr><td>Matches baseline</td><td>15</td></tr>
+          <tr><td>Baseline + 0.02 AP</td><td>19.7</td></tr>
+          <tr><td>Baseline + 0.05 AP</td><td>26.7</td></tr>
+          <tr><td>Baseline + 0.10 AP</td><td>38.3</td></tr>
+          <tr><td>Baseline + 0.15 AP</td><td>50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Examples are rounded to one decimal; calculations use full precision. The baseline is the supplied 64-feature, 1 km-radius AlphaEarth logistic starter, fitted only on German training rows with seed 20261016, Python 3.14.4 and pinned requirements. Its predictions are fixed and checked by the private evaluator.</p>
+    <p>The baseline's German development AP is <strong>0.34087975805917803</strong>. This is a separate comparison, not the private baseline AP <code>b</code>. The private baseline AP and final model points are revealed with final results after model selection closes.</p>
+    <p>The leaderboard displays AP to six decimals but compares full precision. An exact AP tie uses the relevant accepted prediction's original receipt time, then stable entry reference. The final board uses the chosen prediction's original receipt. An exact overall jury-total tie uses that same receipt time and stable entry reference, including when model points are capped.</p>
+  </details>
+
+  <details class="rules-details">
+    <summary>Receipts, final-choice examples and technical incidents</summary>
+    <p>Submit CSV A as captain with “Make this my final entry if accepted” checked. When accepted, A becomes your final choice. If B is rejected, A stays chosen. If B is accepted with the option checked, B becomes chosen. To return to A, use <strong>Use for final</strong> and check confirmation before 17:30. Teammate uploads do not silently replace the captain’s choice.</p>
+    <p>The final window is 13:30 to before 17:30 CEST on 24 October. A valid receipt recorded in that window can finish evaluation later. Do not edit the original provider request. Five accepted final submissions and ten accepted practice checks apply to the whole team across delivery routes. Rejections do not consume accepted attempts.</p>
+    <p>Organizers preserve original receipt times, file hashes, quotas and choices during incidents. An outage does not permit extra bird data or hidden labels. Any deadline change is announced equally before private results are revealed. Deliberate rule circumvention can invalidate an entry.</p>
+    <p><a href="#guide">Read the submission steps →</a></p>
+  </details>
+
+  <details class="rules-details">
+    <summary>What you can conclude from the results</summary>
+    <p>Bird records depend on where people look, what they detect and what they report. Coordinates can be less precise than the image pixels used by the model. A high prediction score does not prove that a bird occupies or breeds at a location.</p>
+    <p>The annual 2024 inputs support looking back at seasonal reported presence; they do not establish a forecast or a cause-and-effect relationship. AlphaEarth's pretraining already includes biodiversity supervision. Finding species in similar places alone does not prove that they interact. Explain these limitations when presenting your findings.</p>
+  </details>
+
+  <div class="actions"><a class="button primary" href="#submit">Open Submit →</a><a class="button outline" href="#guide">Submission guide →</a></div>
+</section>

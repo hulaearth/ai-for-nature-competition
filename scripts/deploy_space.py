@@ -36,13 +36,15 @@ short_description: Bird habitat modeling challenge and prediction leaderboard
 
 # AI for Nature Hula Earth
 
+**Private backup platform.** The primary event website is https://ai-for-nature.hula.earth/. Use this Space only if the organizers announce a takeover. Its event automation is stopped; updating these pages does not activate scoring or scheduled releases. Operators should follow the [emergency activation guide](https://github.com/hulaearth/ai-for-nature-competition/blob/main/BACKUP_ACTIVATION.md), including the separate visibility check.
+
 Static competition pages with native Hugging Face team registration. Participants train on their own compute. Predictions are encrypted in the browser and evaluated by trusted GitHub Actions in a private repository. No evaluation labels or submission-decryption keys are hosted here. The test-input unlock identity is published only at its announced release time.
 
 Germany bird habitat challenge using 2024 observations, AlphaEarth, WorldCover, terrain and historical OpenStreetMap data: ten target species, 6.5 working hours, a shared German development split, and anonymous nearby Central European final inputs.
 
 The main **Submit** tab contains CSV upload, acceptance status and final-choice controls. Sign in with your confirmed team account, submit the CSV directly, and check **Accepted**. The page encrypts and delivers it automatically. Use the final-entry checkbox or **Use for final** beside an accepted entry. Upload slides through the separate Google Form below predictions; no separate GitHub nomination is required. GitHub attachment forms are a conductor-directed backup.
 
-The three tasks are habitat suitability modeling, ecological data insights and visualizations, and an optional cross-species extension. The jury uses 50 model-performance points under a fixed baseline-relative conversion, 30 insight/visualization points, 15 presentation/question points and a 5-point reproducibility checklist. Matching the unchanged shipped starter earns 15 model points; +0.15 AP earns 50. See the Rules view for the full formula, caps and evidence criteria.
+The main task is habitat suitability modeling with a presentation explaining the method and findings. Bird-data exploration and cross-species modeling are optional extensions; insights from the main work count in the same categories. The jury uses 50 model-performance points under a fixed baseline-relative conversion, 30 insight/visualization points, 15 presentation/question points and a 5-point reproducibility checklist. Matching the shipped 64-value, 1 km-radius AlphaEarth starter earns 15 model points; +0.15 AP earns 50. See the Rules view for the full formula, caps and evidence criteria.
 
 - [Advance download: German AlphaEarth](https://drive.google.com/drive/folders/11uUnIucA-rJZgYyf7QP9dkV8rOn_plNk) (87 tiles, 148.57 GB; technical notes and licenses only)
 - [Public AlphaEarth mirror on Hugging Face](https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024) (all 87 tiles verified; bird data, modeling tables and encrypted tests are in a separate restricted dataset)
