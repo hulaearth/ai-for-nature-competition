@@ -69,6 +69,9 @@ def layout(title, page, *, integrated=True):
                 'data remain restricted until their event-day release.</p></div>')
             view_content = view_content.replace('<div class="notice"><strong>Two download stages.</strong>',
                                                 public_rasters+'<div class="notice"><strong>Two download stages.</strong>')
+            view_content = view_content.replace(
+                'A separate HF mirror is being prepared and is not yet certified complete.',
+                'The separate <a href="https://huggingface.co/datasets/HulaEarth/alphaearth-germany-2024" target="_blank" rel="noopener noreferrer">public HF raster mirror</a> is complete and verified.')
         if drive_url and drive_url.startswith("https://drive.google.com/"):
             view_content = view_content.replace('href="#" aria-disabled="true" data-drive>Challenge data link forthcoming',
                                                 'href="'+escape(drive_url,quote=True)+'" target="_blank" rel="noopener noreferrer" data-drive>Download German AlphaEarth ↗')
