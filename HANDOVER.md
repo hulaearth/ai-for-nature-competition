@@ -561,9 +561,28 @@ retries finish, expire the receiver and test recovery from independently held st
 
 Start new destinations with schedules disabled and new keys. Do not publicly copy
 private evaluator history: it includes hidden data, identities and submissions.
-Use a reviewed code-only export, fresh ledger from schema/synthetic fixture
-patterns, new hidden solution/reference and new acceptance proofs. Never reset
-the ledger of an event with real receipts.
+Use a reviewed code-only export, new hidden solution/reference and new acceptance
+proofs. Initialize new state with the production `fresh_ledger()` helper and an
+empty native registry; remove old legacy seeds from the new project's
+`config/teams.json`. Never reset the ledger of an event with real receipts.
+
+For a **new private code-only checkout**, after porting its event configuration
+and with no existing state file:
+
+```bash
+.venv/bin/python - <<'PY'
+import json
+from pathlib import Path
+from aifn.engine import fresh_ledger
+from aifn.registry import registry
+config = json.loads(Path('config/event.json').read_text())
+ledger = fresh_ledger()
+registry(ledger, [], config)
+Path('state').mkdir(exist_ok=True)
+with Path('state/ledger.json').open('x') as out:  # Refuse to overwrite any state.
+    out.write(json.dumps(ledger, indent=2) + '\n')
+PY
+```
 
 | Port together | Files/settings to review |
 | --- | --- |
