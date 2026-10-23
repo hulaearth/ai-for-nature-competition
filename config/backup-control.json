@@ -5,8 +5,15 @@
   "releases_enabled": false,
   "reason": "Private event website is primary; HF platform is an explicitly activated backup only.",
   "profiles": {
-    "checks": ["test.yml"],
-    "runtime": ["deploy-space.yml", "publish-feedback.yml"],
-    "releases": ["release-test-key.yml"]
+    "checks": [
+      "test.yml"
+    ],
+    "runtime": [
+      "deploy-space.yml",
+      "publish-feedback.yml"
+    ],
+    "releases": [
+      "release-test-key.yml"
+    ]
   }
 }
