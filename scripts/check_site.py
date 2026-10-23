@@ -91,6 +91,7 @@ materials=json.loads((ROOT/'config/materials-release.json').read_text())
 assert materials['not_before_utc']==c['materials_release_utc']=='2026-10-24T08:00:00Z'
 assert materials['starter_ref']==c['starter_ref']=='hackathon-2026'
 assert len(materials['guide_sha256'])==64
+assert materials['starter_commit']==c['starter_commit'], 'Scheduled materials and public starter commits must agree'
 assert not (SITE/'participant-guide.pdf').exists(), 'Guide must stay in private starter until release'
 assert 'identity' not in plan and 'key' not in plan
 assert c['preparation_policy']=='environment-checks-only'
