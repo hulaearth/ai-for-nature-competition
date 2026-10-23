@@ -9,12 +9,19 @@ secret values, hidden labels and private calibration never belong in this repo.
 choices. Check current main branches and hosted receipts before operating.
 A workflow existing in Git does not prove that it is armed or working.
 
+The evaluator/reporting follow-up checks private `main` at `c184081`. The organizer
+confirmed **10:00 German time for data release**, allowing downloads/checks before
+the advertised 11:00 work start. Test unlock remains 13:30. The dedicated
+[evaluator and final-slides guide](docs/evaluation-and-closing.md) gives the full
+connection, generation, offline presentation and recovery procedures.
+
 ## Find the right procedure
 
 - Current event: [activation gaps](#current-activation-gaps), [schedule](#release-times-and-workflows), [event-day operations](#event-day-operations).
 - Fresh deployment: [setup in dependency order](#setup-in-dependency-order).
 - Another project: [migration checklist](#reuse-for-another-project). A fork plus new JSON is insufficient.
 - Failures: [recovery](#recovery-and-shutdown).
+- Evaluator wiring and final-slide generation: [evaluation-and-closing.md](docs/evaluation-and-closing.md).
 - Organizer-only detail: private evaluator [RUNBOOK](https://github.com/hulaearth/ai-for-nature-evaluation/blob/main/RUNBOOK.md), [PRE_EVENT_CHECKLIST](https://github.com/hulaearth/ai-for-nature-evaluation/blob/main/PRE_EVENT_CHECKLIST.md), [launch evidence](https://github.com/hulaearth/ai-for-nature-evaluation/blob/main/config/launch-evidence.json). These links require organizer access.
 
 ## Architecture and access boundaries
@@ -68,11 +75,11 @@ superseded procedures. Do not declare the current event ready from an old green 
 | --- | --- |
 | Private `data_ready=false` and `final_submissions_enabled=false`. | Complete acceptance evidence, deliberately arm, commit, sync and verify. Publishing a key does not enable scoring. |
 | Public `release-materials.yml` is **retired** and only prints a message. | Verify the external website's actual starter/guide release. Running this workflow publishes nothing. |
-| Event configs/participant copy say starter/guide **10:00**, but the retired workflow's website instruction says **11:00**. | Release owner must reconcile website, schedule, guide and readiness evidence. This audit did not change the agreed time or either service. |
+| Organizer confirmed data availability **10:00**, before the advertised 11:00 work start. The retired workflow's stale 11:00 release instruction has been corrected to 10:00. | HF data plan already targets 10:00. Verify actual website starter/guide enforcement at the same intended release time; changing this retired job's text does not configure the website. |
 | Readiness still checks `materials-release-setup.json` from the former release controller. | Bind certification to the replacement delivery and exact frozen starter/guide. An old `armed=true` receipt does not certify the website; do not fabricate a legacy receipt. |
 | Public top-level `starter_commit` is older than the current materials/private delivery pin. | Sync the release contract from the private evaluator. The scoring baseline has its own intentionally frozen commit: preserve that separate provenance. |
 | Private launch evidence has unresolved gates. | Finish two-account acceptance/restart, ordinary participant delivery, external Google-account presentation upload, office network coverage, Actions allowance, independent backup access and restore. |
-| Independent HF data release was activated and hosted **verify** passed on 23 October. | Preserve the verified tree; check actual anonymous downloads at 10:00. Do not activate the older combined Drive/HF proposal. |
+| Independent HF release was activated and hosted **verify** passed for an earlier tree on 23 October; prepared compact test grouping updates the current fingerprint to 630 files. | Repeat hosted verify against the current fingerprint before relying on release, then check actual downloads at 10:00. Do not activate the older combined Drive/HF proposal. |
 | HF data use manual gating after private conversion hit storage quota; Drive was last recorded as link-readable. | Check each provider's real permissions. Gating hides downloads, not metadata. The HF release does not change Drive. |
 | Older private guides contain obsolete row counts, metric descriptions and release instructions. | Production is `aifn/`, `config/event.json`, `state/ledger.json` and current workflow YAML. `legacy-demo/`, `evaluation/` and `results/ledger.json` are not live scoring/state. |
 
@@ -303,8 +310,9 @@ maintenance, not a routine deployment step.
 
 Use the workflow table below; run each current **verify** mode on `main` and keep
 receipts. HF data access, age-key release, starter release and final arming are
-independent controls. Resolve the current website migration/time conflict with
-its maintainer. Website hosting credentials, backend storage, UTC clock and
+independent controls. Finish the website delivery/readiness migration with its
+maintainer against the confirmed **10:00** release target. Website hosting
+credentials, backend storage, UTC clock and
 release logs are outside this repo and were not certified by this audit.
 
 For another project, choose **one** materials controller: verify website delivery,
@@ -356,7 +364,7 @@ Python date/window guards make this a one-off event.
 | Activity | Local / UTC | Controller |
 | --- | --- | --- |
 | HF data downloads open | 10:00 / 08:00Z | Private `release-hf-data.yml`: verifies whole tree, removes fixed dataset gate, checks anonymous downloads; no key/Drive/launch changes |
-| Starter/guide | Config 10:00 / 08:00Z; website instruction 11:00 / 09:00Z | **Unresolved migration**; external website owns delivery, `release-materials.yml` retired |
+| Starter/guide | Intended 10:00 / 08:00Z | External website owns delivery and needs actual release verification; `release-materials.yml` is retired |
 | Worker warm-up / processing | 09:47 / 07:47Z; processes from 10:00 / 08:00Z | Private `active-worker.yml` and reusable `active-session.yml` |
 | Modeling | 11:00 / 09:00Z | Conduct rule; readable data cannot enforce analysis embargo |
 | Test age key | 13:30 / 11:30Z | Public `release-test-key.yml`, independent GitHub backup + HF publication, time/fingerprint guarded |
@@ -512,7 +520,8 @@ account/network gates. Unobserved checks remain pending.
 1. **Before release:** verify operators/capacity/secrets/access, warm-ups, website
    timing, Form closure and protected snapshot; run appropriate readiness phase.
 2. **Downloads/materials:** verify ordinary account access and exact files. Check
-   Drive independently of HF. Confirm reconciled starter/guide time; modeling 11:00.
+   Drive independently of HF. Data and intended starter/guide access at 10:00;
+   advertised modeling start 11:00. Announce an earlier work start equally if decided.
 3. **Worker:** confirm event session really processes. Poll about 15 s; heartbeat
    about 60 s in public GitHub `site/worker-status.json`. Live readiness requires
    `running` and heartbeat younger than three minutes. Idle health updates do not

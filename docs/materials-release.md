@@ -3,8 +3,10 @@
 > **Retired controller — 23 October 2026.** The current
 > `release-materials.yml` is an informational manual job; it does not execute the
 > release described below. Starter delivery moved to the event website. See
-> [HANDOVER.md](../HANDOVER.md#current-activation-gaps) for the unresolved 10:00/11:00
-> timing and readiness migration. The remaining text describes the former setup
+> [HANDOVER.md](../HANDOVER.md#current-activation-gaps) for the readiness migration.
+> The organizer confirmed data release at **10:00 German time**, before the
+> advertised 11:00 work start; intended starter/guide availability is also 10:00.
+> Actual website enforcement still needs verification. The remaining text describes the former setup
 > and is retained for maintainers considering a deliberate port. Do not rely on
 > these warm-ups, token or an old armed receipt for the current website release.
 

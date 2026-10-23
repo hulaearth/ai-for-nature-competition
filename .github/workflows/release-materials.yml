@@ -10,5 +10,5 @@ jobs:
       - name: Use the event website downloads
         run: |
           echo 'Starter downloads are served privately by https://ai-for-nature.hula.earth/resources/starter'
-          echo 'Release: 24 October 2026 at 11:00 Europe/Berlin (09:00 UTC).'
+          echo 'Intended release: 24 October 2026 at 10:00 Europe/Berlin (08:00 UTC); work starts at 11:00.'
           echo 'This retired workflow does not publish files or change repository visibility.'

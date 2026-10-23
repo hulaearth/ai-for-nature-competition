@@ -65,7 +65,7 @@ The evaluator scores data only; it never runs team code. Hidden labels and the s
 
 The Space checks both the primary and backup key routes automatically. If the Space is unavailable at release time, use the [backup unlock-key download](https://raw.githubusercontent.com/hulaearth/ai-for-nature-competition/main/releases/test-key/test-release-key.agekey), available from **24 October at 13:30 German time**. Its fingerprint is checked against the same frozen release plan.
 
-Training data and technical pages are available in advance. The participant guide and starter code open at **10:00** on event day; analysis and modeling begin at **11:00**. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
+Only the full German AlphaEarth rasters are available in advance. The remaining challenge data and intended participant guide/starter access open at **10:00** on event day, allowing an hour for downloads and checks before the advertised **11:00** analysis/modeling start. No code or challenge guide belongs in the advance data folder. The data include technical documentation, licenses and checksums. Preserve the notices: the MIT code license does not relicense the observations or AlphaEarth data.
 
 ## Maintain this site
 
@@ -73,6 +73,9 @@ Training data and technical pages are available in advance. The participant guid
 runners, release schedules, activation checks, recovery and reuse instructions.
 It records the current starter-release migration and unresolved launch checks;
 older materials-release instructions do not certify the replacement route.
+The [evaluator and final-slides guide](docs/evaluation-and-closing.md) explains
+the cross-repository connection, automatic report trigger, private inputs,
+offline slide selection/export, delivery and reruns.
 
 The Static Hugging Face Space needs no running CPU service. Build and check locally:
 
