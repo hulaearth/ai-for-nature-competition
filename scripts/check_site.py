@@ -133,3 +133,10 @@ for page in SITE.glob('*.html'):
     assert '$50' not in text and 'Google GPU' not in text
     assert 'optional advanced award' not in text
     assert 'Use for final' in text and ('upload-form' in text or page.name=='legacy-submit.html')
+
+if c.get('alphaearth_hf_ready') is True:
+    for page in SITE.glob('*.html'):
+        if page.name == 'upload.html': continue
+        source=page.read_text()
+        assert 'A separate HF mirror is being prepared' not in source
+        assert 'German AlphaEarth is ready on Hugging Face.' in source
