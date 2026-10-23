@@ -94,6 +94,25 @@ class BackupControlTests(unittest.TestCase):
         self.assertEqual(set(self.api.files),{control.CONFIG,control.RECEIPT})
         self.assertFalse(any('/secrets' in p or '/dispatches' in p for _,p in self.api.calls))
 
+    def test_incomplete_cancellation_fails_and_records_remaining_runs(self):
+        def refusing_cancel(method,path,body=None,allowed=()):
+            if path.endswith('/cancel') or path.endswith('/force-cancel'):
+                return None
+            return self.api(method,path,body,allowed)
+        with self.assertRaisesRegex(control.ControlError,'Stop is incomplete'):
+            control.operate('stop',self.config,refusing_cancel,own_run='12',sleep=lambda _:None)
+        self.assertFalse(self.api.files[control.RECEIPT]['all_stopped'])
+        self.assertTrue(self.api.files[control.RECEIPT]['active_runs'])
+        self.assertFalse(self.api.files[control.CONFIG]['runtime_enabled'])
+
+    def test_runtime_activation_closes_a_previously_enabled_release_gate(self):
+        previous={**self.config,'releases_enabled':True}
+        self.api.files[control.CONFIG]=previous
+        result=control.operate('enable-runtime',previous,self.api,confirmation=control.CONFIRM)
+        self.assertTrue(result['runtime_enabled']);self.assertFalse(result['releases_enabled'])
+        states={Path(w['path']).name:w['state'] for w in self.api.workflows}
+        self.assertTrue(all(states[n]!='active' for n in self.config['profiles']['releases']))
+
     def test_status_is_read_only(self):
         result=control.operate('status',self.config,self.api)
         self.assertFalse(result['all_stopped'])

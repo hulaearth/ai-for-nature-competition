@@ -1,5 +1,10 @@
 # Evaluator connection and final presentation operations
 
+> **Standby:** the primary event uses the private website. GitHub/HF evaluator,
+> releases, automatic reporting and delivery are disabled. Follow
+> [BACKUP_ACTIVATION.md](../BACKUP_ACTIVATION.md) before using the procedures below;
+> these describe the capabilities available after explicit reactivation.
+
 Use this with [HANDOVER.md](../HANDOVER.md). It explains the connection between
 the participant starter, competition pages and **private evaluator**, then the
 complete closing-report and slide workflow. Secret values, labels and populated

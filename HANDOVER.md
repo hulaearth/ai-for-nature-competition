@@ -1,5 +1,11 @@
 # Competition platform handover
 
+> **Current operating policy: backup standby.** All GitHub/HF operations are
+> stopped by organizer instruction; the private website is primary. Start with
+> [BACKUP_ACTIVATION.md](BACKUP_ACTIVATION.md). It supersedes the active-event
+> instructions below until an explicit backup activation. Retained cron settings
+> and earlier armed receipts do not enable any disabled workflow.
+
 This is the maintainer's entry point for deploying, operating and adapting the
 GitHub + Hugging Face platform. It documents secret **names and permissions**;
 secret values, hidden labels and private calibration never belong in this repo.

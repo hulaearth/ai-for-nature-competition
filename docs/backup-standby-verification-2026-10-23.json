@@ -1,0 +1,47 @@
+{
+  "checked_at_utc": "2026-10-23T10:24:37.827644+00:00",
+  "policy": "Private website primary; GitHub/HF standby",
+  "repositories": [
+    {
+      "repository": "hulaearth/ai-for-nature-competition",
+      "verified_at_utc": "2026-10-23T10:14:37.786730+00:00",
+      "workflow_run_url": "https://github.com/hulaearth/ai-for-nature-competition/actions/runs/39937659334",
+      "disabled_workflows": 5,
+      "active_non_control_runs": 0,
+      "all_stopped": true,
+      "runtime_enabled": false,
+      "releases_enabled": false,
+      "receipt_sha256": "614e9edc7fa779a57dd6664fea679ebb62d3f2f1c6a0f817259a933a14b4a86e"
+    },
+    {
+      "repository": "hulaearth/ai-for-nature-evaluation",
+      "verified_at_utc": "2026-10-23T10:16:38.737970+00:00",
+      "workflow_run_url": "https://github.com/hulaearth/ai-for-nature-evaluation/actions/runs/39937918266",
+      "disabled_workflows": 12,
+      "active_non_control_runs": 0,
+      "all_stopped": true,
+      "runtime_enabled": false,
+      "releases_enabled": false,
+      "receipt_sha256": "771913c4cd27317d5280f8daeeb387dc4649d22fab85f838866ad42e9ca3ca73"
+    }
+  ],
+  "validation": {
+    "public_python_suite": {
+      "tests": 50,
+      "passed": true
+    },
+    "private_full_suite": {
+      "tests": 256,
+      "passed": true,
+      "reporting_dependency": "existing pinned pyarrow 26.0.0 supplied from local packaging environment"
+    },
+    "latest_backup_control_suite_each": {
+      "tests": 13,
+      "passed": true
+    },
+    "yaml_and_operational_gates_passed": true,
+    "scientific_inputs_and_event_flags_unchanged": true,
+    "live_reactivation_exercised": false
+  },
+  "activation_requires": "Explicit organizer instruction and controller confirmation; live acceptance gates still apply"
+}

@@ -1,5 +1,12 @@
 # AI for Nature · Bird habitat challenge
 
+> **Backup standby — 23 October 2026.** The event uses the
+> [private website](https://ai-for-nature.hula.earth/). GitHub/Hugging Face event
+> automation is stopped, including worker, polling, deployment and data/key
+> releases. Operators and agents: use [BACKUP_ACTIVATION.md](BACKUP_ACTIVATION.md)
+> for verified shutdown, selective reactivation and emergency takeover. The
+> schedules below describe the event plan; they do not activate disabled jobs.
+
 Build habitat rankings for ten birds from German observations, AlphaEarth embeddings, WorldCover, terrain and historical OpenStreetMap. Compare models on one common German validation set, then predict anonymous locations in nearby Central Europe. Teams of 2–3 work for 6.5 hours.
 
 [Competition hub & rules](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Challenge data](https://drive.google.com/drive/folders/1gXsJyZnI8QIbk1RQYL0qNqy1yf0eSaoT) · [Starter code](https://github.com/hulaearth/ai-for-nature-codebase) · [Participant guide at 10:00](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth) · [Register](https://huggingface.co/spaces/HulaEarth/ai-for-nature-hula-earth#register)
