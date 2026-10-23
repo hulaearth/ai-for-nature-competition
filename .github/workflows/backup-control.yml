@@ -1,0 +1,45 @@
+name: Backup platform control
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Stop everything, inspect, or explicitly enable a selected backup profile
+        type: choice
+        options: [status, stop, enable-checks, enable-runtime, enable-releases]
+        default: status
+      confirmation:
+        description: Activation only - type ACTIVATE HF BACKUP; leave empty for stop/status
+        type: string
+        default: ''
+  push:
+    branches: [main]
+    paths: ['.github/workflows/backup-control.yml', 'scripts/backup_control.py', 'config/backup-install.json']
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: hf-backup-platform-control
+  cancel-in-progress: false
+jobs:
+  control:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Apply explicit control and verify actual GitHub state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BACKUP_MODE: ${{ github.event_name == 'push' && 'stop' || inputs.mode || 'status' }}
+          BACKUP_ACTIVATION_CONFIRMATION: ${{ inputs.confirmation }}
+        run: python3 scripts/backup_control.py --mode "$BACKUP_MODE"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: backup-control-receipt
+          path: output/backup-control.json
+          if-no-files-found: ignore
+          retention-days: 14

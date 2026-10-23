@@ -32,6 +32,8 @@ jobs:
         with:
           ref: main
           persist-credentials: false
+      - name: Require explicit HF backup activation
+        run: python3 scripts/backup_control.py --require releases
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.14.4'
